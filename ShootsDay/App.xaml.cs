@@ -8,7 +8,9 @@ namespace ShootsDay
 		{
 			InitializeComponent();
 
-			MainPage = new ShootsDayPage();
+			//MainPage = new ShootsDayPage();
+			//MainPage = new MainPage();
+			MainPage = new UserLogin();
 		}
 
 		protected override void OnStart()

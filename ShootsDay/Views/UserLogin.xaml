@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ShootsDay.UserLogin">
+	<ContentPage.Content>
+		<ScrollView BackgroundColor="White">
+			<StackLayout Orientation="Vertical" Spacing="30" Padding="20">
+		        <BoxView HeightRequest="10" />
+		        <Image HorizontalOptions="Center"
+		               WidthRequest="300"
+		               Source="logo.png"/>
+		        <Frame  HasShadow="False">
+		          <StackLayout Orientation="Vertical" Spacing="10">
+		            <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
+		            <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
+		            <Entry x:Name="CodeEntry" Placeholder="Event code" Text="{Binding Code}" HeightRequest="40" TextColor="Black"></Entry>
+		          </StackLayout>
+		        </Frame>
+		        <Button Command="{Binding SubmitCommand}"
+		                Text="Login"
+		                TextColor="White"
+		                FontAttributes="Bold"
+		                FontSize="20"
+		                HorizontalOptions="FillAndExpand"
+		                BackgroundColor="#01cb8f"
+		                Clicked="btnLogin"/>
+		      <Label x:Name="touchRegister" Text="Go to register" TextColor="#01cb8f" HorizontalTextAlignment="Center"/>
+		    </StackLayout>
+		</ScrollView>
+		 
+	</ContentPage.Content>
+</ContentPage>
