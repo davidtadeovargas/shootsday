@@ -5,12 +5,15 @@ using Xamarin.Forms;
 
 namespace ShootsDay
 {
-	public partial class MainPage : MasterDetailPage
+	public partial class MenuPage : ContentPage
 	{
+		public delegate void ItemSelected(object item);
+		public event ItemSelected evtItemSelected;
 		public List<MasterPageItem> menuList { get; set; }
-
-		public MainPage()
+		public MenuPage()
 		{
+			Title = "Menu";
+			Icon = "menu-collapse.png";
 			InitializeComponent();
 
 			menuList = new List<MasterPageItem>();
@@ -33,21 +36,21 @@ namespace ShootsDay
 
 			// Setting our list to be ItemSource for ListView in MainPage.xaml
 			navigationDrawerList.ItemsSource = menuList;
-
-			// Initial navigation, this can be used for our home page
-			Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(Home)));
 		}
 
 		// Event for Menu Item selection, here we are going to handle navigation based
 		// on user selection in menu ListView
 		private void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
-
-			var item = (MasterPageItem)e.SelectedItem;
+			if (evtItemSelected != null)
+			{
+				evtItemSelected(e.SelectedItem);
+			}
+			/*var item = (MasterPageItem)e.SelectedItem;
 			Type page = item.TargetType;
 
 			Detail = new NavigationPage((Page)Activator.CreateInstance(page));
-			IsPresented = false;
+			IsPresented = false;*/
 		}
 	}
 }

@@ -9,6 +9,7 @@ namespace ShootsDay
 	{
 		public Photoshoots()
 		{
+			Title = "Sesón de fotos";
 			InitializeComponent();
 		}
 	}

@@ -9,7 +9,6 @@ namespace ShootsDay
 			InitializeComponent();
 
 			//MainPage = new ShootsDayPage();
-			//MainPage = new MainPage();
 			MainPage = new UserLogin();
 		}
 
