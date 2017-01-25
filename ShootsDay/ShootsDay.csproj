@@ -92,6 +92,19 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\RequestUser.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\RequestHome.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\RequestMyPictures.cs" />
+    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Views\Home_ShowPicture.cs" />
+    <Compile Include="Models\RequestAddLike.cs" />
+    <Compile Include="Views\Home_ShowComments.cs" />
+    <Compile Include="Models\RequestComments.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Views\MyPictures_ShowPicture.cs" />
+    <Compile Include="Models\Photoshoot.cs" />
+    <Compile Include="Views\InitApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />

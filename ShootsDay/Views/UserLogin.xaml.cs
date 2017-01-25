@@ -14,6 +14,9 @@ namespace ShootsDay
 		{
 			InitializeComponent();
 			touchRegister.GestureRecognizers.Add(new TapGestureRecognizer(goToRegister));
+			CodeEntry.Text = "787878";
+			UserEntry.Text = "buhoweb";
+			PasswordEntry.Text = "master";
 		}
 
 		private void goToRegister(View arg1, object arg2)
@@ -52,20 +55,16 @@ namespace ShootsDay
 
 		private async void CheckUser()
 		{
-
-			/*var auxUser = new Usuario { code_event = CodeEntry.Text };
-            var auxLogin = new LoginUser { password = PasswordEntry.Text, username = UserEntry.Text };*/
-
 			try
 			{
 				var client = new HttpClient();
-				var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { User = new { code_event = CodeEntry.Text }, Login = new { password = PasswordEntry.Text, username = UserEntry.Text } });
+				var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { code = CodeEntry.Text }, Login = new { password = PasswordEntry.Text, username = UserEntry.Text } });
 				//var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
 				var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
 				//var uri = new Uri("http://10.0.2.57:8030/ws-jsproject/users/login.json");
 				var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/users/login.json");
-				//var uri = new Uri("http://localhost:8850/ws-jsproject/users/login.json");
+				//var uri = new Uri("http://192.168.0.6:8850/ws-jsproject/users/login.json");
 
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 				if (result.IsSuccessStatusCode)
@@ -76,8 +75,14 @@ namespace ShootsDay
 					if (jsonSystem.status.type != "error")
 					{
 						// Usuario logeado correctamente
-						Page masterDetail = new MasterDetail(jsonSystem);
-						Navigation.PushModalAsync(masterDetail);
+
+						Application.Current.Properties["username"] = jsonSystem.data.User.username;
+						Application.Current.Properties["password"] = PasswordEntry.Text;
+						Application.Current.Properties["id_event"] = jsonSystem.data.Event.id;
+						Application.Current.Properties["host"] = jsonSystem.data.Host.url;
+						await Application.Current.SavePropertiesAsync();
+
+						await Navigation.PushModalAsync( new MasterDetail());
 					}
 					else
 					{
@@ -93,6 +98,7 @@ namespace ShootsDay
 			catch (Exception ex)
 			{
 				Debug.WriteLine("Excepcion: " + ex.Message);
+				await DisplayAlert("", ex.Message, "Aceptar");
 			}
 
 

@@ -1,9 +1,8 @@
 ﻿using System;
 namespace ShootsDay.Models
 {
-	public class RequestUser
+	public class RequestAddLike
 	{
 		public Status status { get; set; }
-		public Data data { get; set; }
 	}
 }

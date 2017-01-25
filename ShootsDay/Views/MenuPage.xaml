@@ -9,9 +9,10 @@
              This StackLayout you can use for other
              data 	that you want to have in your menu drawer
         -->
-        <StackLayout BackgroundColor="#FFFFFF"
-                     HeightRequest="75">
-		  <Image Source="logo.png" />
+		
+        <StackLayout BackgroundColor="White"
+                     HeightRequest="75" Spacing="15">
+		  <Image Source="logo.png" Aspect="AspectFill" Margin="25" />
           <!--<Label Text="ShootsDay"
                  FontSize="20"
                  VerticalOptions="CenterAndExpand"
@@ -22,7 +23,7 @@
         <ListView x:Name="navigationDrawerList"
                   RowHeight="60"
                   SeparatorVisibility="None"
-                  BackgroundColor="#FFFFFF"
+                  BackgroundColor="White"
                   ItemSelected="OnMenuItemSelected">
 
           <ListView.ItemTemplate>

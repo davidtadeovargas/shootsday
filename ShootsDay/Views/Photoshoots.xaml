@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		x:Class="ShootsDay.Photoshoots">
-
-	<Label Text="Seccíon 'Sesión de Fotos' " 
-		VerticalOptions="Center" 
-		HorizontalOptions="Center" />
-	
-</ContentPage>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="ShootsDay.Photoshoots">
+    <CarouselPage.ItemTemplate>
+        <DataTemplate>
+            <ContentPage>
+                <ContentPage.Padding>
+                    <OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0" Android="0,40,0,0" />
+                </ContentPage.Padding>
+                <StackLayout>
+                    <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="Center" />
+                    <BoxView Color="{Binding Color}" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </ContentPage>
+        </DataTemplate>
+    </CarouselPage.ItemTemplate>
+</CarouselPage>
