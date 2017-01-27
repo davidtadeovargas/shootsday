@@ -27,9 +27,10 @@ namespace ShootsDay
 
 		}
 
-		async void btnLogin(object sender, EventArgs e)
+		public async void btnLogin(object sender, EventArgs e)
 		{
-			var register = (Button)sender;
+            var register = (Button)sender;
+            register.IsEnabled = false;
 			if (string.IsNullOrEmpty(UserEntry.Text))
 			{
 				await DisplayAlert("Error", "Debe ingresar un usuario", "Aceptar");
@@ -82,7 +83,7 @@ namespace ShootsDay
 						Application.Current.Properties["host"] = jsonSystem.data.Host.url;
 						await Application.Current.SavePropertiesAsync();
 
-						await Navigation.PushModalAsync( new MasterDetail());
+						await Navigation.PushModalAsync( new InitApp());
 					}
 					else
 					{

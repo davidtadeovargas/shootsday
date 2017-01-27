@@ -8,41 +8,29 @@ namespace ShootsDay
 	{
 		public MyPictures_ShowPicture(Picture _picture)
 		{
-			StackLayout stackTitle = new StackLayout
-			{
-				Spacing = 15,
-				Padding = new Thickness(20, 20),
-				HorizontalOptions = LayoutOptions.Center
-			};
-			Label titlePicture = new Label
-			{
-				Text = _picture.description,
-				TextColor = Color.Black,
-				FontSize = 26
-			};
-			stackTitle.Children.Add(titlePicture);
-			StackLayout stackImg = new StackLayout
-			{
-				Spacing = 15,
-				Padding = new Thickness(20, 20),
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand
-			};
-			Image img = new Image
-			{
-				Aspect = Aspect.AspectFill,
-				Source = _picture.url_image
-			};
-			stackImg.Children.Add(img);
+            Uri urlImg = new Uri(_picture.url_image);
+            
 			Content = new StackLayout
 			{
-				Spacing = 15,
-				Padding = new Thickness(20, 20),
-				Children = {
+                Padding = new Thickness(15, 15),
+                Children = {
+                    new Label {
+                        HorizontalOptions = LayoutOptions.Center,
+                        Text = _picture.description,
+                        TextColor = Color.Black,
+                        FontSize = 26,
+                    },
+                    new Image{
+                        Source = urlImg,
+                        Aspect = Aspect.AspectFill,
+                        VerticalOptions = LayoutOptions.FillAndExpand
+                    },
+                }
+                /*Children = {
 					stackTitle,
 					stackImg
-				}
-			};
+				}*/
+            };
 		}
 	}
 }

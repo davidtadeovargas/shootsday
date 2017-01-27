@@ -6,17 +6,11 @@ namespace ShootsDay
 {
 	public class InitApp : ContentPage
 	{
-		public delegate void btnSocialNet();
-		public event btnSocialNet evtBtnSocialNet; 
+        Button btnRedSocial;
 
-		public delegate void btnInvitation();
-		public event btnInvitation evtBtnInvitation;
-
-		public delegate void btnSession();
-		public event btnSession evtBtnSession;
-		public InitApp()
+        public InitApp()
 		{
-			Button btnRedSocial = new Button
+			btnRedSocial = new Button
 			{
 				Text = "Red social",
 				TextColor = Color.FromHex("#01cb8f"), 
@@ -53,26 +47,22 @@ namespace ShootsDay
 			btnInvitacion.Clicked += BtnInvitacion_Clicked;
 			btnSesion.Clicked += BtnSesion_Clicked;
 		}
-
-		void BtnRedSocial_Clicked(object sender, EventArgs e)
+		public void BtnRedSocial_Clicked(object sender, EventArgs e)
 		{
-			if (evtBtnSocialNet != null)
-				evtBtnSocialNet();
-		}
+            Navigation.PushModalAsync(new MasterDetail(new Home()));
+        }
 
 		private void BtnInvitacion_Clicked(object sender, EventArgs e)
 		{
 			Debug.WriteLine("Abrir ventana de invitación");
-			if (evtBtnInvitation != null)
-				evtBtnInvitation();
-		}
+            Navigation.PushModalAsync(new MasterDetail(new Invites()));
+        }
 
 		private void BtnSesion_Clicked(object sender, EventArgs e)
 		{
 			Debug.WriteLine("Abrir ventana de Sesion de fotos");
-			if (evtBtnSession != null)
-				evtBtnSession();
-		}
+            Navigation.PushModalAsync(new MasterDetail(new Photoshoots()));
+        }
 	}
 }
 

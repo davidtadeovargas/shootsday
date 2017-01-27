@@ -4,10 +4,11 @@ using System.Net.Http;
 using System.Text;
 using ShootsDay.Models;
 using Xamarin.Forms;
+using ShootsDay.Views;
 
 namespace ShootsDay
 {
-	public class Home_ShowPicture : ContentPage
+	public class SocialNet_ShowPicture : ContentPage
 	{
 		string username = Application.Current.Properties["username"].ToString();
 		string password = Application.Current.Properties["password"].ToString();
@@ -17,48 +18,11 @@ namespace ShootsDay
 		Image imgLikes;
 		Label countLikes;
 		Picture picture;
-		public Home_ShowPicture(Picture _picture)
+		public SocialNet_ShowPicture(Picture _picture)
 		{
 			this.picture = _picture;
-			StackLayout stackElements = new StackLayout
-			{ 
-				//Spacing = 15,
-				Padding = new Thickness(15,15),
-				HorizontalOptions = LayoutOptions.CenterAndExpand
-			};
+            Uri urlImg = new Uri(_picture.url_image);            
 
-			Label titlePicture = new Label
-			{ 
-				Text = _picture.description,
-				TextColor = Color.Black,
-				FontSize = 26,
-				HorizontalOptions = LayoutOptions.Center
-			};
-
-
-			/*StackLayout stackImg = new StackLayout
-			{ 
-				Spacing = 15,
-				Padding = new Thickness(20, 20),
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand
-			};*/
-			Image img = new Image
-			{
-				Aspect = Aspect.AspectFill,
-				Source = _picture.url_image,
-				HorizontalOptions = LayoutOptions.FillAndExpand
-			};
-			stackElements.Children.Add(titlePicture);
-			stackElements.Children.Add(img);
-			StackLayout stackButtons = new StackLayout
-			{
-				Spacing = 15,
-				Padding = new Thickness(20, 20),
-				Orientation = StackOrientation.Horizontal,
-				HorizontalOptions = LayoutOptions.Center
-				//BackgroundColor = Color.Lime
-			};
 			Image imgComments = new Image
 			{
 				Source = "comment.png",
@@ -81,21 +45,38 @@ namespace ShootsDay
 				Text = _picture.likes.ToString(),
 				TextColor = Color.FromHex("#07cd92")
 			};
-			stackButtons.Children.Add(imgComments);
-			stackButtons.Children.Add(imgLikes);
-			stackButtons.Children.Add(countLikes);
-
-			Content = new StackLayout
-			{
-				Spacing = 15,
-				Padding = new Thickness(20, 20),
-				Children = {
-					stackElements,
-					//stackImg,
-					stackButtons
-				}
-			};
-		}
+            
+            
+            Content = new StackLayout
+            {
+                Padding = new Thickness(15, 15),
+                    //VerticalOptions = LayoutOptions.FillAndExpand,
+                Children = {
+                    new Label {
+                        HorizontalOptions = LayoutOptions.Center,
+                        Text = _picture.description,
+                        TextColor = Color.Black,
+                        FontSize = 26,
+                    },
+                    new Image{
+                        Source = urlImg,
+                        Aspect = Aspect.AspectFill,
+                        VerticalOptions = LayoutOptions.FillAndExpand
+                    },
+                    new StackLayout {
+                        Spacing = 15,
+                        Padding = new Thickness(20, 20),
+                        Orientation = StackOrientation.Horizontal,
+                        HorizontalOptions = LayoutOptions.Center,
+                        Children = {
+                            imgComments,
+                            imgLikes,
+                            countLikes
+                        }
+                    }
+                }
+            };
+        }
 
 		private async void evtClickLike(View arg1, object arg2)
 		{
@@ -163,11 +144,13 @@ namespace ShootsDay
 
 					if (jsonSystem.status.type != "error")
 					{
-						// Mostrar los comentarios de la imagen
+                        // Mostrar los comentarios de la imagen
+                        await this.Navigation.PushAsync(new SocialNet_ShowComments(jsonSystem, arg1.ClassId));
 					}
 					else
 					{
-						await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+						//await DisplayAlert("Alerta", jsonSystem.status.message, "Aceptar");
+                        await this.Navigation.PushAsync(new SocialNet_ShowComments(jsonSystem, arg1.ClassId));
 					}
 				}
 				else

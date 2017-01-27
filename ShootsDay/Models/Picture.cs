@@ -11,5 +11,6 @@ namespace ShootsDay.Models
 		public int event_id { get; set; }
 		public int likes { get; set; }
 		public bool like_user { get; set; }
-	}
+        public User User { get; set; }
+    }
 }

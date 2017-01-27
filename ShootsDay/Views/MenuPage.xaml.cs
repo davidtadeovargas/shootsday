@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShootsDay.Views;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -21,21 +22,19 @@ namespace ShootsDay
 			// Creating our pages for menu navigation
 			// Here you can define title for item, 
 			// icon on the left side, and page that you want to open after selection
-			var page1 = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(Home) };
-			var page2 = new MasterPageItem() { Title = "Mis fotos", Icon = "picture.png", TargetType = typeof(MyPictures) };
-			var page3 = new MasterPageItem() { Title = "Invitación", Icon = "invite.png", TargetType = typeof(Invites) };
-			var page4 = new MasterPageItem() { Title = "Sesión de fotos", Icon = "photoshoot.png", TargetType = typeof(Photoshoots) };
-			var page5 = new MasterPageItem() { Title = "Contacto", Icon = "contact.png", TargetType = typeof(Contact) };
+			var page1 = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(InitApp) };
+			var page3 = new MasterPageItem() { Title = "Contacto", Icon = "contact.png", TargetType = typeof(Contact) };
+            var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "invite.png", TargetType = typeof(Profile) };
+            var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "invite.png", TargetType = typeof(UserLogin) };
 
-			// Adding menu items to menuList
-			menuList.Add(page1);
-			menuList.Add(page2);
+            // Adding menu items to menuList
+            menuList.Add(page1);
 			menuList.Add(page3);
-			menuList.Add(page4);
-			menuList.Add(page5);
+            menuList.Add(miPerfil_page);
+            menuList.Add(salir_page);
 
-			// Setting our list to be ItemSource for ListView in MainPage.xaml
-			navigationDrawerList.ItemsSource = menuList;
+            // Setting our list to be ItemSource for ListView in MainPage.xaml
+            navigationDrawerList.ItemsSource = menuList;
 		}
 
 		// Event for Menu Item selection, here we are going to handle navigation based

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShootsDay.Views.SocialNet_ShowComments">
+
+  
+  <ScrollView>
+    <StackLayout Spacing="20" Padding="15, 15">
+      <Entry x:Name="addComment" Placeholder="Agregar comentario" PlaceholderColor="Gray" TextColor="Black"/>
+      <Button Text="Agregar comentario" Clicked="btnAdd_comment"/>
+      <ListView x:Name="listComments">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ImageCell Text="{Binding User.username}" Detail="{Binding comment}" ImageSource="{Binding User.url_image}"/>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ScrollView>
+  
+</ContentPage>
