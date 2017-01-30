@@ -16,7 +16,8 @@ namespace ShootsDay
 		public MyPictures()
 		{
 			//InitializeComponent();
-			Title = "Mi fotos";
+			//Title = "Mi fotos";
+			Icon = "my_pictures_white.png";
 			StackLayout stack = new StackLayout()
 			{
 				Spacing = 15,

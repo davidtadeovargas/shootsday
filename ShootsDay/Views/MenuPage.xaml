@@ -11,7 +11,7 @@
         -->
 		
         <StackLayout BackgroundColor="White"
-                     HeightRequest="75" Spacing="15">
+                     HeightRequest="75" Spacing="15" Padding="20,20">
 		      <Image Source="logo.png" Aspect="AspectFill" Margin="25" />
           <!--<Label Text="ShootsDay"
                  FontSize="20"

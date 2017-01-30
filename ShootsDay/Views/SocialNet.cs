@@ -21,7 +21,8 @@ namespace ShootsDay.Views
         public SocialNet()
         {
             //InitializeComponent();
-            Title = "ShootsDay";
+            //Title = "ShootsDay";
+			Icon = "red_social_white.png";
             homePictures = new Dictionary<string, Picture>();
             contenedor = new StackLayout
             {

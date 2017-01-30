@@ -24,8 +24,8 @@ namespace ShootsDay
 			// icon on the left side, and page that you want to open after selection
 			var page1 = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(InitApp) };
 			var page3 = new MasterPageItem() { Title = "Contacto", Icon = "contact.png", TargetType = typeof(Contact) };
-            var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "invite.png", TargetType = typeof(Profile) };
-            var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "invite.png", TargetType = typeof(UserLogin) };
+            var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "profile.png", TargetType = typeof(Profile) };
+            var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "logout.png", TargetType = typeof(UserLogin) };
 
             // Adding menu items to menuList
             menuList.Add(page1);

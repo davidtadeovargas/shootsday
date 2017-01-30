@@ -19,15 +19,23 @@ namespace ShootsDay
 			/*Home inicio = new Home(user.data.user);
 			Detail = new NavigationPage(inicio);*/
 			InitApp init = new InitApp();
-            //Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(page)));
-            Detail = new NavigationPage(page);
+			//Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(page)));
+			Detail = new NavigationPage(page) 
+			{
+				BarBackgroundColor = Color.FromHex("#01cb8f"),
+				BarTextColor = Color.White
+			};
 		}
 
 		void MenuPage_EvtItemSelected(object item)
 		{
 			var itemSelect = (MasterPageItem)item;
 			Type page = itemSelect.TargetType;
-			Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+			Detail = new NavigationPage((Page)Activator.CreateInstance(page)) 
+			{
+				BarBackgroundColor = Color.FromHex("#01cb8f"),
+				BarTextColor = Color.White
+			};
 			IsPresented = false;
 		}
 	}

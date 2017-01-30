@@ -14,7 +14,7 @@ namespace ShootsDay
 		public Home()
 		{
             this.Title = "ShootdDay";
-
+			BarBackgroundColor = Color.FromHex("#01cb8f");
 
             this.Children.Add(new SocialNet());
 
