@@ -1,22 +1,31 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace ShootsDay
 {
 	public partial class App : Application
 	{
-		public const string Usuario = "username";
-		private const string Contrasena = "password";
-		private const string EventoId = "id_event";
-
-		public App()
+        public static App Current;
+        public App()
 		{
-			InitializeComponent();
+            Current = this;
+            //InitializeComponent();
+            var isLoggedIn = Properties.ContainsKey("IsLoggedIn") ? (bool)Properties["IsLoggedIn"] : false;
 
-			//MainPage = new ShootsDayPage();
-			MainPage = new UserLogin();
-		}
+            if (isLoggedIn)
+                MainPage = new InitApp();
+            else
+                MainPage = new UserLogin();
+        }
+        public void Logout()
+        {
+            //Properties.Clear();
+            Properties.Remove("IsLoggedIn");
+            //Properties["IsLoggedIn"] = false;
+            MainPage = new UserLogin();
+        }
 
-		protected override void OnStart()
+        protected override void OnStart()
 		{
 			// Handle when your app starts
 		}
@@ -29,22 +38,6 @@ namespace ShootsDay
 		protected override void OnResume()
 		{
 			// Handle when your app resumes
-		}
-
-		public string username
-		{
-			get
-			{
-				if (Properties.ContainsKey(Usuario))
-					return Properties[Usuario].ToString();
-
-				return "";
-			}
-
-			set
-			{
-				Properties[Usuario] = value;
-			}
 		}
 	}
 }

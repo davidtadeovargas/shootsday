@@ -90,15 +90,9 @@ namespace ShootsDay
 			gridImg.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 			bool flag = true;
 			int numRow = 0;
-			int borrar = 0;
 			foreach (var img in pictures)
 			{
-				Uri urlImg = new Uri(img.url_image);
-				if (borrar == 3)
-				{
-					urlImg = new Uri(host + "" + img.url_image);
-				}
-				borrar++;
+				Uri urlImg = new Uri(host + "" + img.url_image);
 				Image imagen = new Image
 				{
 					Source = urlImg,

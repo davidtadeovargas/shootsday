@@ -16,20 +16,19 @@ namespace ShootsDay
 			Title = "Menu";
 			Icon = "menu-collapse.png";
 			InitializeComponent();
-
 			menuList = new List<MasterPageItem>();
 
 			// Creating our pages for menu navigation
 			// Here you can define title for item, 
 			// icon on the left side, and page that you want to open after selection
-			var page1 = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(InitApp) };
-			var page3 = new MasterPageItem() { Title = "Contacto", Icon = "contact.png", TargetType = typeof(Contact) };
+			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(InitApp) };
+			var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contact.png", TargetType = typeof(Contact) };
             var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "profile.png", TargetType = typeof(Profile) };
             var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "logout.png", TargetType = typeof(UserLogin) };
 
             // Adding menu items to menuList
-            menuList.Add(page1);
-			menuList.Add(page3);
+            menuList.Add(init_page);
+			menuList.Add(contact_page);
             menuList.Add(miPerfil_page);
             menuList.Add(salir_page);
 

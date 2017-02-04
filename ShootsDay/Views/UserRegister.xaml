@@ -19,7 +19,7 @@
 	            <Label Text="Upload profile picture"
 	                   TextColor="Gray"
 	                   x:Name="pictureEntry"/>
-
+              <Image x:Name="profile_img" Aspect="AspectFill" />
 	          </StackLayout>
 	        </Frame>
 	        <Button Command="{Binding SubmitCommand}"

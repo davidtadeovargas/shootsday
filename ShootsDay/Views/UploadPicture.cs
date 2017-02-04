@@ -9,6 +9,8 @@ using Xamarin.Forms;
 using Plugin.Media;
 using System.Diagnostics;
 using Plugin.Media.Abstractions;
+using System.Net.Http;
+using ShootsDay.Models;
 
 namespace ShootsDay.Views
 {
@@ -16,7 +18,9 @@ namespace ShootsDay.Views
     {
 		Image img_selected;
 		Button btn_upload;
-		public UploadPicture()
+        Entry description;
+        private MediaFile _mediaFile;
+        public UploadPicture()
         {
             //Title = "Agregar foto";
 			Icon = "upload_picture_white.png";
@@ -44,7 +48,13 @@ namespace ShootsDay.Views
 				Aspect = Aspect.AspectFill,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
-			Content = new ScrollView
+            description = new Entry
+            {
+                Placeholder = "Descripción de la imágen",
+                IsEnabled = false,
+                IsVisible = false
+            };
+            Content = new ScrollView
 			{
 				Content = new StackLayout
 				{
@@ -55,7 +65,8 @@ namespace ShootsDay.Views
 						btn_upload_picture,
 						btn_take_picture,
 						img_selected,
-						btn_upload
+                        description,
+                        btn_upload
 					}
 				}
 			};
@@ -79,14 +90,17 @@ namespace ShootsDay.Views
 			{
 				await DisplayAlert("Error","Subír una foto no soportado","OK");
 			}
-			var file = await CrossMedia.Current.PickPhotoAsync();
-			if (file == null)
+            _mediaFile = await CrossMedia.Current.PickPhotoAsync();
+			if (_mediaFile == null)
 				return;
 
-			img_selected.Source = ImageSource.FromStream(() => file.GetStream());
+			img_selected.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
 			btn_upload.IsVisible = true;
 			btn_upload.IsEnabled = true;
-		}
+
+            description.IsVisible = true;
+            description.IsEnabled = true;
+        }
 
 		private async void Btn_Take_Picture_Clicked(object sender, EventArgs e)
 		{
@@ -98,23 +112,73 @@ namespace ShootsDay.Views
 				await DisplayAlert("Error","Camara no displonible","Ok");
 				return;
 			}
-			var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+            _mediaFile = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
 			{
 				Directory = "Shootsday",
 				SaveToAlbum = true,
 				Name = "photoshoots.jpg"
 			});
-			if (file == null)
+			if (_mediaFile == null)
 				return;
 			
-			img_selected.Source = ImageSource.FromStream(() => file.GetStream());
+			img_selected.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
 			btn_upload.IsVisible = true;
 			btn_upload.IsEnabled = true;
-		}
+            description.IsVisible = true;
+            description.IsEnabled = true;
+        }
 
-		private void Btn_Upload_Clicked(object sender, EventArgs e)
+		private async void Btn_Upload_Clicked(object sender, EventArgs e)
 		{
-			Debug.WriteLine("Aqui se sube la imagen");
-		}
+            string username = Application.Current.Properties["username"].ToString();
+            string password = Application.Current.Properties["password"].ToString();
+            string id_event = Application.Current.Properties["id_event"].ToString();
+            try
+            {
+                var client = new HttpClient();
+                MultipartFormDataContent content = new MultipartFormDataContent();
+                content.Add(new StringContent(password), "Login[password]");
+                content.Add(new StringContent(username), "Login[username]");
+                content.Add(new StringContent(id_event), "Picture[event_id]");
+                content.Add(new StringContent(description.Text), "Picture[description]");
+
+                if (_mediaFile != null)
+                {
+                    content.Add(new StreamContent(_mediaFile.GetStream()),
+                    "\"image\"",
+                    $"\"{_mediaFile.Path}\"");
+                }
+                var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/pictures/add.json");
+                //var uri = new Uri("http://10.0.2.45:8030/ws-jsproject/pictures/add.json");
+
+                var result = await client.PostAsync(uri, content).ConfigureAwait(true);
+                if (result.IsSuccessStatusCode)
+                {
+                    var tokenJson = await result.Content.ReadAsStringAsync();
+                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestMyPictures>(tokenJson);
+
+                    if (jsonSystem.status.type != "error")
+                    {
+                        await DisplayAlert("Subír imágen", jsonSystem.status.message, "Aceptar");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Subír imágen", jsonSystem.status.message, "Aceptar");
+                    }
+                }
+                else
+                {
+                    var respuesta = await result.Content.ReadAsStringAsync();
+                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestMyPictures>(respuesta);
+                    await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error, Excepcion: " + ex.Message);
+                await DisplayAlert("Error", ex.Message, "Aceptar");
+            }
+
+        }
 	}
 }

@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ShootsDay.Invites">
-
-	<Label Text="Sección de invitación" VerticalOptions="Center" HorizontalOptions="Center" />
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ShootsDay.Invites">
+  <ContentPage.Content>
+    <StackLayout HorizontalOptions="Center" Padding="20,20">
+      <Label Text="Direccion Misa" FontSize="28"/>
+      <Label x:Name="direction1"/>
+      <Label x:Name="direction1_map"/>
+      <Label Text="Direccion Evento" FontSize="28"/>
+      <Label x:Name="direction2"/>
+      <Label x:Name="direction2_map" Text="Link a google maps"/>
+    </StackLayout>
+    
+  </ContentPage.Content>
+	
 	
 </ContentPage>

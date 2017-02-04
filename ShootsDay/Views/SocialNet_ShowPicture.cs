@@ -10,7 +10,8 @@ namespace ShootsDay
 {
 	public class SocialNet_ShowPicture : ContentPage
 	{
-		string username = Application.Current.Properties["username"].ToString();
+        ShareImageViewModel _shareImageViewModel;
+        string username = Application.Current.Properties["username"].ToString();
 		string password = Application.Current.Properties["password"].ToString();
 		string id_event = Application.Current.Properties["id_event"].ToString();
 		string host = Application.Current.Properties["host"].ToString();
@@ -21,9 +22,11 @@ namespace ShootsDay
 		public SocialNet_ShowPicture(Picture _picture)
 		{
 			this.picture = _picture;
-            Uri urlImg = new Uri(_picture.url_image);            
+            Uri urlImg = new Uri(_picture.url_image);
+            _shareImageViewModel = new ShareImageViewModel();
+            BindingContext = _shareImageViewModel;
 
-			Image imgComments = new Image
+            Image imgComments = new Image
 			{
 				Source = "comment.png",
 				Aspect = Aspect.AspectFill,
@@ -45,8 +48,6 @@ namespace ShootsDay
 				Text = _picture.likes.ToString(),
 				TextColor = Color.FromHex("#07cd92")
 			};
-            
-            
             Content = new StackLayout
             {
                 Padding = new Thickness(15, 15),
@@ -74,8 +75,13 @@ namespace ShootsDay
                             countLikes
                         }
                     }
-                }
+                },
             };
+            var contentPage = new ContentPage();
+            this.ToolbarItems.Add(new ToolbarItem
+            {
+                Text="Shared",
+            });
         }
 
 		private async void evtClickLike(View arg1, object arg2)

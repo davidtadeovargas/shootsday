@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShootsDay.Views;
+using System;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -7,10 +8,13 @@ namespace ShootsDay
 	public class InitApp : ContentPage
 	{
         Button btnRedSocial;
+        string title = "";
 
         public InitApp()
 		{
-			btnRedSocial = new Button
+            if(Application.Current.Properties.ContainsKey("title_event"))
+                title = Application.Current.Properties["title_event"].ToString();
+            btnRedSocial = new Button
 			{
 				Text = "Red social",
 				TextColor = Color.FromHex("#01cb8f"), 
@@ -30,17 +34,28 @@ namespace ShootsDay
 				BorderColor = Color.Gray,
 				BorderWidth = 2,
 			};
-
-
-			Content = new StackLayout
+            Content = new StackLayout
 			{
-				Padding = new Thickness(20, 20),
-				HorizontalOptions = LayoutOptions.End,
-				VerticalOptions = LayoutOptions.End,
 				Children = {
-					btnRedSocial,
-					btnInvitacion,
-					btnSesion
+					new StackLayout {
+                        Padding = new Thickness(20, 40),
+                        Children = {
+                            new Label {
+                                Text = title,
+                                HorizontalOptions = LayoutOptions.Center
+                            }
+                        }
+                    },
+                    new StackLayout {
+                        Padding = new Thickness(20, 20),
+                        HorizontalOptions = LayoutOptions.End,
+                        VerticalOptions = LayoutOptions.EndAndExpand,
+                        Children = {
+                            btnRedSocial,
+                            btnInvitacion,
+                            btnSesion
+                        }
+                    },
 				}
 			};
 			btnRedSocial.Clicked += BtnRedSocial_Clicked;

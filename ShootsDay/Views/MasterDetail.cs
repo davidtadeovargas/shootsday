@@ -31,12 +31,28 @@ namespace ShootsDay
 		{
 			var itemSelect = (MasterPageItem)item;
 			Type page = itemSelect.TargetType;
-			Detail = new NavigationPage((Page)Activator.CreateInstance(page)) 
-			{
-				BarBackgroundColor = Color.FromHex("#01cb8f"),
-				BarTextColor = Color.White
-			};
-			IsPresented = false;
-		}
+            IsPresented = false;
+            if (page.Name == "UserLogin")
+            {
+                // Se sale de la aplicacion y se borran las propiedades
+                if (Application.Current.Properties.ContainsKey("username") || Application.Current.Properties.ContainsKey("password"))
+                {
+                    Application.Current.Properties.Remove("username");
+                    Application.Current.Properties.Remove("password");
+                    Application.Current.Properties.Remove("id_event");
+                    Application.Current.Properties.Remove("host");
+                }
+                //this.Navigation.PopToRootAsync();
+                App.Current.Logout();
+            }
+            else
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(page))
+                {
+                    BarBackgroundColor = Color.FromHex("#01cb8f"),
+                    BarTextColor = Color.White
+                };
+            }
+        }
 	}
 }

@@ -14,9 +14,6 @@ namespace ShootsDay
 		{
 			InitializeComponent();
 			touchRegister.GestureRecognizers.Add(new TapGestureRecognizer(goToRegister));
-			CodeEntry.Text = "787878";
-			UserEntry.Text = "buhoweb";
-			PasswordEntry.Text = "master";
 		}
 
 		private void goToRegister(View arg1, object arg2)
@@ -29,8 +26,8 @@ namespace ShootsDay
 
 		public async void btnLogin(object sender, EventArgs e)
 		{
-            var register = (Button)sender;
-            register.IsEnabled = false;
+            var btn_login = (Button)sender;
+            btn_login.IsEnabled = false;
 			if (string.IsNullOrEmpty(UserEntry.Text))
 			{
 				await DisplayAlert("Error", "Debe ingresar un usuario", "Aceptar");
@@ -51,8 +48,8 @@ namespace ShootsDay
 			}
 			// Se hace la conexion al Web services de Usuarios
 			CheckUser();
-
-		}
+            //btn_login.IsEnabled = true;
+        }
 
 		private async void CheckUser()
 		{
@@ -75,14 +72,15 @@ namespace ShootsDay
 
 					if (jsonSystem.status.type != "error")
 					{
-						// Usuario logeado correctamente
-
-						Application.Current.Properties["username"] = jsonSystem.data.User.username;
+                        // Usuario logeado correctamente
+                        App.Current.Properties["IsLoggedIn"] = true;
+                        Application.Current.Properties["user_id"] = jsonSystem.data.User.id;
+                        Application.Current.Properties["username"] = jsonSystem.data.User.username;
 						Application.Current.Properties["password"] = PasswordEntry.Text;
 						Application.Current.Properties["id_event"] = jsonSystem.data.Event.id;
 						Application.Current.Properties["host"] = jsonSystem.data.Host.url;
-						await Application.Current.SavePropertiesAsync();
-
+                        Application.Current.Properties["title_event"] = jsonSystem.data.Event.title;
+                        await Application.Current.SavePropertiesAsync();
 						await Navigation.PushModalAsync( new InitApp());
 					}
 					else

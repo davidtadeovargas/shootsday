@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage BackgroundColor="White" xmlns="http://xamarin.com/schemas/2014/forms"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               x:Class="ShootsDay.Photoshoots">
-    <CarouselPage.ItemTemplate>
-        <DataTemplate>
-            <ContentPage>
-                <ContentPage.Padding>
-                    <OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0" Android="0,40,0,0" />
-                </ContentPage.Padding>
-                <StackLayout>
-                    <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="Center" />
-                    <BoxView Color="{Binding Color}" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                </StackLayout>
-            </ContentPage>
-        </DataTemplate>
-    </CarouselPage.ItemTemplate>
-</CarouselPage>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Share" Name="Shared" Order="Secondary" Command="{Binding Share}" Icon="icon.png" />
+  </ContentPage.ToolbarItems>
+  <AbsoluteLayout Padding="10,0">
+
+    <Image x:Name="image_photoshoot"
+			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" />
+    <ActivityIndicator Color="White" IsRunning="{Binding Source={x:Reference image_photoshoot}, Path=IsLoading}"
+			AbsoluteLayout.LayoutBounds="0.5, 0.05, 100, 100" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+    <Button x:Name="btnPrevius" Image="left.png" Clicked="Previous_Clicked"
+			AbsoluteLayout.LayoutBounds="0.05, 0.05, 100, 100" AbsoluteLayout.LayoutFlags="PositionProportional" />
+    <Button x:Name="btnNext" Image="right.png" Clicked="Next_Clicked"
+			AbsoluteLayout.LayoutBounds="0.95, 0.05, 100, 100" AbsoluteLayout.LayoutFlags="PositionProportional" />
+  </AbsoluteLayout>
+
+</ContentPage>
