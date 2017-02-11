@@ -6,6 +6,7 @@ namespace ShootsDay
 	public partial class App : Application
 	{
         public static App Current;
+        public string Language = "";
         public App()
 		{
             Current = this;

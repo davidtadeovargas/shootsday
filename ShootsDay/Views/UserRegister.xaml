@@ -11,8 +11,8 @@
 	               Source="logo.png"/>
 	        <Frame HasShadow="False">
 	          <StackLayout Orientation="Vertical" Spacing="10">
-	            <Entry x:Name="NameEntry" Placeholder="Name" Text="{Binding Name}" HeightRequest="40" TextColor="Black"></Entry>
-	            <Entry x:Name="LastNameEntry" Placeholder="Last Name" Text="{Binding LastName}" HeightRequest="40" TextColor="Black"></Entry>
+	            <Entry x:Name="NameEntry" Placeholder="Nombre" Text="{Binding Name}" HeightRequest="40" TextColor="Black"></Entry>
+	            <Entry x:Name="LastNameEntry" Placeholder="Apellidos" Text="{Binding LastName}" HeightRequest="40" TextColor="Black"></Entry>
 	            <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding Email}" HeightRequest="40" TextColor="Black"></Entry>
 	            <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
 	            <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>

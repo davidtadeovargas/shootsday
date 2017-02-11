@@ -11,21 +11,31 @@
 		               Source="logo.png"/>
 		        <Frame  HasShadow="False">
 		          <StackLayout Orientation="Vertical" Spacing="10">
-		            <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
-		            <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
-		            <Entry x:Name="CodeEntry" Placeholder="Event code" Text="{Binding Code}" HeightRequest="40" TextColor="Black"></Entry>
+		            <Entry x:Name="UserEntry" Placeholder="Usuario" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
+		            <Entry x:Name="PasswordEntry" Placeholder="Contraseña" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
+		            <Entry x:Name="CodeEntry" Placeholder="Código evento" Text="{Binding Code}" HeightRequest="40" TextColor="Black"></Entry>
 		          </StackLayout>
 		        </Frame>
 		        <Button Command="{Binding SubmitCommand}"
-		                Text="Login"
+		                Text="Entrar"
+                    x:Name="btnLogin"
 		                TextColor="White"
 		                FontAttributes="Bold"
 		                FontSize="20"
 		                HorizontalOptions="FillAndExpand"
 		                BackgroundColor="#01cb8f"
-		                Clicked="btnLogin"/>
-		      <Label x:Name="touchRegister" Text="Go to register" TextColor="#01cb8f" HorizontalTextAlignment="Center"/>
+		                Clicked="evt_btnLogin"/>
+		      <Label x:Name="touchRegister" Text="Registrar" TextColor="#01cb8f" HorizontalTextAlignment="Center"/>
+        
+          <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="30" Padding="20">
+            <Image x:Name="esp_lan" Source="mx.png"/>
+            <Image x:Name="eng_lan" Source="us.png"/>
+          </StackLayout>
+      
 		    </StackLayout>
+      
+        
+    
 		</ScrollView>
 		 
 	</ContentPage.Content>

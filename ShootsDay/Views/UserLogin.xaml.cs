@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using ShootsDay.Models;
 using Xamarin.Forms;
+using System.Globalization;
 
 namespace ShootsDay
 {
@@ -13,10 +14,44 @@ namespace ShootsDay
 		public UserLogin()
 		{
 			InitializeComponent();
-			touchRegister.GestureRecognizers.Add(new TapGestureRecognizer(goToRegister));
-		}
+            btnLogin.Text = Recursos.AppResources.login.ToString();
 
-		private void goToRegister(View arg1, object arg2)
+            touchRegister.GestureRecognizers.Add(new TapGestureRecognizer(goToRegister));
+            
+            esp_lan.GestureRecognizers.Add(new TapGestureRecognizer(click_esp));
+            eng_lan.GestureRecognizers.Add(new TapGestureRecognizer(click_eng));
+        }
+
+        private void AplicarIdioma()
+        {
+            btnLogin.Text = Recursos.AppResources.login.ToString();
+            if(string.IsNullOrEmpty(UserEntry.Text))
+                UserEntry.Placeholder = Recursos.AppResources.user;
+            if (string.IsNullOrEmpty(PasswordEntry.Text))
+                PasswordEntry.Placeholder = Recursos.AppResources.password;
+            if (string.IsNullOrEmpty(CodeEntry.Text))
+                CodeEntry.Placeholder = Recursos.AppResources.code_event;
+            touchRegister.Text = Recursos.AppResources.btn_go_register;
+        }
+
+        private void click_eng(View arg1, object arg2)
+        {
+            Debug.WriteLine("La aplicación debe estar en ingles");
+            //Java.Lang.Thread.CurrentThread.CurrentUICulture = new CultureInfo("ES-US")
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
+            App.Current.Language = "eng";
+            AplicarIdioma();
+        }
+
+        private void click_esp(View arg1, object arg2)
+        {
+            Debug.WriteLine("La aplicación debe estar en español");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("");
+            App.Current.Language = "esp";
+            AplicarIdioma();
+        }
+
+        private void goToRegister(View arg1, object arg2)
 		{
 
 			Page UserRegister = new UserRegister();
@@ -24,7 +59,7 @@ namespace ShootsDay
 
 		}
 
-		public async void btnLogin(object sender, EventArgs e)
+		public async void evt_btnLogin(object sender, EventArgs e)
 		{
             var btn_login = (Button)sender;
             btn_login.IsEnabled = false;
@@ -56,7 +91,11 @@ namespace ShootsDay
 			try
 			{
 				var client = new HttpClient();
-				var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { code = CodeEntry.Text }, Login = new { password = PasswordEntry.Text, username = UserEntry.Text } });
+				var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
+                    new {
+                        Event = new { code = CodeEntry.Text },
+                        Login = new { password = PasswordEntry.Text, username = UserEntry.Text, language = App.Current.Language } 
+                    });
 				//var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
 				var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
