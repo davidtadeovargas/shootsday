@@ -96,7 +96,7 @@ namespace ShootsDay
 				//var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
 				var content = new StringContent(data, Encoding.UTF8, "application/json");
 
-				var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/likes/add.json");
+				var uri = new Uri(Constants.LIKES_ADD);
 
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 				if (result.IsSuccessStatusCode)
@@ -140,7 +140,7 @@ namespace ShootsDay
 				//var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
 				var content = new StringContent(data, Encoding.UTF8, "application/json");
 
-				var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/comments/get_list_comments.json");
+				var uri = new Uri(Constants.COMMENTS_GETLIST);
 
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 				if (result.IsSuccessStatusCode)

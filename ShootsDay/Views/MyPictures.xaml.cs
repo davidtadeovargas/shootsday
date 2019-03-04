@@ -52,7 +52,7 @@ namespace ShootsDay
 				//var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
 				var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
-				var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/pictures/my_pictures.json");
+				var uri = new Uri(Constants.MY_PICTURES);
 
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 				if (result.IsSuccessStatusCode)

@@ -29,7 +29,7 @@ namespace ShootsDay
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
                 //var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
-                var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/events.json");
+                var uri = new Uri(Constants.EVENTS);
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
                 if (result.IsSuccessStatusCode)
                 {

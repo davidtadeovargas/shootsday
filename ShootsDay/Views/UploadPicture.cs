@@ -148,7 +148,7 @@ namespace ShootsDay.Views
                     "\"image\"",
                     $"\"{_mediaFile.Path}\"");
                 }
-                var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/pictures/add.json");
+                var uri = new Uri(Constants.PICTURES_ADD);
                 //var uri = new Uri("http://10.0.2.45:8030/ws-jsproject/pictures/add.json");
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);

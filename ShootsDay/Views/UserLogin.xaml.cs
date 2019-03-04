@@ -11,7 +11,10 @@ namespace ShootsDay
 {
 	public partial class UserLogin : ContentPage
 	{
-		public UserLogin()
+        Button btn_login = null;
+
+
+        public UserLogin()
 		{
 			InitializeComponent();
             btnLogin.Text = Recursos.AppResources.login.ToString();
@@ -53,7 +56,6 @@ namespace ShootsDay
 
         private void goToRegister(View arg1, object arg2)
 		{
-
 			Page UserRegister = new UserRegister();
 			arg1.Navigation.PushModalAsync(UserRegister);
 
@@ -61,7 +63,7 @@ namespace ShootsDay
 
 		public async void evt_btnLogin(object sender, EventArgs e)
 		{
-            var btn_login = (Button)sender;
+            btn_login = (Button)sender;
             btn_login.IsEnabled = false;
 			if (string.IsNullOrEmpty(UserEntry.Text))
 			{
@@ -100,7 +102,7 @@ namespace ShootsDay
 				var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
 				//var uri = new Uri("http://10.0.2.57:8030/ws-jsproject/users/login.json");
-				var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/users/login.json");
+				var uri = new Uri(Constants.USERS_LOGIN);
 				//var uri = new Uri("http://192.168.0.6:8850/ws-jsproject/users/login.json");
 
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
@@ -124,7 +126,8 @@ namespace ShootsDay
 					}
 					else
 					{
-						await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+                        btn_login.IsEnabled = true;
+                        await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
 					}
 				}
 				else
@@ -135,7 +138,8 @@ namespace ShootsDay
 			}
 			catch (Exception ex)
 			{
-				Debug.WriteLine("Excepcion: " + ex.Message);
+                btn_login.IsEnabled = true;
+                Debug.WriteLine("Excepcion: " + ex.Message);
 				await DisplayAlert("", ex.Message, "Aceptar");
 			}
 

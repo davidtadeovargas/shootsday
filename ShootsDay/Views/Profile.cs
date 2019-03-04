@@ -110,7 +110,7 @@ namespace ShootsDay.Views
                 });
                 //var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
-                var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/users/profile/"+Convert.ToInt32(user_id)+".json");
+                var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(user_id)+".json");
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
                 if (result.IsSuccessStatusCode)
                 {

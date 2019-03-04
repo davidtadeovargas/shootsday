@@ -128,7 +128,7 @@ namespace ShootsDay
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
-                var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/photoshoots.json");
+                var uri = new Uri(Constants.PHOTOSHOOTS);
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
                 if (result.IsSuccessStatusCode)

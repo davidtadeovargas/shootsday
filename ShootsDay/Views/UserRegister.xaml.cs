@@ -87,9 +87,8 @@ namespace ShootsDay
                     "\"image\"",
                     $"\"{_mediaFile.Path}\"");
                 }
-                //var uri = new Uri("http://10.0.2.149:8030/ws-jsproject/users/register.json");
                 var client = new HttpClient();
-                var uri = new Uri("http://www.js-project.com.mx/ws-jsproject/users/register.json");
+                var uri = new Uri(Constants.USERS_REGISTER);
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
                 if (result.IsSuccessStatusCode)
