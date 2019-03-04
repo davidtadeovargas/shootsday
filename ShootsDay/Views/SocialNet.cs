@@ -18,6 +18,10 @@ namespace ShootsDay.Views
         Grid gridImg;
         string host;
         StackLayout contenedor;
+
+
+
+
         public SocialNet()
         {
             //InitializeComponent();

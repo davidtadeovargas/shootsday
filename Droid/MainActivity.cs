@@ -11,6 +11,7 @@ using ImageCircle.Forms.Plugin.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
+using Acr.UserDialogs;
 
 namespace ShootsDay.Droid
 {
@@ -24,6 +25,8 @@ namespace ShootsDay.Droid
 			ToolbarResource = Resource.Layout.Toolbar;
 
 			base.OnCreate(bundle);
+
+            UserDialogs.Init(this); //Initialize the dialogs
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
             ImageCircleRenderer.Init();

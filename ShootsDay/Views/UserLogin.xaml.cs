@@ -6,21 +6,47 @@ using System.Text;
 using ShootsDay.Models;
 using Xamarin.Forms;
 using System.Globalization;
+using Acr.UserDialogs;
+using System.Threading.Tasks;
+using ShootsDay.Views;
 
+/*
+    https://github.com/aritchie/userdialogs
+     */
 namespace ShootsDay
 {
 	public partial class UserLogin : ContentPage
-	{
+    {
         Button btn_login = null;
 
 
         public UserLogin()
 		{
-			InitializeComponent();
+            Init();            
+        }
+        
+
+        public UserLogin(string user, string password)
+        {
+            Init();
+
+            /*
+                Set the user and password
+             */
+            Device.BeginInvokeOnMainThread(() => {
+                UserEntry.Text = user;
+                PasswordEntry.Text = password;
+            });
+        }
+
+        private void Init()
+        {
+
+            InitializeComponent();
             btnLogin.Text = Recursos.AppResources.login.ToString();
 
             touchRegister.GestureRecognizers.Add(new TapGestureRecognizer(goToRegister));
-            
+
             esp_lan.GestureRecognizers.Add(new TapGestureRecognizer(click_esp));
             eng_lan.GestureRecognizers.Add(new TapGestureRecognizer(click_eng));
         }

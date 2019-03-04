@@ -18,9 +18,9 @@ namespace ShootsDay
 
             this.Children.Add(new SocialNet());
 
-            this.Children.Add(new UploadPicture());
+            //this.Children.Add(new UploadPicture());
 
-            this.Children.Add(new MyPictures());
+            //this.Children.Add(new MyPictures());
         }
     }
 }
