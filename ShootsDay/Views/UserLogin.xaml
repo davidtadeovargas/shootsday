@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		x:Class="ShootsDay.UserLogin">
+		x:Class="ShootsDay.UserLogin"
+             BackgroundColor="White">
 	<ContentPage.Content>
 		<ScrollView BackgroundColor="White">
-			<StackLayout Orientation="Vertical" Spacing="30" Padding="20">
+			<StackLayout Orientation="Vertical" Spacing="5" Padding="20">
 		        <BoxView HeightRequest="10" />
 		        <Image HorizontalOptions="Center"
 		               WidthRequest="300"
 		               Source="logo.png"/>
-		        <Frame  HasShadow="False">
+                <Label x:Name="link" Text="LOGIN" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0">
+                </Label>
+                <Frame  HasShadow="False">
 		          <StackLayout Orientation="Vertical" Spacing="10">
 		            <Entry x:Name="UserEntry" Placeholder="Usuario" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
 		            <Entry x:Name="PasswordEntry" Placeholder="Contraseña" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
@@ -17,22 +20,22 @@
 		          </StackLayout>
 		        </Frame>
 		        <Button Command="{Binding SubmitCommand}"
-		                Text="Entrar"
-                    x:Name="btnLogin"
+		                Text="ENTRAR"
+                        x:Name="btnLogin"
 		                TextColor="White"
 		                FontAttributes="Bold"
-		                FontSize="20"
 		                HorizontalOptions="FillAndExpand"
-		                BackgroundColor="#01cb8f"
+		                BackgroundColor="#FF766B"
 		                Clicked="evt_btnLogin"/>
-		      <Label x:Name="touchRegister" Text="Registrar" TextColor="#01cb8f" HorizontalTextAlignment="Center"/>
-        
-          <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="30" Padding="20">
-            <Image x:Name="esp_lan" Source="mx.png"/>
-            <Image x:Name="eng_lan" Source="us.png"/>
-          </StackLayout>
-      
-		    </StackLayout>
+                <Image Source="registrar.png" Margin="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Tapped="OnRegistrarClicked"
+                        NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+            </StackLayout>
       
         
     

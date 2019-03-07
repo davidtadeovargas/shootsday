@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using ShootsDay.Views;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace ShootsDay
@@ -14,7 +15,7 @@ namespace ShootsDay
             var isLoggedIn = Properties.ContainsKey("IsLoggedIn") ? (bool)Properties["IsLoggedIn"] : false;
 
             if (isLoggedIn)
-                MainPage = new InitApp();
+                MainPage = new Home_();
             else
                 MainPage = new UserLogin();
         }

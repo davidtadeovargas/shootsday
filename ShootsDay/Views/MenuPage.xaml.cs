@@ -21,7 +21,7 @@ namespace ShootsDay
 			// Creating our pages for menu navigation
 			// Here you can define title for item, 
 			// icon on the left side, and page that you want to open after selection
-			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(InitApp) };
+			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(Home_) };
 			var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contact.png", TargetType = typeof(Contact) };
             var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "profile.png", TargetType = typeof(Profile) };
             var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "logout.png", TargetType = typeof(UserLogin) };

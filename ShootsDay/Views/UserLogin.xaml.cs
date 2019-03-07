@@ -22,9 +22,18 @@ namespace ShootsDay
 
         public UserLogin()
 		{
-            Init();            
+            Init();
+
+            /*
+                For testing
+             */
+            Device.BeginInvokeOnMainThread(() => {
+                UserEntry.Text = "master";
+                PasswordEntry.Text = "123456789";
+                CodeEntry.Text = "50019";
+            });
         }
-        
+
 
         public UserLogin(string user, string password)
         {
@@ -45,10 +54,7 @@ namespace ShootsDay
             InitializeComponent();
             btnLogin.Text = Recursos.AppResources.login.ToString();
 
-            touchRegister.GestureRecognizers.Add(new TapGestureRecognizer(goToRegister));
-
-            esp_lan.GestureRecognizers.Add(new TapGestureRecognizer(click_esp));
-            eng_lan.GestureRecognizers.Add(new TapGestureRecognizer(click_eng));
+            link.FontSize = 40;
         }
 
         private void AplicarIdioma()
@@ -59,8 +65,7 @@ namespace ShootsDay
             if (string.IsNullOrEmpty(PasswordEntry.Text))
                 PasswordEntry.Placeholder = Recursos.AppResources.password;
             if (string.IsNullOrEmpty(CodeEntry.Text))
-                CodeEntry.Placeholder = Recursos.AppResources.code_event;
-            touchRegister.Text = Recursos.AppResources.btn_go_register;
+                CodeEntry.Placeholder = Recursos.AppResources.code_event;            
         }
 
         private void click_eng(View arg1, object arg2)
@@ -80,10 +85,10 @@ namespace ShootsDay
             AplicarIdioma();
         }
 
-        private void goToRegister(View arg1, object arg2)
-		{
+        private void OnRegistrarClicked(object sender, EventArgs e)
+        {
 			Page UserRegister = new UserRegister();
-			arg1.Navigation.PushModalAsync(UserRegister);
+            Navigation.PushModalAsync(UserRegister);            
 
 		}
 
@@ -118,7 +123,9 @@ namespace ShootsDay
 		{
 			try
 			{
-				var client = new HttpClient();
+                Loading.Instance.showLoading();
+
+                var client = new HttpClient();
 				var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
                     new {
                         Event = new { code = CodeEntry.Text },
@@ -132,7 +139,10 @@ namespace ShootsDay
 				//var uri = new Uri("http://192.168.0.6:8850/ws-jsproject/users/login.json");
 
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
-				if (result.IsSuccessStatusCode)
+
+                Loading.Instance.closeLoading();
+
+                if (result.IsSuccessStatusCode)
 				{
 					var tokenJson = await result.Content.ReadAsStringAsync();
 					var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(tokenJson);
@@ -148,7 +158,7 @@ namespace ShootsDay
 						Application.Current.Properties["host"] = jsonSystem.data.Host.url;
                         Application.Current.Properties["title_event"] = jsonSystem.data.Event.title;
                         await Application.Current.SavePropertiesAsync();
-						await Navigation.PushModalAsync( new InitApp());
+						await Navigation.PushModalAsync( new Home_());
 					}
 					else
 					{

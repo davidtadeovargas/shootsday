@@ -18,7 +18,7 @@ namespace ShootsDay
 			Master = menuPage;
 			/*Home inicio = new Home(user.data.user);
 			Detail = new NavigationPage(inicio);*/
-			InitApp init = new InitApp();
+			
 			//Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(page)));
 			Detail = new NavigationPage(page) 
 			{

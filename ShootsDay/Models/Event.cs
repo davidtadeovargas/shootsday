@@ -11,7 +11,7 @@ namespace ShootsDay.Models
         public string title { get; set; }
         public string address { get; set; }
         public string coordinates { get; set; }
-        public object address_second { get; set; }
+        public string address_second { get; set; }
         public object coordinates_second { get; set; }
         public string created { get; set; }
         public string modified { get; set; }

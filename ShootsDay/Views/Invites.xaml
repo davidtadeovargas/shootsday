@@ -4,13 +4,18 @@
              x:Class="ShootsDay.Invites">
   <ContentPage.Content>
     <StackLayout HorizontalOptions="Center" Padding="20,20">
-      <Label Text="Direccion Misa" FontSize="28"/>
-      <Label x:Name="direction1"/>
-      <Label x:Name="direction1_map"/>
-      <Label Text="Direccion Evento" FontSize="28"/>
-      <Label x:Name="direction2"/>
-      <Label x:Name="direction2_map" Text="Link a google maps"/>
-    </StackLayout>
+        <Image Source="logo.png" Margin="35" />
+        <Label Text="INVITACION" FontSize="Large"/>
+        <Label x:Name="address"/>
+        <Label x:Name="addressSecond"/>
+        <Image Source="vermapa.png">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                    Tapped="OnVerMapaClicked"
+                    NumberOfTapsRequired="1" /> 
+                </Image.GestureRecognizers>
+        </Image>
+        </StackLayout>
     
   </ContentPage.Content>
 	

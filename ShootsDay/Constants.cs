@@ -19,6 +19,9 @@ namespace ShootsDay
         static public string COMMENTS_GETLIST = SERVER + "comments/get_list_comments.json";
         static public string PICTURES_ADD = SERVER + "pictures/add.json";
         static public string USERS_LOGIN = SERVER + "users/login.json";
-        static public string USERS_REGISTER = SERVER + "users/register.json";        
+        static public string USERS_REGISTER = SERVER + "users/register.json";
+
+        static public string CONTACT_URL = SERVER + "http://shootsday.com.mx/contacto";
+        static public string CONTACT_CONTACT_EMAIL = "email@email.com";
     }
 }

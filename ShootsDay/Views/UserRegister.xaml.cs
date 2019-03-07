@@ -15,7 +15,6 @@ namespace ShootsDay
 {
 	public partial class UserRegister : ContentPage
 	{
-        ActivityIndicator loading = new ActivityIndicator();
         private MediaFile _mediaFile;
         
 

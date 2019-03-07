@@ -46,9 +46,6 @@
     <EmbeddedResource Include="Views\Invites.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Home.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Contact.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -85,14 +82,14 @@
     <Compile Include="MenuItems\MasterPageItem.cs" />
     <Compile Include="Managers\LoadingManager.cs" />
     <Compile Include="Views\Customs\LoadingOverlay.cs" />
+    <Compile Include="Views\Home_.xaml.cs">
+      <DependentUpon>Home_.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MyPictures.xaml.cs">
       <DependentUpon>MyPictures.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Invites.xaml.cs">
       <DependentUpon>Invites.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Contact.xaml.cs">
       <DependentUpon>Contact.xaml</DependentUpon>
@@ -131,7 +128,6 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Views\MyPictures_ShowPicture.cs" />
     <Compile Include="Models\Photoshoot.cs" />
-    <Compile Include="Views\InitApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SocialNet_ShowComments.xaml">
@@ -190,7 +186,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Home_.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

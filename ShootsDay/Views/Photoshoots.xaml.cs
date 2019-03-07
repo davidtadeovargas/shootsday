@@ -87,13 +87,15 @@ namespace ShootsDay
         }
         void LoadImage()
         {
-            image_photoshoot.Source = new UriImageSource
+            if (list_images.Count > 0)
             {
-                Uri = new Uri(list_images[_currentImageId]),
-                //CachingEnabled = false
-            };
-            _shareImageViewModel.Source = image_photoshoot.Source;
-
+                image_photoshoot.Source = new UriImageSource
+                {
+                    Uri = new Uri(list_images[_currentImageId]),
+                    //CachingEnabled = false
+                };
+                _shareImageViewModel.Source = image_photoshoot.Source;
+            }            
         }
         void Previous_Clicked(object sender, System.EventArgs e)
         {
