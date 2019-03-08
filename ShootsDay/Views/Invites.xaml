@@ -2,22 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="ShootsDay.Invites">
-  <ContentPage.Content>
-    <StackLayout HorizontalOptions="Center" Padding="20,20">
-        <Image Source="logo.png" Margin="35" />
-        <Label Text="INVITACION" FontSize="Large"/>
-        <Label x:Name="address"/>
-        <Label x:Name="addressSecond"/>
-        <Image Source="vermapa.png">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer
-                    Tapped="OnVerMapaClicked"
-                    NumberOfTapsRequired="1" /> 
-                </Image.GestureRecognizers>
-        </Image>
-        </StackLayout>
-    
-  </ContentPage.Content>
-	
-	
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="Center" Padding="20,20">
+                <Image Source="logo.png" Margin="25" />
+                <Label Text="INVITACION" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+                <Label x:Name="address" HorizontalOptions="CenterAndExpand"/>
+                <Label x:Name="addressSecond" HorizontalOptions="CenterAndExpand"/>
+                <Image x:Name="mapPicture" HorizontalOptions="FillAndExpand">
+                </Image>
+                <Image Source="vermapa.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnVerMapaClicked"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

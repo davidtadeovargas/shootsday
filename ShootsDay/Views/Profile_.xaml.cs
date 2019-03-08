@@ -1,52 +1,54 @@
-﻿using Foundation;
-using ShootsDay.Managers;
+﻿using ShootsDay.Managers;
 using ShootsDay.Models;
-using ShootsDay.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
-using UIKit;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace ShootsDay
+namespace ShootsDay.Views
 {
-    public partial class Invites : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Profile_ : ContentPage
     {
-        string url;
-        string coordinates = "";
+        string host;
 
 
 
-        public Invites()
+
+        public Profile_()
         {
-            Title = "Invitación";
             InitializeComponent();
-            get_Invites();
 
-            //Load the image map
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                var urlMap = ImagesManager.Instance.getInvitationMap();
-                mapPicture.Source = ImageSource.FromUri(new Uri(urlMap));                
-            });
+            Title = "Perfil de usuario";
+            get_profile();
         }
 
-        private async void get_Invites()
-        {
-            Loading.Instance.showLoading();
 
+        private async void get_profile()
+        {
             string username = Application.Current.Properties["username"].ToString();
             string password = Application.Current.Properties["password"].ToString();
             string id_event = Application.Current.Properties["id_event"].ToString();
+            string user_id = Application.Current.Properties["user_id"].ToString();            
             try
             {
+                Loading.Instance.showLoading();
+
                 var client = new HttpClient();
-                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
+                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                {
+                    Event = new { id = id_event },
+                    Login = new { password = password, username = username }
+                });
                 //var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
-                var uri = new Uri(Constants.EVENTS);
+                var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(user_id) + ".json");
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
                 Loading.Instance.closeLoading();
@@ -57,9 +59,7 @@ namespace ShootsDay
                     var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestHome>(tokenJson);
                     if (jsonSystem.status.type != "error")
                     {
-                        address.Text = jsonSystem.data.Event.address;
-                        addressSecond.Text = jsonSystem.data.Event.address_second;
-                        coordinates = jsonSystem.data.Event.coordinates;
+                        set_data_profile(jsonSystem.data);
                     }
                     else
                     {
@@ -79,20 +79,21 @@ namespace ShootsDay
             }
         }
 
-        private async void OnVerMapaClicked(object sender, EventArgs e)
+
+        private void set_data_profile(Data profile)
         {
-            var uri = new Uri("http://maps.google.com");
-
-            if (Device.OS == TargetPlatform.Android)
+            if (!string.IsNullOrEmpty(profile.User.url_image))
             {
-                uri = new Uri("http://maps.google.com/?daddr=" + coordinates);                
-            }
-            else if (Device.OS == TargetPlatform.iOS)
-            {
-                uri = new Uri("http://maps.google.com/?daddr=" + coordinates);                
+                var url = ImagesManager.Instance.geProfilePicture(profile.User.url_image);
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    profile_img.Source = ImageSource.FromUri(new Uri(url));
+                });                                
             }
 
-            Device.OpenUri(uri);           
+            name.Text = profile.User.name + " " + profile.User.lastname;
+            event_.Text = profile.Event.title;
+            contacts.Text = profile.Event.count_users.ToString() + " contactos";            
         }
     }
 }

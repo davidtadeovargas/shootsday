@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using ShootsDay.Models;
+using ShootsDay.Views;
 using Xamarin.Forms;
 
 namespace ShootsDay
@@ -126,6 +127,8 @@ namespace ShootsDay
             this.host = Application.Current.Properties["host"].ToString();
             try
             {
+                Loading.Instance.showLoading();
+
                 var client = new HttpClient();
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
@@ -133,6 +136,9 @@ namespace ShootsDay
                 var uri = new Uri(Constants.PHOTOSHOOTS);
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
+
+                Loading.Instance.closeLoading();
+
                 if (result.IsSuccessStatusCode)
                 {
                     var tokenJson = await result.Content.ReadAsStringAsync();

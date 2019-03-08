@@ -4,22 +4,22 @@
 		x:Class="ShootsDay.UserLogin"
              BackgroundColor="White">
 	<ContentPage.Content>
-		<ScrollView BackgroundColor="White">
-			<StackLayout Orientation="Vertical" Spacing="5" Padding="20">
-		        <BoxView HeightRequest="10" />
-		        <Image HorizontalOptions="Center"
+        <ScrollView BackgroundColor="White">
+            <StackLayout Orientation="Vertical" Spacing="5" Padding="20">
+                <BoxView HeightRequest="10" />
+                <Image HorizontalOptions="Center"
 		               WidthRequest="300"
 		               Source="logo.png"/>
                 <Label x:Name="link" Text="LOGIN" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0">
                 </Label>
                 <Frame  HasShadow="False">
-		          <StackLayout Orientation="Vertical" Spacing="10">
-		            <Entry x:Name="UserEntry" Placeholder="Usuario" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
-		            <Entry x:Name="PasswordEntry" Placeholder="Contraseña" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
-		            <Entry x:Name="CodeEntry" Placeholder="Código evento" Text="{Binding Code}" HeightRequest="40" TextColor="Black"></Entry>
-		          </StackLayout>
-		        </Frame>
-		        <Button Command="{Binding SubmitCommand}"
+                    <StackLayout Orientation="Vertical" Spacing="10">
+                        <Entry x:Name="UserEntry" Placeholder="Usuario" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
+                        <Entry x:Name="PasswordEntry" Placeholder="Contraseña" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
+                        <Entry x:Name="CodeEntry" Placeholder="Código evento" Text="{Binding Code}" HeightRequest="40" TextColor="Black"></Entry>
+                    </StackLayout>
+                </Frame>
+                <Button Command="{Binding SubmitCommand}"
 		                Text="ENTRAR"
                         x:Name="btnLogin"
 		                TextColor="White"
@@ -34,12 +34,7 @@
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-
             </StackLayout>
-      
-        
-    
-		</ScrollView>
-		 
-	</ContentPage.Content>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
