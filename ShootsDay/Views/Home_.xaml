@@ -8,7 +8,7 @@
             <Image Source="logo.png" Margin="35" />
             <Label Text="¿QUE QUIERES HACER?" HorizontalOptions="CenterAndExpand"/>
             <StackLayout VerticalOptions="CenterAndExpand">
-                <Image Source="sesionfotos.png" Margin="5">
+                <Image Source="sesionfotos.jpg" Margin="5">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                     Tapped="OnSesionFotosClicked"
@@ -22,7 +22,7 @@
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Image Source="invitacion.png" Margin="5">
+                <Image Source="invitacion.jpg" Margin="5">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                         Tapped="OnInvitacionClicked"

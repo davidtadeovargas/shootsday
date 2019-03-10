@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		x:Class="ShootsDay.MenuPage">
+		x:Class="ShootsDay.MenuPage"
+             BackgroundColor="White">
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical">
         
@@ -9,16 +10,10 @@
              This StackLayout you can use for other
              data 	that you want to have in your menu drawer
         -->
-		
-        <StackLayout BackgroundColor="White"
-                     HeightRequest="75" Spacing="15" Padding="20,20">
-		      <Image Source="logo.png" Aspect="AspectFill" Margin="25" />
-          <!--<Label Text="ShootsDay"
-                 FontSize="20"
-                 VerticalOptions="CenterAndExpand"
-                 TextColor="White"
-                 HorizontalOptions="Center"/>-->
-        </StackLayout>
+
+            <StackLayout BackgroundColor="White"
+                     HeightRequest="15" Spacing="15" Padding="20,20">
+            </StackLayout>
 
         <ListView x:Name="navigationDrawerList"
                   RowHeight="60"
@@ -33,7 +28,7 @@
                 <!-- Main design for our menu items -->
                 <StackLayout VerticalOptions="FillAndExpand"
                              Orientation="Horizontal"
-                             Padding="20,10,0,10"
+                             Padding="20,0,0,10"
                              Spacing="20">
 
                   <Image Source="{Binding Icon}"

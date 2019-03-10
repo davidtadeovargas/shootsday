@@ -43,5 +43,15 @@ namespace ShootsDay.Managers
         {
             return Constants.PROFILE_IMAGE_URL + "/" + image;
         }
+
+        public string gePhotoshootImage(string image)
+        {
+            return Constants.PHOTOSHOOTS_IMAGE_URL + "/" + Application.Current.Properties["id_event"]  + "/" + image;
+        }
+
+        public string gePhotoshootDetailImage(string urlImage)
+        {
+            return Constants.INIT_SERVER + urlImage;
+        }
     }
 }

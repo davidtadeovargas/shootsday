@@ -39,7 +39,7 @@ namespace ShootsDay.Views
         private void OnSesionFotosClicked(object sender, EventArgs e)
         {
             Debug.WriteLine("Abrir ventana de Sesion de fotos");
-            Navigation.PushModalAsync(new MasterDetail(new Photoshoots()));
+            Navigation.PushModalAsync(new MasterDetail(new PhotoSesionsPage()));
         }
     }
 }

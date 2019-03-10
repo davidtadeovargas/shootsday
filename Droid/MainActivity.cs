@@ -28,8 +28,9 @@ namespace ShootsDay.Droid
 
             UserDialogs.Init(this); //Initialize the dialogs
 
-			global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::Xamarin.Forms.Forms.Init(this, bundle);
             ImageCircleRenderer.Init();
+
             LoadApplication(new App());
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);
         }

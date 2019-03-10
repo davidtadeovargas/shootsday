@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@drawable/CustomSelector">
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+		android:background="@android:color/white"
+		android:weightSum="2">
+        <ImageView
+			android:id="@+id/ImageLeft"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:scaleType="fitXY"
+			android:adjustViewBounds="true"
+			android:layout_weight="1"/>
+
+		<ImageView
+			android:id="@+id/ImageRight"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:scaleType="fitXY"
+			android:adjustViewBounds="true"
+			android:layout_weight="1"/>
+
+    </LinearLayout> 
+</RelativeLayout>

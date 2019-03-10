@@ -21,14 +21,28 @@ namespace ShootsDay
 			// Creating our pages for menu navigation
 			// Here you can define title for item, 
 			// icon on the left side, and page that you want to open after selection
-			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "home.png", TargetType = typeof(Home_) };
-			var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contact.png", TargetType = typeof(Contact) };
-            var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "profile.png", TargetType = typeof(Profile_) };
-            var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "logout.png", TargetType = typeof(UserLogin) };
+			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "inicio.png", TargetType = typeof(Home_) };
+            var misfotos_page = new MasterPageItem() { Title = "Mis Fotos", Icon = "misfotos.png", TargetType = typeof(PhotoSesionsPage) };
+            var invitacion_page = new MasterPageItem() { Title = "Invitacion", Icon = "invitacion_.png", TargetType = typeof(Invites) };
+            var sesionFotos_page = new MasterPageItem() { Title = "Sesion de Fotos", Icon = "sesionfotos_.png", TargetType = typeof(PhotoSesionsPage) };
+            var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contacto.png", TargetType = typeof(Contact) };
+
+            var autorizarFotos_page = new MasterPageItem() { Title = "Autorizar fotos", TargetType = typeof(Profile_) };
+            var eventos_page = new MasterPageItem() { Title = "Eventos", TargetType = typeof(Profile_) };
+            var usuarios_page = new MasterPageItem() { Title = "Usuarios", TargetType = typeof(Profile_) };
+
+            var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", TargetType = typeof(Profile_) };
+            var salir_page = new MasterPageItem() { Title = "Cerrar sesión", TargetType = typeof(UserLogin) };
 
             // Adding menu items to menuList
             menuList.Add(init_page);
-			menuList.Add(contact_page);
+            menuList.Add(misfotos_page);
+            menuList.Add(invitacion_page);
+            menuList.Add(sesionFotos_page);
+            menuList.Add(contact_page);
+            menuList.Add(autorizarFotos_page);
+            menuList.Add(eventos_page);
+            menuList.Add(usuarios_page);
             menuList.Add(miPerfil_page);
             menuList.Add(salir_page);
 
