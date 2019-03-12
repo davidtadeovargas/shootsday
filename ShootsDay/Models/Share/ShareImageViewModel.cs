@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ShootsDay
+namespace ShootsDay.Models.Share
 {
-    public class ShareImageViewModel
+    class ShareImageViewModel
     {
         public Command Share { get; set; }
         public ImageSource Source { get; set; }

@@ -1,4 +1,5 @@
 ﻿using ShootsDay.Models;
+using ShootsDay.Models.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace ShootsDay
     public class PhotoSesionListView : ListView
     {
         public static readonly BindableProperty ItemsProperty =
-            BindableProperty.Create("Items", typeof(IEnumerable<Photoshoot>), typeof(PhotoSesionListView), new List<Photoshoot>());
+            BindableProperty.Create("Items", typeof(IEnumerable<PhotoSesionListViewModel>), typeof(PhotoSesionListView), new List<PhotoSesionListViewModel>());
 
-        public IEnumerable<Photoshoot> Items
+        public IEnumerable<PhotoSesionListViewModel> Items
         {
-            get { return (IEnumerable<Photoshoot>)GetValue(ItemsProperty); }
+            get { return (IEnumerable<PhotoSesionListViewModel>)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
         }
 

@@ -32,10 +32,11 @@ namespace ShootsDay.Droid
             ImageCircleRenderer.Init();
 
             LoadApplication(new App());
+
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);
         }
 
-        async void Share(ImageSource imageSource)
+       async void Share(ImageSource imageSource)
         {
             var intent = new Intent(Intent.ActionSend);
             intent.SetType("image/png");
@@ -44,7 +45,7 @@ namespace ShootsDay.Droid
             var bitmap = await handler.LoadImageAsync(imageSource, this);
 
             var path = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads
-                + Java.IO.File.Separator + "image.png");
+                + Java.IO.File.Separator + "logo.png");
 
             using (var os = new System.IO.FileStream(path.AbsolutePath, System.IO.FileMode.Create))
             {

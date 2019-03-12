@@ -14,6 +14,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using ShootsDay.Models;
+using ShootsDay.Models.Views;
 using Xamarin.Forms.Platform.Android;
 
 namespace ShootsDay.Droid
@@ -22,12 +23,12 @@ namespace ShootsDay.Droid
 	/// This adapter uses a view defined in /Resources/Layout/NativeAndroidListViewCell.axml
 	/// as the cell layout
 	/// </summary>
-	public class NativeAndroidListViewAdapter : BaseAdapter<Photoshoot>
+	public class NativeAndroidListViewAdapter : BaseAdapter<PhotoSesionListViewModel>
     {
         readonly Activity context;
-        IList<Photoshoot> tableItems = new List<Photoshoot>();
+        IList<PhotoSesionListViewModel> tableItems = new List<PhotoSesionListViewModel>();
 
-        public IEnumerable<Photoshoot> Items
+        public IEnumerable<PhotoSesionListViewModel> Items
         {
             set
             {
@@ -41,7 +42,7 @@ namespace ShootsDay.Droid
             tableItems = view.Items.ToList();
         }
 
-        public override Photoshoot this[int position]
+        public override PhotoSesionListViewModel this[int position]
         {
             get
             {
@@ -57,8 +58,6 @@ namespace ShootsDay.Droid
         public override int Count
         {
             get {
-                float counter = tableItems.Count / 2;
-                int counter_ = counter % 3 == 0 ? (int)counter + 1 : (int)counter;
                 return tableItems.Count;
             }
         }
@@ -72,78 +71,65 @@ namespace ShootsDay.Droid
                 view = context.LayoutInflater.Inflate(Resource.Layout.NativeAndroidListViewCelll, null);
             }
 
-            if (position > 0)
+            var item = tableItems[position]; //Get the item
+
+            //Create the urls for the images
+            string server = "http://shootsday.com.mx";
+            string urlImageLeft = server + item.photoshootLeft.url_image;
+            string urlImageRigth = server + item.photoshootRigth.url_image;
+
+            // grab the old image and dispose of it LEFT
+            if (view.FindViewById<ImageView>(Resource.Id.ImageLeft).Drawable != null)
             {
-                position = position + 1;
+                using (var image = view.FindViewById<ImageView>(Resource.Id.ImageLeft).Drawable as BitmapDrawable)
+                {
+                    if (image != null)
+                    {
+                        if (image.Bitmap != null)
+                        {
+                            //image.Bitmap.Recycle ();
+                            image.Bitmap.Dispose();
+                        }
+                    }
+                }
+            }
+            if (!String.IsNullOrWhiteSpace(urlImageLeft)) //If there is not url so do not parse image to bitmap
+            {
+                var imageBitmap = GetImageBitmapFromUrl(urlImageLeft);
+                var imageLeft = view.FindViewById<ImageView>(Resource.Id.ImageLeft);
+                imageLeft.SetImageBitmap(imageBitmap);
+            }
+            else
+            {
+                // clear the image
+                view.FindViewById<ImageView>(Resource.Id.ImageLeft).SetImageBitmap(null);
             }
 
-            if (position < tableItems.Count)
+            // grab the old image and dispose of it RIGHT
+            if (view.FindViewById<ImageView>(Resource.Id.ImageRight).Drawable != null)
             {
-                var item = tableItems[position];
-
-                string server = "http://shootsday.com.mx";
-                string urlImage = server + item.url_image;
-
-                // grab the old image and dispose of it
-                if (view.FindViewById<ImageView>(Resource.Id.ImageLeft).Drawable != null)
+                using (var image = view.FindViewById<ImageView>(Resource.Id.ImageRight).Drawable as BitmapDrawable)
                 {
-                    using (var image = view.FindViewById<ImageView>(Resource.Id.ImageLeft).Drawable as BitmapDrawable)
+                    if (image != null)
                     {
-                        if (image != null)
+                        if (image.Bitmap != null)
                         {
-                            if (image.Bitmap != null)
-                            {
-                                //image.Bitmap.Recycle ();
-                                image.Bitmap.Dispose();
-                            }
+                            //image.Bitmap.Recycle ();
+                            image.Bitmap.Dispose();
                         }
                     }
                 }
-                if (!String.IsNullOrWhiteSpace(urlImage))
-                {
-                    var imageBitmap = GetImageBitmapFromUrl(urlImage);
-                    var imageLeft = view.FindViewById<ImageView>(Resource.Id.ImageLeft);
-                    imageLeft.SetImageBitmap(imageBitmap);
-                }
-                else
-                {
-                    // clear the image
-                    view.FindViewById<ImageView>(Resource.Id.ImageLeft).SetImageBitmap(null);
-                }
-
-
-                if ((position + 1) < tableItems.Count)
-                {
-                    var itemR = tableItems[position + 1];
-                    urlImage = server + itemR.url_image;
-
-                    // grab the old image and dispose of it
-                    if (view.FindViewById<ImageView>(Resource.Id.ImageRight).Drawable != null)
-                    {
-                        using (var image = view.FindViewById<ImageView>(Resource.Id.ImageRight).Drawable as BitmapDrawable)
-                        {
-                            if (image != null)
-                            {
-                                if (image.Bitmap != null)
-                                {
-                                    //image.Bitmap.Recycle ();
-                                    image.Bitmap.Dispose();
-                                }
-                            }
-                        }
-                    }
-                    if (!String.IsNullOrWhiteSpace(urlImage))
-                    {
-                        var imageBitmap = GetImageBitmapFromUrl(urlImage);
-                        var imageRight = view.FindViewById<ImageView>(Resource.Id.ImageRight);
-                        imageRight.SetImageBitmap(imageBitmap);
-                    }
-                    else
-                    {
-                        // clear the image
-                        view.FindViewById<ImageView>(Resource.Id.ImageRight).SetImageBitmap(null);
-                    }
-                }
+            }
+            if (!String.IsNullOrWhiteSpace(urlImageRigth)) //If there is not url so do not parse image to bitmap
+            {
+                var imageBitmap = GetImageBitmapFromUrl(urlImageRigth);
+                var imageRight = view.FindViewById<ImageView>(Resource.Id.ImageRight);
+                imageRight.SetImageBitmap(imageBitmap);
+            }
+            else
+            {
+                // clear the image
+                view.FindViewById<ImageView>(Resource.Id.ImageRight).SetImageBitmap(null);
             }
 
             return view;

@@ -1,4 +1,5 @@
 ﻿using ShootsDay.Models;
+using ShootsDay.Models.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +14,7 @@ namespace ShootsDay.Views
     public class PhotoSesionsPage : ContentPage
     {
         PhotoSesionListView nativeListView;
-        List<Photoshoot> photoshoots;
+        List<PhotoSesionListViewModel> photoSesionListViewModels; //List view model for the listview of photos
 
 
 
@@ -34,7 +35,7 @@ namespace ShootsDay.Views
         {
             nativeListView = new PhotoSesionListView
             {
-                Items = photoshoots
+                Items = photoSesionListViewModels
             };
 
             Content = new StackLayout
@@ -75,7 +76,31 @@ namespace ShootsDay.Views
                     var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestMyPictures>(tokenJson);
                     if (jsonSystem.status.type != "error")
                     {
-                        photoshoots = jsonSystem.data.Photoshoots;
+                        //Get the photo list
+                        List<Photoshoot> photoshoots = jsonSystem.data.Photoshoots;
+
+                        //Create the list view model for the listview
+                        photoSesionListViewModels = new List<PhotoSesionListViewModel>();
+                        PhotoSesionListViewModel photoSesionListView = new PhotoSesionListViewModel();
+                        int x = 1;
+                        foreach (var photo in photoshoots)
+                        {
+                            if (x==1)
+                            {
+                                photoSesionListView.photoshootLeft = photo;
+
+                                x = 2; //Switch to right
+                            }
+                            else if (x==2)
+                            {
+                                //Last assigment and add it to the list
+                                photoSesionListView.photoshootRigth = photo;                                
+                                photoSesionListViewModels.Add(photoSesionListView);
+
+                                x = 1; //Switch to left
+                                photoSesionListView = new PhotoSesionListViewModel(); //New instance
+                            }
+                        }
 
                         init();
                     }

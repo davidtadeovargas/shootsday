@@ -10,7 +10,6 @@ namespace ShootsDay
 {
 	public class SocialNet_ShowPicture : ContentPage
 	{
-        ShareImageViewModel _shareImageViewModel;
         string username = Application.Current.Properties["username"].ToString();
 		string password = Application.Current.Properties["password"].ToString();
 		string id_event = Application.Current.Properties["id_event"].ToString();
@@ -23,9 +22,7 @@ namespace ShootsDay
 		{
 			this.picture = _picture;
             Uri urlImg = new Uri(_picture.url_image);
-            _shareImageViewModel = new ShareImageViewModel();
-            BindingContext = _shareImageViewModel;
-
+            
             Image imgComments = new Image
 			{
 				Source = "comment.png",
