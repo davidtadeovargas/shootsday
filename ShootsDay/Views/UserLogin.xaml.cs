@@ -123,7 +123,7 @@ namespace ShootsDay
 		{
 			try
 			{
-                Loading.Instance.showLoading();
+                LoadingManager.Instance.showLoading();
 
                 var client = new HttpClient();
 				var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
@@ -140,7 +140,7 @@ namespace ShootsDay
 
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
-                Loading.Instance.closeLoading();
+                LoadingManager.Instance.closeLoading();
 
                 if (result.IsSuccessStatusCode)
 				{

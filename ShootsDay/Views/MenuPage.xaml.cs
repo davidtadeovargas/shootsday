@@ -22,9 +22,9 @@ namespace ShootsDay
 			// Here you can define title for item, 
 			// icon on the left side, and page that you want to open after selection
 			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "inicio.png", TargetType = typeof(Home_) };
-            var misfotos_page = new MasterPageItem() { Title = "Mis Fotos", Icon = "misfotos.png", TargetType = typeof(PhotoSesionsPage) };
+            var misfotos_page = new MasterPageItem() { Title = "Mis Fotos", Icon = "misfotos.png", TargetType = typeof(PhotoSesionsPage_) };
             var invitacion_page = new MasterPageItem() { Title = "Invitacion", Icon = "invitacion_.png", TargetType = typeof(Invites) };
-            var sesionFotos_page = new MasterPageItem() { Title = "Sesion de Fotos", Icon = "sesionfotos_.png", TargetType = typeof(PhotoSesionsPage) };
+            var sesionFotos_page = new MasterPageItem() { Title = "Sesion de Fotos", Icon = "sesionfotos_.png", TargetType = typeof(PhotoSesionsPage_) };
             var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contacto.png", TargetType = typeof(Contact) };
 
             var autorizarFotos_page = new MasterPageItem() { Title = "Autorizar fotos", TargetType = typeof(Profile_) };

@@ -15,6 +15,7 @@ using Android.Views;
 using Android.Widget;
 using ShootsDay.Models;
 using ShootsDay.Models.Views;
+using ShootsDay.Views.Customs.ImageViews;
 using Xamarin.Forms.Platform.Android;
 
 namespace ShootsDay.Droid
@@ -79,9 +80,9 @@ namespace ShootsDay.Droid
             string urlImageRigth = server + item.photoshootRigth.url_image;
 
             // grab the old image and dispose of it LEFT
-            if (view.FindViewById<ImageView>(Resource.Id.ImageLeft).Drawable != null)
+            if (view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageLeft).Drawable != null)
             {
-                using (var image = view.FindViewById<ImageView>(Resource.Id.ImageLeft).Drawable as BitmapDrawable)
+                using (var image = view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageLeft).Drawable as BitmapDrawable)
                 {
                     if (image != null)
                     {
@@ -96,19 +97,20 @@ namespace ShootsDay.Droid
             if (!String.IsNullOrWhiteSpace(urlImageLeft)) //If there is not url so do not parse image to bitmap
             {
                 var imageBitmap = GetImageBitmapFromUrl(urlImageLeft);
-                var imageLeft = view.FindViewById<ImageView>(Resource.Id.ImageLeft);
+                var imageLeft = view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageLeft);
                 imageLeft.SetImageBitmap(imageBitmap);
+                imageLeft.photoshoot = item.photoshootLeft; //Set the model per image
             }
             else
             {
                 // clear the image
-                view.FindViewById<ImageView>(Resource.Id.ImageLeft).SetImageBitmap(null);
+                view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageLeft).SetImageBitmap(null);
             }
-
+            
             // grab the old image and dispose of it RIGHT
-            if (view.FindViewById<ImageView>(Resource.Id.ImageRight).Drawable != null)
+            if (view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageRight).Drawable != null)
             {
-                using (var image = view.FindViewById<ImageView>(Resource.Id.ImageRight).Drawable as BitmapDrawable)
+                using (var image = view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageRight).Drawable as BitmapDrawable)
                 {
                     if (image != null)
                     {
@@ -123,13 +125,14 @@ namespace ShootsDay.Droid
             if (!String.IsNullOrWhiteSpace(urlImageRigth)) //If there is not url so do not parse image to bitmap
             {
                 var imageBitmap = GetImageBitmapFromUrl(urlImageRigth);
-                var imageRight = view.FindViewById<ImageView>(Resource.Id.ImageRight);
+                var imageRight = view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageRight);
                 imageRight.SetImageBitmap(imageBitmap);
+                imageRight.photoshoot = item.photoshootRigth; //Set the model per image
             }
             else
             {
                 // clear the image
-                view.FindViewById<ImageView>(Resource.Id.ImageRight).SetImageBitmap(null);
+                view.FindViewById<SesionPhotoImageView>(Resource.Id.ImageRight).SetImageBitmap(null);
             }
 
             return view;

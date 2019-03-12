@@ -31,7 +31,7 @@
                 <Image  x:Name="shareImag" Source="share.png">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                        Tapped="OnShareClicked"
+                        Command="{Binding Share}"                            
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>

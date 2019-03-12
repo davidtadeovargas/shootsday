@@ -1,4 +1,5 @@
-﻿using ShootsDay.Views;
+﻿using DLToolkit.Forms.Controls;
+using ShootsDay.Views;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -13,6 +14,8 @@ namespace ShootsDay
             Current = this;
             //InitializeComponent();
             var isLoggedIn = Properties.ContainsKey("IsLoggedIn") ? (bool)Properties["IsLoggedIn"] : false;
+
+            FlowListView.Init(); //Init library
 
             if (isLoggedIn)
                 MainPage = new Home_();

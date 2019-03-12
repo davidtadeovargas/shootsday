@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShootsDay.Views.PhotoSesionsPage_"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
+    <flv:FlowListView   FlowColumnCount="2" 
+                        SeparatorVisibility="None" 
+                        HasUnevenRows="true"                        
+                        FlowItemsSource="{Binding photoShoots}"
+                        FlowItemTappedCommand="{Binding ItemTappedCommand}">
+
+        <flv:FlowListView.FlowColumnTemplate>
+            <DataTemplate>
+                <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
+                    <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                </Grid>
+            </DataTemplate>
+        </flv:FlowListView.FlowColumnTemplate>
+
+    </flv:FlowListView>
+</ContentPage>

@@ -35,7 +35,7 @@ namespace ShootsDay
 
         private async void get_Invites()
         {
-            Loading.Instance.showLoading();
+            LoadingManager.Instance.showLoading();
 
             string username = Application.Current.Properties["username"].ToString();
             string password = Application.Current.Properties["password"].ToString();
@@ -49,7 +49,7 @@ namespace ShootsDay
                 var uri = new Uri(Constants.EVENTS);
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
-                Loading.Instance.closeLoading();
+                LoadingManager.Instance.closeLoading();
 
                 if (result.IsSuccessStatusCode)
                 {

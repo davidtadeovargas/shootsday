@@ -26,8 +26,8 @@ namespace ShootsDay.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Photoshoot modelSelected = (Photoshoot)e.SelectedItem;
-            await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(modelSelected)));
+            //PhotoSesionListViewModel modelSelected = (PhotoSesionListViewModel)e.SelectedItem;
+            //await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(modelSelected.photoshootCurrent)));
         }
 
 
@@ -58,7 +58,7 @@ namespace ShootsDay.Views
 
             try
             {
-                Loading.Instance.showLoading();
+                LoadingManager.Instance.showLoading();
 
                 var client = new HttpClient();
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
@@ -68,7 +68,7 @@ namespace ShootsDay.Views
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
-                Loading.Instance.closeLoading();
+                LoadingManager.Instance.closeLoading();
 
                 if (result.IsSuccessStatusCode)
                 {

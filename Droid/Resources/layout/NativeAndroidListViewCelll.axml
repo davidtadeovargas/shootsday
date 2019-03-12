@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
 		android:background="@android:color/white"
 		android:weightSum="2">
-        <ImageView
+        <SesionPhotoImageView
 			android:id="@+id/ImageLeft"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
 			android:adjustViewBounds="true"
 			android:layout_weight="1"/>
 
-		<ImageView
+		<SesionPhotoImageView
 			android:id="@+id/ImageRight"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

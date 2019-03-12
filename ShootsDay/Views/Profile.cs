@@ -105,7 +105,7 @@ namespace ShootsDay.Views
         }
         private async void get_profile()
         {
-            Loading.Instance.showLoading();
+            LoadingManager.Instance.showLoading();
 
             string username = Application.Current.Properties["username"].ToString();
             string password = Application.Current.Properties["password"].ToString();
@@ -125,7 +125,7 @@ namespace ShootsDay.Views
                 var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(user_id)+".json");
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
-                Loading.Instance.closeLoading();
+                LoadingManager.Instance.closeLoading();
 
                 if (result.IsSuccessStatusCode)
                 {
@@ -149,7 +149,7 @@ namespace ShootsDay.Views
             }
             catch (Exception ex)
             {
-                Loading.Instance.closeLoading();
+                LoadingManager.Instance.closeLoading();
                 Debug.WriteLine("Error, Excepcion: " + ex.Message);
             }
         }

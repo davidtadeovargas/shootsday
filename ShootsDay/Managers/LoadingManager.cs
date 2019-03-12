@@ -8,26 +8,26 @@ using Xamarin.Forms;
 
 namespace ShootsDay.Views
 {
-    class Loading
+    class LoadingManager
     {
-        private static Loading instance = null;
+        private static LoadingManager instance = null;
 
         private bool shouldContinue = false; //Break for the loadingIndeterinate
 
 
 
 
-        private Loading()
+        private LoadingManager()
         {
         }
 
-        public static Loading Instance
+        public static LoadingManager Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new Loading();
+                    instance = new LoadingManager();
                 }
                 return instance;
             }

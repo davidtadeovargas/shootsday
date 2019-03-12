@@ -97,7 +97,7 @@ namespace ShootsDay
                     Try to register the new user
                  */
 
-                Loading.Instance.showLoading();
+                LoadingManager.Instance.showLoading();
 
                 try
                 {
@@ -119,7 +119,7 @@ namespace ShootsDay
 
                     var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
-                    Loading.Instance.closeLoading();
+                    LoadingManager.Instance.closeLoading();
 
                     if (result.IsSuccessStatusCode)
                     {
@@ -148,7 +148,7 @@ namespace ShootsDay
                 }
                 catch (Exception ex)
                 {
-                    Loading.Instance.closeLoading();
+                    LoadingManager.Instance.closeLoading();
                     Debug.WriteLine("Error, Excepcion: " + ex.Message);
                 }
             }            

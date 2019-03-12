@@ -10,5 +10,6 @@ namespace ShootsDay.Models.Views
     {
         public Photoshoot photoshootLeft { get; set; }
         public Photoshoot photoshootRigth { get; set; }
+        public Photoshoot photoshootCurrent { get; set; }
     }
 }

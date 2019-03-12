@@ -38,7 +38,7 @@ namespace ShootsDay.Views
             string user_id = Application.Current.Properties["user_id"].ToString();            
             try
             {
-                Loading.Instance.showLoading();
+                LoadingManager.Instance.showLoading();
 
                 var client = new HttpClient();
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new
@@ -51,7 +51,7 @@ namespace ShootsDay.Views
                 var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(user_id) + ".json");
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
-                Loading.Instance.closeLoading();
+                LoadingManager.Instance.closeLoading();
 
                 if (result.IsSuccessStatusCode)
                 {

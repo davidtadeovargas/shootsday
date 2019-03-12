@@ -24,7 +24,11 @@ namespace ShootsDay.Droid
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
-			base.OnCreate(bundle);
+            /* In Android N+ there are no more file:// URIs, only content:// URIs instead, this fix that*/
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.SetVmPolicy(builder.Build());
+
+            base.OnCreate(bundle);
 
             UserDialogs.Init(this); //Initialize the dialogs
 
@@ -43,9 +47,11 @@ namespace ShootsDay.Droid
 
             var handler = new ImageLoaderSourceHandler();
             var bitmap = await handler.LoadImageAsync(imageSource, this);
+            
+            long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond; //Miliseconds to do not repeat the file name
 
             var path = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads
-                + Java.IO.File.Separator + "logo.png");
+                + Java.IO.File.Separator + milliseconds + ".png");
 
             using (var os = new System.IO.FileStream(path.AbsolutePath, System.IO.FileMode.Create))
             {
