@@ -17,7 +17,7 @@
                 <Image  x:Name="downloadImag" Source="download.png">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                        Tapped="OnDownloadClicked"
+                        Command="{Binding Download}"
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
@@ -31,7 +31,7 @@
                 <Image  x:Name="shareImag" Source="share.png">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                        Command="{Binding Share}"                            
+                        Command="{Binding Share}"
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>

@@ -12,6 +12,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
 using Acr.UserDialogs;
+using Android.Support.V4.Content;
+using Android;
+using Android.Support.V4.App;
+using Android.Support.Design.Widget;
 
 namespace ShootsDay.Droid
 {
@@ -19,6 +23,13 @@ namespace ShootsDay.Droid
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
         const int ShareImageId = 1000;
+        const int REQUEST_DOWNLOAD_FILE = 100;
+
+        ImageSource imageToDownload;
+
+
+
+
         protected override void OnCreate(Bundle bundle)
 		{
 			TabLayoutResource = Resource.Layout.Tabbar;
@@ -38,9 +49,43 @@ namespace ShootsDay.Droid
             LoadApplication(new App());
 
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);
+            MessagingCenter.Subscribe<ImageSource>(this, "Download", DownloadCommand, null);
         }
 
-       async void Share(ImageSource imageSource)
+
+        /*
+         Download image
+             */
+        void DownloadCommand(ImageSource imageSource)
+        {
+            imageToDownload = imageSource;
+
+            bool readPermission = ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted;
+            bool writePermission = ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted;
+            if (readPermission && writePermission)
+            {
+                // We have permission, go ahead 
+                downloadFile();
+            }
+            else
+            {
+                // Permission is not granted. If necessary display rationale & request.
+                var requiredPermissions = new String[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+
+                //set alert for executing the task
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle(Resource.String.Pemissions);
+                alert.SetMessage(Resource.String.PermissionNeeded);
+                alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) =>
+                {
+                    ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_DOWNLOAD_FILE);
+                });
+                alert.Show();
+            }
+        }
+
+
+        async void Share(ImageSource imageSource)
         {
             var intent = new Intent(Intent.ActionSend);
             intent.SetType("image/png");
@@ -63,6 +108,53 @@ namespace ShootsDay.Droid
             var intentChooser = Intent.CreateChooser(intent, "Share via");
 
             StartActivityForResult(intentChooser, ShareImageId);
+        }
+
+
+        /*
+            Download file
+             */
+        private void downloadFile()
+        {
+
+        }
+
+        /*
+            Request permissions callback
+             */
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            /*
+                Download a file
+             */
+            if (requestCode == REQUEST_DOWNLOAD_FILE)
+            {
+                // Check if the required permission has been granted
+                if (grantResults[0] == Permission.Granted && grantResults[0] == Permission.Granted)
+                {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    alert.SetTitle(Resource.String.Pemissions);
+                    alert.SetMessage(Resource.String.PermissionGranted);
+                    alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+                        downloadFile();
+                    });
+                    alert.Show();
+                }
+                else
+                {
+                    //Not granted                    
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    alert.SetTitle(Resource.String.Pemissions);
+                    alert.SetMessage(Resource.String.PermissionNeeded);
+                    alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+                    });
+                    alert.Show();
+                }
+            }
+            else
+            {
+                base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
         }
     }
 }

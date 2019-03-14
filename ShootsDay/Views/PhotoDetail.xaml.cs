@@ -1,5 +1,8 @@
-﻿using Android.Content;
+﻿using Android;
+using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
+using ShootsDay.Interfaces;
 using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.Models.Share;
@@ -18,7 +21,18 @@ namespace ShootsDay.Views
     public partial class PhotoDetail : ContentPage
     {
         Photoshoot Photoshoot_;
-        ShareImageViewModel _shareImageViewModel;
+        PhotoDetailViewModel _photoDetailViewModel;        
+
+        /*
+            Permissions needed
+             */
+        readonly string[] PermissionsLocation =
+        {
+          Manifest.Permission.ReadExternalStorage,
+          Manifest.Permission.WriteExternalStorage
+        };
+
+        const int RequestShareId = 0;
 
 
 
@@ -30,10 +44,10 @@ namespace ShootsDay.Views
             Photoshoot_ = Photoshoot; //Save current photo
 
             /*
-                Init the model for the share image
+                Init the view model
              */
-            _shareImageViewModel = new ShareImageViewModel();            
-            BindingContext = _shareImageViewModel; //Attach the binding context
+            _photoDetailViewModel = new PhotoDetailViewModel();            
+            BindingContext = _photoDetailViewModel; //Attach the binding context
 
             /*
                 Load the title and image
@@ -44,24 +58,13 @@ namespace ShootsDay.Views
                 string url = Photoshoot_.url_image;
                 image.Source = ImageSource.FromUri(new Uri(url));
 
-                _shareImageViewModel.Source = image.Source;//For binding
-            });
+                _photoDetailViewModel.Source = image.Source;//For binding
+            });            
         }
 
-        private void OnDownloadClicked(object sender, EventArgs e)
-        {
-
-        }
-
-        
         private void OnLikeClicked(object sender, EventArgs e)
         {
 
-        }
-
-        private void OnShareClicked(object sender, EventArgs e)
-        {
-
-        }
+        }        
     }
 }

@@ -7,19 +7,26 @@ using Xamarin.Forms;
 
 namespace ShootsDay.Models.Share
 {
-    class ShareImageViewModel
+    class PhotoDetailViewModel
     {
         public Command Share { get; set; }
+        public Command Download { get; set; }
         public ImageSource Source { get; set; }
 
-        public ShareImageViewModel()
+        public PhotoDetailViewModel()
         {
             Share = new Command(ShareCommand);
+            Download = new Command(DownloadCommand);
         }
 
         void ShareCommand()
         {
             MessagingCenter.Send<ImageSource>(this.Source, "Share");
+        }
+
+        void DownloadCommand()
+        {
+            MessagingCenter.Send<ImageSource>(this.Source, "Download");
         }
     }
 }

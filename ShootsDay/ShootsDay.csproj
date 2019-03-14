@@ -65,7 +65,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Interfaces\IShare.cs" />
     <Compile Include="Managers\ImagesManager.cs" />
-    <Compile Include="Models\Share\ShareImageViewModel.cs" />
+    <Compile Include="ViewModels\PhotoDetailViewModel.cs" />
     <Compile Include="Models\Views\PhotoSesionListViewModel.cs" />
     <Compile Include="Recursos\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
