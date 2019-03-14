@@ -16,6 +16,7 @@ using Android.Support.V4.Content;
 using Android;
 using Android.Support.V4.App;
 using Android.Support.Design.Widget;
+using ShootsDay.Models;
 
 namespace ShootsDay.Droid
 {
@@ -25,7 +26,7 @@ namespace ShootsDay.Droid
         const int ShareImageId = 1000;
         const int REQUEST_DOWNLOAD_FILE = 100;
 
-        ImageSource imageToDownload;
+        Photoshoot photoshootCurrent = null;
 
 
 
@@ -49,16 +50,16 @@ namespace ShootsDay.Droid
             LoadApplication(new App());
 
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);
-            MessagingCenter.Subscribe<ImageSource>(this, "Download", DownloadCommand, null);
+            MessagingCenter.Subscribe<Photoshoot>(this, "Download", DownloadCommand, null);
         }
 
 
         /*
          Download image
              */
-        void DownloadCommand(ImageSource imageSource)
+        void DownloadCommand(Photoshoot photoshoot)
         {
-            imageToDownload = imageSource;
+            photoshootCurrent = photoshoot;
 
             bool readPermission = ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted;
             bool writePermission = ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted;
@@ -116,7 +117,8 @@ namespace ShootsDay.Droid
              */
         private void downloadFile()
         {
-
+            DownloadImageFromUrl download = new DownloadImageFromUrl(this);
+            download.Execute(photoshootCurrent.url_image);
         }
 
         /*

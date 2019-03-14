@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="DownloadImageFromUrl.cs" />
     <Compile Include="Interfaces\IShare.cs" />
     <Compile Include="Managers\ImagesManager.cs" />
     <Compile Include="ViewModels\PhotoDetailViewModel.cs" />

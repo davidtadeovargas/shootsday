@@ -12,6 +12,7 @@ namespace ShootsDay.Models.Share
         public Command Share { get; set; }
         public Command Download { get; set; }
         public ImageSource Source { get; set; }
+        public Photoshoot photoshoot { get; set; }
 
         public PhotoDetailViewModel()
         {
@@ -26,7 +27,7 @@ namespace ShootsDay.Models.Share
 
         void DownloadCommand()
         {
-            MessagingCenter.Send<ImageSource>(this.Source, "Download");
+            MessagingCenter.Send<Photoshoot>(this.photoshoot, "Download");
         }
     }
 }
