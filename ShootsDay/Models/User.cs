@@ -8,6 +8,8 @@ namespace ShootsDay.Models
 		public string username { get; set; }
 		public string email { get; set; }
 		public string url_image { get; set; }
-		public string id { get; set; }
-	}
+		public int id { get; set; }
+        public int role_id { get; set; }
+        public bool super { get; set; }
+    }
 }

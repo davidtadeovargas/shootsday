@@ -118,7 +118,22 @@ namespace ShootsDay.Droid
         private void downloadFile()
         {
             DownloadImageFromUrl download = new DownloadImageFromUrl(this);
+            download.Message = Resources.GetString(Resource.String.DownloadingFile);
+            download.OnImageDownloaded += OnImageDownloaded;
             download.Execute(photoshootCurrent.url_image);
+        }
+
+        /*
+         Callback when image it is already downloaded
+             */
+        void OnImageDownloaded(string path)
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("");
+            alert.SetMessage(Resources.GetString(Resource.String.DownloadedFile));
+            alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {                
+            });
+            alert.Show();
         }
 
         /*

@@ -9,6 +9,7 @@ using System.Globalization;
 using Acr.UserDialogs;
 using System.Threading.Tasks;
 using ShootsDay.Views;
+using ShootsDay.Managers;
 
 /*
     https://github.com/aritchie/userdialogs
@@ -52,6 +53,10 @@ namespace ShootsDay
         {
 
             InitializeComponent();
+
+            //Close session
+            SettingsManager.Instance.setIsNotLoggedIn().SavePropertiesAsync();            
+
             btnLogin.Text = Recursos.AppResources.login.ToString();
 
             link.FontSize = 40;
@@ -149,16 +154,21 @@ namespace ShootsDay
 
 					if (jsonSystem.status.type != "error")
 					{
+                        SettingsManager settingsManager = SettingsManager.Instance;
+
                         // Usuario logeado correctamente
-                        App.Current.Properties["IsLoggedIn"] = true;
-                        Application.Current.Properties["user_id"] = jsonSystem.data.User.id;
-                        Application.Current.Properties["username"] = jsonSystem.data.User.username;
-						Application.Current.Properties["password"] = PasswordEntry.Text;
-						Application.Current.Properties["id_event"] = jsonSystem.data.Event.id;
-						Application.Current.Properties["host"] = jsonSystem.data.Host.url;
-                        Application.Current.Properties["title_event"] = jsonSystem.data.Event.title;
-                        await Application.Current.SavePropertiesAsync();
-						await Navigation.PushModalAsync( new Home_());
+                        settingsManager.setIsLoggedIn();
+                        settingsManager.setUserId(jsonSystem.data.User.id);
+                        settingsManager.setUserName(jsonSystem.data.User.username);
+                        settingsManager.setPassword(PasswordEntry.Text);
+                        settingsManager.setIdEvent(jsonSystem.data.Event.id);
+                        settingsManager.setHost(jsonSystem.data.Host.url);
+                        settingsManager.setRoleId(jsonSystem.data.User.role_id);
+                        settingsManager.setIsSuperUser(jsonSystem.data.User.super);
+                        settingsManager.setTitleEvent(jsonSystem.data.Event.title);
+                        await settingsManager.SavePropertiesAsync();
+                        
+                        await Navigation.PushModalAsync(new MasterDetail(new Home_()));
 					}
 					else
 					{
@@ -174,6 +184,7 @@ namespace ShootsDay
 			}
 			catch (Exception ex)
 			{
+                LoadingManager.Instance.closeLoading();
                 btn_login.IsEnabled = true;
                 Debug.WriteLine("Excepcion: " + ex.Message);
 				await DisplayAlert("", ex.Message, "Aceptar");

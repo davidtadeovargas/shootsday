@@ -5,4 +5,6 @@
   <string name="Pemissions">Permisos</string>
   <string name="PermissionGranted">Ahora puedes utilizar esta funcionalidad con normalidad!</string>
   <string name="PermissionNeeded">Se necesitan permisos para poder usar esta funcionalidad!</string>
+  <string name="DownloadingFile">Descargando tu archivo espera ... </string>
+  <string name="DownloadedFile">Tu imagen ya se descargo!</string>
 </resources>

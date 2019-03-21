@@ -24,6 +24,7 @@ namespace ShootsDay
 			InitializeComponent();
 			UserLogin.GestureRecognizers.Add(new TapGestureRecognizer(goToLogin));
 			pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
+            closeImg.GestureRecognizers.Add(new TapGestureRecognizer(closeImgTapped));            
         }
 		private async void uploadPicture(View arg1, object arg2)
 		{
@@ -47,6 +48,11 @@ namespace ShootsDay
 			//arg1.Navigation.PushModalAsync(UserLogin);
 		}
 
+
+        private void closeImgTapped(View arg1, object arg2)
+        {
+            profile_img.Source = null;
+        }
 
         private async void btnRegister(object sender, EventArgs e)
         {

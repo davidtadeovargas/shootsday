@@ -1,4 +1,5 @@
 ﻿
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
@@ -19,6 +20,11 @@ namespace ShootsDay
         private ProgressDialog pDialog;
         //private ImageView imgView;
         private Context context;
+        public string Message { get; set; }
+        public Action<string> OnImageDownloaded { get; set; }
+
+
+
         public DownloadImageFromUrl(Context context)
         {
             this.context = context;
@@ -27,7 +33,7 @@ namespace ShootsDay
         protected override void OnPreExecute()
         {
             pDialog = new ProgressDialog(context);
-            pDialog.SetMessage("Downloading file. Please wait...");
+            pDialog.SetMessage(Message);
             pDialog.Indeterminate = false;
             pDialog.Max = 100;
             pDialog.SetProgressStyle(ProgressDialogStyle.Horizontal);
@@ -47,6 +53,9 @@ namespace ShootsDay
             long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             string filePath = System.IO.Path.Combine(strongPath, milliseconds + ".jpg");
             pDialog.Dismiss();
+
+            OnImageDownloaded(filePath);
+
             //imgView.SetImageDrawable(Drawable.CreateFromPath(filePath));
         }
         protected override string RunInBackground(params string[] @params)

@@ -1,4 +1,5 @@
-﻿using ShootsDay.Views;
+﻿using ShootsDay.Managers;
+using ShootsDay.Views;
 using System;
 using System.Collections.Generic;
 
@@ -40,7 +41,12 @@ namespace ShootsDay
             menuList.Add(invitacion_page);
             menuList.Add(sesionFotos_page);
             menuList.Add(contact_page);
-            menuList.Add(autorizarFotos_page);
+
+            if (SettingsManager.Instance.isSuperUser())
+            {
+                menuList.Add(autorizarFotos_page);
+            }
+            
             menuList.Add(eventos_page);
             menuList.Add(usuarios_page);
             menuList.Add(miPerfil_page);
@@ -58,11 +64,9 @@ namespace ShootsDay
 			{
 				evtItemSelected(e.SelectedItem);
 			}
-			/*var item = (MasterPageItem)e.SelectedItem;
-			Type page = item.TargetType;
 
-			Detail = new NavigationPage((Page)Activator.CreateInstance(page));
-			IsPresented = false;*/
+			var item = (MasterPageItem)e.SelectedItem;
+			Type page = item.TargetType;
 		}
 	}
 }

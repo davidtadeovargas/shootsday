@@ -5,7 +5,7 @@ namespace ShootsDay.Models
 {
 	public class Event
 	{
-		public string id { get; set; }
+		public int id { get; set; }
         public string url_image { get; set; }
         public string code { get; set; }
         public string title { get; set; }

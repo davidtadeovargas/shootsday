@@ -16,9 +16,12 @@
 	            <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding Email}" HeightRequest="40" TextColor="Black"></Entry>
 	            <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
 	            <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
-	            <Label Text="Upload profile picture"
+                <StackLayout Orientation="Horizontal">
+                      <Label Text="Upload profile picture"
 	                   TextColor="Gray"
 	                   x:Name="pictureEntry"/>
+                    <Image x:Name="closeImg" Source="close.png" WidthRequest="20" HeightRequest="20"/>
+                </StackLayout>
               <Image x:Name="profile_img" Aspect="AspectFill" />
 	          </StackLayout>
 	        </Frame>
