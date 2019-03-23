@@ -1,46 +1,46 @@
-﻿using System;
+﻿using ShootsDay.Managers;
+using ShootsDay.Models;
+using ShootsDay.Views;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using ShootsDay.Models;
 using Xamarin.Forms;
-using System.Net.Http;
-using ShootsDay.Views;
-using ShootsDay.Managers;
 
 namespace ShootsDay.ViewModels
 {
-    class PhotoSesionsViewModel : BaseViewModel
+    class RedSocialViewModel : BaseViewModel
     {
-
-        private ObservableCollection<Photoshoot> photoShoots_;
-
-        
+        private ObservableCollection<Picture> photoShoots_;
 
 
-        public PhotoSesionsViewModel(Page context) : base(context)
+        public RedSocialViewModel(Page context) : base(context)
         {
-            photoShoots = new ObservableCollection<Photoshoot>();
+            photoShoots = new ObservableCollection<Picture>();
 
             getPhotos();
 
             ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));
         }
 
+
         private async Task OnPhotoTappedAsync(object args)
         {
-            Photoshoot photoshoot = (Photoshoot)args;
-            await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(photoshoot)));
+            //Photoshoot photoshoot = (Photoshoot)args;
+            //await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(photoshoot)));
         }
 
-        public ObservableCollection<Photoshoot> photoShoots
+        public ObservableCollection<Picture> photoShoots
         {
-            get {
+            get
+            {
                 return photoShoots_;
             }
-            set {
+            set
+            {
                 photoShoots_ = value;
                 RaisePropertyChanged();
             }
@@ -52,11 +52,12 @@ namespace ShootsDay.ViewModels
             set;
         }
 
+
         private async void getPhotos()
         {
-            string username = Application.Current.Properties["username"].ToString();
-            string password = Application.Current.Properties["password"].ToString();
-            string id_event = Application.Current.Properties["id_event"].ToString();
+            string username = SettingsManager.Instance.getUserName();
+            string password = SettingsManager.Instance.getPassword();
+            int id_event = SettingsManager.Instance.getIdEvent();
 
             try
             {
@@ -66,7 +67,7 @@ namespace ShootsDay.ViewModels
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
-                var uri = new Uri(Constants.PHOTOSHOOTS);
+                var uri = new Uri(Constants.HOMES);
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
@@ -75,14 +76,17 @@ namespace ShootsDay.ViewModels
                 if (result.IsSuccessStatusCode)
                 {
                     var tokenJson = await result.Content.ReadAsStringAsync();
-                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestMyPictures>(tokenJson);
+                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestHome>(tokenJson);
                     if (jsonSystem.status.type != "error")
                     {
                         //Get the photo list
-                        List<Photoshoot> photoshoots_ = jsonSystem.data.Photoshoots;
+                        List<Picture> photoshoots_ = jsonSystem.data.pictures;
                         foreach (var Photo in photoshoots_)
                         {
-                            Photo.url_image = ImagesManager.Instance.gePhotoshootDetailImage(Photo.url_image);
+                            Photo.url_image = ImagesManager.Instance.getHomesImage(Photo.url_image);
+                            Photo.User.url_image = ImagesManager.Instance.getProfilePicture(Photo.User.id);
+                            Photo.User.name = Photo.User.name + " " + Photo.User.lastname;
+
                             Device.BeginInvokeOnMainThread(() => {
                                 photoShoots.Add(Photo);
                             });

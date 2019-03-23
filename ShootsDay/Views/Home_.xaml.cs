@@ -27,7 +27,7 @@ namespace ShootsDay.Views
         }
         public void OnRedSocialClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new MasterDetail(new Home_()));
+            Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
         }
 
         private void OnInvitacionClicked(object sender, EventArgs e)

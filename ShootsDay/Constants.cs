@@ -24,8 +24,9 @@ namespace ShootsDay
 
         static public string CONTACT_URL = "http://shootsday.com.mx/contacto";
         static public string INVITATION_IMAGE_URL = INIT_SERVER + "/httpdocsimgEvent";
-        static public string PROFILE_IMAGE_URL = INIT_SERVER + "/httpdocsimgProfile";
+        static public string PROFILE_IMAGE_URL = INIT_SERVER + "/imgProfile";
         static public string PHOTOSHOOTS_IMAGE_URL = INIT_SERVER + "/photoShoots";
+        static public string HOMES_IMAGE_URL = INIT_SERVER + "/homes";
         static public string CONTACT_CONTACT_EMAIL = "email@email.com";
     }
 }

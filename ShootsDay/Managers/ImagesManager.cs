@@ -39,9 +39,9 @@ namespace ShootsDay.Managers
             return Constants.INVITATION_IMAGE_URL + "/" + Application.Current.Properties["id_event"] + ".png";
         }
 
-        public string geProfilePicture(string image)
+        public string getProfilePicture(int idUser)
         {
-            return Constants.PROFILE_IMAGE_URL + "/" + image;
+            return Constants.PROFILE_IMAGE_URL + "/" + idUser + "/1.png";
         }
 
         public string gePhotoshootImage(string image)
@@ -52,6 +52,11 @@ namespace ShootsDay.Managers
         public string gePhotoshootDetailImage(string urlImage)
         {
             return Constants.INIT_SERVER + urlImage;
+        }
+
+        public string getHomesImage(string image)
+        {
+            return Constants.HOMES_IMAGE_URL + "/" + Application.Current.Properties["id_event"] + "/" + image;
         }
     }
 }

@@ -35,7 +35,7 @@ namespace ShootsDay.Views
                 };
                 if (!string.IsNullOrEmpty(user.url_image))
                 {
-                    var url = ImagesManager.Instance.geProfilePicture(user.url_image);
+                    var url = ImagesManager.Instance.getProfilePicture(user.id);
                     user_img.Source = ImageSource.FromUri(new Uri(url));
                 }
                 lista_users.Children.Add(
@@ -62,7 +62,7 @@ namespace ShootsDay.Views
             };
             if (!string.IsNullOrEmpty(profile.User.url_image))
             {
-                var url = ImagesManager.Instance.geProfilePicture(profile.User.url_image);
+                var url = ImagesManager.Instance.getProfilePicture(profile.User.id);
                 profile_img.Source = ImageSource.FromUri(new Uri(url));
             }
 

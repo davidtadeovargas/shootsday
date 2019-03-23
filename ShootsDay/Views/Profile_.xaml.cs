@@ -84,7 +84,7 @@ namespace ShootsDay.Views
         {
             if (!string.IsNullOrEmpty(profile.User.url_image))
             {
-                var url = ImagesManager.Instance.geProfilePicture(profile.User.url_image);
+                var url = ImagesManager.Instance.getProfilePicture(profile.User.id);
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     profile_img.Source = ImageSource.FromUri(new Uri(url));

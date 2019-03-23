@@ -84,6 +84,7 @@
     <Compile Include="Managers\LoadingManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\PhotoSesionsViewModel.cs" />
+    <Compile Include="ViewModels\RedSocialViewModel.cs" />
     <Compile Include="Views\Customs\ImageViews\SesionPhotoImageView.cs" />
     <Compile Include="Views\Customs\ListViews\PhotoSesionListView.cs" />
     <Compile Include="Views\Customs\LoadingOverlay.cs" />
@@ -93,7 +94,6 @@
     <Compile Include="Views\PhotoDetail.xaml.cs">
       <DependentUpon>PhotoDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PhotoSesionsPage.cs" />
     <Compile Include="Views\MyPictures.xaml.cs">
       <DependentUpon>MyPictures.xaml</DependentUpon>
     </Compile>
@@ -110,7 +110,9 @@
     <Compile Include="Views\Profile_.xaml.cs">
       <DependentUpon>Profile_.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SocialNet.cs" />
+    <Compile Include="Views\RedSocial.xaml.cs">
+      <DependentUpon>RedSocial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SocialNet_ShowComments.xaml.cs">
       <DependentUpon>SocialNet_ShowComments.xaml</DependentUpon>
     </Compile>
@@ -215,6 +217,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\PhotoSesionsPage_.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RedSocial.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
