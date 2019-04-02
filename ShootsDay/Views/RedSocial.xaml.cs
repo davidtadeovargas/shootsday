@@ -1,4 +1,5 @@
-﻿using ShootsDay.ViewModels;
+﻿using ShootsDay.Models;
+using ShootsDay.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,16 @@ namespace ShootsDay.Views
         {
             InitializeComponent();
 
-            BindingContext = new RedSocialViewModel(this);
+            BindingContext = new RedSocialViewModel(this);            
+        }
+
+        private void ViewProfileTapped(object sender, TappedEventArgs e)
+        {
+            User user = (User)e.Parameter;
+
+            Profile_ Profile_ = new Profile_(user.id);            
+
+            Navigation.PushModalAsync(Profile_);
         }
     }
 }

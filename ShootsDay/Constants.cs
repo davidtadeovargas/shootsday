@@ -14,7 +14,7 @@ namespace ShootsDay
         static public string MY_PICTURES = SERVER + "pictures/my_pictures.json";
         static public string PHOTOSHOOTS = SERVER + "photoshoots.json";
         static public string USERS_PROFILE = SERVER + "users/profile/";
-        static public string HOMES = SERVER + "homes.json";
+        static public string REDSOCIAL = SERVER + "homes.json";
         static public string COMMENTS_ADD = SERVER + "comments/add.json";
         static public string LIKES_ADD = SERVER + "likes/add.json";
         static public string COMMENTS_GETLIST = SERVER + "comments/get_list_comments.json";
@@ -23,10 +23,10 @@ namespace ShootsDay
         static public string USERS_REGISTER = SERVER + "users/register.json";
 
         static public string CONTACT_URL = "http://shootsday.com.mx/contacto";
-        static public string INVITATION_IMAGE_URL = INIT_SERVER + "/httpdocsimgEvent";
+        static public string INVITATION_IMAGE_URL = INIT_SERVER + "/invitations";
         static public string PROFILE_IMAGE_URL = INIT_SERVER + "/imgProfile";
         static public string PHOTOSHOOTS_IMAGE_URL = INIT_SERVER + "/photoShoots";
-        static public string HOMES_IMAGE_URL = INIT_SERVER + "/homes";
+        static public string REDSOCIAL_IMAGE_URL = INIT_SERVER + "/redsocial";
         static public string CONTACT_CONTACT_EMAIL = "email@email.com";
     }
 }

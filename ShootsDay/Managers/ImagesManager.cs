@@ -56,7 +56,7 @@ namespace ShootsDay.Managers
 
         public string getHomesImage(string image)
         {
-            return Constants.HOMES_IMAGE_URL + "/" + Application.Current.Properties["id_event"] + "/" + image;
+            return Constants.REDSOCIAL_IMAGE_URL + "/" + Application.Current.Properties["id_event"] + "/" + image;
         }
     }
 }

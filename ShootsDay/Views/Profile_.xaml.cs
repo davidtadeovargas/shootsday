@@ -18,24 +18,44 @@ namespace ShootsDay.Views
     {
         string host;
 
+        public int userId { get; set; }
 
+
+
+        public Profile_(int userId_)
+        {
+            init(userId_);
+        }
 
 
         public Profile_()
         {
+            init(-1);
+        }
+
+        private void init(int userId_)
+        {
             InitializeComponent();
 
             Title = "Perfil de usuario";
+
+            userId = userId_;
+
             get_profile();
         }
 
 
         private async void get_profile()
         {
-            string username = Application.Current.Properties["username"].ToString();
-            string password = Application.Current.Properties["password"].ToString();
-            string id_event = Application.Current.Properties["id_event"].ToString();
-            string user_id = Application.Current.Properties["user_id"].ToString();            
+            string username = SettingsManager.Instance.getUserName();
+            string password = SettingsManager.Instance.getPassword();
+            int id_event = SettingsManager.Instance.getIdEvent();
+
+            if (userId==-1)
+            {
+                userId = SettingsManager.Instance.getUserId();
+            }
+            
             try
             {
                 LoadingManager.Instance.showLoading();
@@ -48,7 +68,15 @@ namespace ShootsDay.Views
                 });
                 //var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
-                var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(user_id) + ".json");
+
+                var url = ImagesManager.Instance.getProfilePicture(userId);
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    profile_img.Source = ImageSource.FromUri(new Uri(url));
+                });
+
+                var currentUserId = SettingsManager.Instance.getUserId();
+                var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(currentUserId) + ".json");
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
                 LoadingManager.Instance.closeLoading();
@@ -82,15 +110,6 @@ namespace ShootsDay.Views
 
         private void set_data_profile(Data profile)
         {
-            if (!string.IsNullOrEmpty(profile.User.url_image))
-            {
-                var url = ImagesManager.Instance.getProfilePicture(profile.User.id);
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    profile_img.Source = ImageSource.FromUri(new Uri(url));
-                });                                
-            }
-
             name.Text = profile.User.name + " " + profile.User.lastname;
             event_.Text = profile.Event.title;
             contacts.Text = profile.Event.count_users.ToString() + " contactos";            

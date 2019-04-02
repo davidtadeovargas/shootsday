@@ -106,7 +106,6 @@
     <Compile Include="Views\PhotoSesionsPage_.xaml.cs">
       <DependentUpon>PhotoSesionsPage_.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Profile.cs" />
     <Compile Include="Views\Profile_.xaml.cs">
       <DependentUpon>Profile_.xaml</DependentUpon>
     </Compile>

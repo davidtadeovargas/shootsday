@@ -7,7 +7,7 @@
                         SeparatorVisibility="None" 
                         HasUnevenRows="true"                        
                         FlowItemsSource="{Binding photoShoots}"
-                        FlowItemTappedCommand="{Binding ItemTappedCommand}">
+                        >
         <flv:FlowListView.FlowColumnTemplate>
             <DataTemplate>
                 <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
@@ -18,10 +18,18 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20,0,0,0">
-                                <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="30" HorizontalOptions="FillAndExpand"/>
+                              <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="30" HorizontalOptions="FillAndExpand">
+                                <Image.GestureRecognizers>
+                                  <TapGestureRecognizer
+                                        Tapped="ViewProfileTapped"
+                                        CommandParameter="{Binding User}"
+                                        NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                              </Image>
                                 <Label Text="{Binding User.name}" FontSize="20" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
                             </StackLayout>
-                            <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10" HorizontalOptions="End"/>
+                            <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10" HorizontalOptions="End">                              
+                            </Image>
                         </Grid>
                         <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
                     </StackLayout>

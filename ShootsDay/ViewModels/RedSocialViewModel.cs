@@ -23,14 +23,20 @@ namespace ShootsDay.ViewModels
 
             getPhotos();
 
-            ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));
-        }
-
+            ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));                                 
+        }        
 
         private async Task OnPhotoTappedAsync(object args)
         {
-            //Photoshoot photoshoot = (Photoshoot)args;
-            //await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(photoshoot)));
+            Picture Picture = (Picture)args;
+            Picture = (Picture)args;
+        }
+
+
+        private async Task OnViewProfileTappedAsync(object args)
+        {
+            Picture Picture = (Picture)args;
+            Picture = (Picture)args;
         }
 
         public ObservableCollection<Picture> photoShoots
@@ -52,7 +58,6 @@ namespace ShootsDay.ViewModels
             set;
         }
 
-
         private async void getPhotos()
         {
             string username = SettingsManager.Instance.getUserName();
@@ -67,7 +72,7 @@ namespace ShootsDay.ViewModels
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
-                var uri = new Uri(Constants.HOMES);
+                var uri = new Uri(Constants.REDSOCIAL);
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 

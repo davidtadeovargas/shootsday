@@ -12,7 +12,10 @@
         -->
 
             <StackLayout BackgroundColor="White"
-                     HeightRequest="15" Spacing="15" Padding="20,20">
+                     HeightRequest="45" Spacing="15" Padding="15">
+                <Image Source="logo.png"
+                         WidthRequest="50"
+                         HeightRequest="50"/>
             </StackLayout>
 
         <ListView x:Name="navigationDrawerList"

@@ -47,7 +47,15 @@ namespace ShootsDay.Managers
         }
         public string getTitleEvent()
         {
-            return (string)Application.Current.Properties[TITTLE_EVENT];
+            if (Application.Current.Properties.ContainsKey(TITTLE_EVENT))
+            {
+                var result = (string)Application.Current.Properties[TITTLE_EVENT];
+                return result;
+            }
+            else
+            {
+                return null;
+            }            
         }
 
 
@@ -57,7 +65,15 @@ namespace ShootsDay.Managers
         }
         public int getRoleId()
         {
-            return (int)Application.Current.Properties[ROLE_ID];
+            if (Application.Current.Properties.ContainsKey(ROLE_ID))
+            {
+                var result = (int)Application.Current.Properties[ROLE_ID];
+                return result;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public void setHost(string host)
@@ -66,7 +82,15 @@ namespace ShootsDay.Managers
         }
         public string getHost()
         {
-            return (string)Application.Current.Properties[HOST];
+            if (Application.Current.Properties.ContainsKey(HOST))
+            {
+                var result = (string)Application.Current.Properties[HOST];
+                return result;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void setIdEvent(int idEvent)
@@ -75,7 +99,15 @@ namespace ShootsDay.Managers
         }
         public int getIdEvent()
         {
-            return (int)Application.Current.Properties[ID_EVENT];
+            if (Application.Current.Properties.ContainsKey(ID_EVENT))
+            {
+                var result = (int)Application.Current.Properties[ID_EVENT];
+                return result;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public void setPassword(string password)
@@ -84,7 +116,15 @@ namespace ShootsDay.Managers
         }
         public string getPassword()
         {
-            return (string)Application.Current.Properties[PASSWORD];
+            if (Application.Current.Properties.ContainsKey(PASSWORD))
+            {
+                var result = (string)Application.Current.Properties[PASSWORD];
+                return result;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void setUserName(string username)
@@ -93,7 +133,15 @@ namespace ShootsDay.Managers
         }
         public string getUserName()
         {
-            return (string)Application.Current.Properties[USERNAME];
+            if (Application.Current.Properties.ContainsKey(USERNAME))
+            {
+                var result = (string)Application.Current.Properties[USERNAME];
+                return result;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void setUserId(int userId)
@@ -102,7 +150,12 @@ namespace ShootsDay.Managers
         }
         public int getUserId()
         {
-            return (int)Application.Current.Properties[USER_ID];
+            var result = -1;
+            if (Application.Current.Properties.ContainsKey(USER_ID))
+            {
+                result = (int)Application.Current.Properties[USER_ID];
+            }
+            return result;
         }
 
         public void setIsSuperUser(bool val)
@@ -111,7 +164,12 @@ namespace ShootsDay.Managers
         }
         public bool isSuperUser()
         {
-            return (bool)Application.Current.Properties[SUPERUSER];
+            var result = true;
+            if (Application.Current.Properties.ContainsKey(SUPERUSER))
+            {
+                result = (bool)Application.Current.Properties[SUPERUSER];
+            }
+            return result;
         }
 
         public void setIsLoggedIn()
@@ -125,7 +183,11 @@ namespace ShootsDay.Managers
         }
         public bool IsLoggedIn()
         {
-            return (bool)Application.Current.Properties[ISLOGGEDIN];
+            var result = false;        
+            if (Application.Current.Properties.ContainsKey(ISLOGGEDIN)) {
+                result = (bool)Application.Current.Properties[ISLOGGEDIN];
+            }
+            return result;
         }
 
         public Task SavePropertiesAsync()

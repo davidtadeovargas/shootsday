@@ -93,7 +93,7 @@ namespace ShootsDay
         private void OnRegistrarClicked(object sender, EventArgs e)
         {
 			Page UserRegister = new UserRegister();
-            Navigation.PushModalAsync(UserRegister);            
+            Navigation.PushModalAsync(UserRegister);
 
 		}
 
