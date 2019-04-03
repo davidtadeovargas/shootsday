@@ -84,6 +84,7 @@
     <Compile Include="Managers\LoadingManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\PhotoSesionsViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\RedSocialViewModel.cs" />
     <Compile Include="Views\Customs\ImageViews\SesionPhotoImageView.cs" />
     <Compile Include="Views\Customs\ListViews\PhotoSesionListView.cs" />
@@ -141,6 +142,9 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Views\MyPictures_ShowPicture.cs" />
     <Compile Include="Models\Photoshoot.cs" />
+    <Compile Include="Views\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SocialNet_ShowComments.xaml">
@@ -222,6 +226,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\RedSocial.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Users.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

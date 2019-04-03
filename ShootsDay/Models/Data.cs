@@ -19,6 +19,8 @@ namespace ShootsDay.Models
 
 		public List<Photoshoot> Photoshoots { get; set; }
 
+        public List<User> Users { get; set; }
+
         public Status status { get; set; }
     }
 }

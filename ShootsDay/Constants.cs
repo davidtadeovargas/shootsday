@@ -14,6 +14,7 @@ namespace ShootsDay
         static public string MY_PICTURES = SERVER + "pictures/my_pictures.json";
         static public string PHOTOSHOOTS = SERVER + "photoshoots.json";
         static public string USERS_PROFILE = SERVER + "users/profile/";
+        static public string EVENT_USERS = SERVER + "events/getEventUsers.json";
         static public string REDSOCIAL = SERVER + "homes.json";
         static public string COMMENTS_ADD = SERVER + "comments/add.json";
         static public string LIKES_ADD = SERVER + "likes/add.json";

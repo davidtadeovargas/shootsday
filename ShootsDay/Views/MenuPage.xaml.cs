@@ -30,7 +30,7 @@ namespace ShootsDay
 
             var autorizarFotos_page = new MasterPageItem() { Title = "Autorizar fotos", TargetType = typeof(Profile_) };
             var eventos_page = new MasterPageItem() { Title = "Eventos", TargetType = typeof(Profile_) };
-            var usuarios_page = new MasterPageItem() { Title = "Usuarios", TargetType = typeof(Profile_) };
+            var usuarios_page = new MasterPageItem() { Title = "Usuarios", TargetType = typeof(EventUsers) };
 
             var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", TargetType = typeof(Profile_) };
             var salir_page = new MasterPageItem() { Title = "Cerrar sesión", TargetType = typeof(UserLogin) };

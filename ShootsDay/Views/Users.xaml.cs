@@ -12,20 +12,20 @@ using Xamarin.Forms.Xaml;
 namespace ShootsDay.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RedSocial : ContentPage
+    public partial class EventUsers : ContentPage
     {
-        public RedSocial()
+        public EventUsers()
         {
             InitializeComponent();
 
-            BindingContext = new RedSocialViewModel(this);
+            BindingContext = new UsersViewModel(this);
         }
 
         private void ViewProfileTapped(object sender, TappedEventArgs e)
         {
-            User user = (User)e.Parameter;
+            int userId = (int)e.Parameter;
 
-            Profile_ Profile_ = new Profile_(user.id);            
+            Profile_ Profile_ = new Profile_(userId);
 
             Navigation.PushModalAsync(Profile_);
         }

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShootsDay.Views.RedSocial"
+             x:Class="ShootsDay.Views.EventUsers"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
     <flv:FlowListView   FlowColumnCount="1" 
-                        SeparatorVisibility="None" 
+                        SeparatorVisibility="None"
                         HasUnevenRows="true"                        
-                        FlowItemsSource="{Binding photoShoots}"
+                        FlowItemsSource="{Binding users}"
                         >
         <flv:FlowListView.FlowColumnTemplate>
             <DataTemplate>
@@ -17,16 +17,12 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20,0,0,0">
-                                <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="30" HorizontalOptions="FillAndExpand">
-                                </Image>
-                                <Label Text="{Binding User.name}" FontSize="20" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
-                            </StackLayout>
+                            <Label Text="{Binding name}" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
                             <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10" HorizontalOptions="End">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Tapped="ViewProfileTapped"
-                                        CommandParameter="{Binding User}"
+                                        CommandParameter="{Binding id}"
                                         NumberOfTapsRequired="1"/>
                                 </Image.GestureRecognizers>
                             </Image>
