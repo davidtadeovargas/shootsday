@@ -20,7 +20,7 @@
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20,0,0,0">
                                 <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="30" HorizontalOptions="FillAndExpand">
                                 </Image>
-                                <Label Text="{Binding User.name}" FontSize="20" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
+                                <Label Text="{Binding User.fullname}" FontSize="20" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
                             </StackLayout>
                             <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10" HorizontalOptions="End">
                                 <Image.GestureRecognizers>

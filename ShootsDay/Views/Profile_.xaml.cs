@@ -82,13 +82,7 @@ namespace ShootsDay.Views
                     Login = new { password = password, username = username }
                 });
                 
-                var content = new StringContent(userData, Encoding.UTF8, "application/json");
-
-                var url = ImagesManager.Instance.getProfilePicture(userId);
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    profile_img.Source = ImageSource.FromUri(new Uri(url));
-                });
+                var content = new StringContent(userData, Encoding.UTF8, "application/json");                
 
                 var currentUserId = SettingsManager.Instance.getUserId();
                 var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(currentUserId) + ".json");
@@ -125,9 +119,14 @@ namespace ShootsDay.Views
 
         private void set_data_profile(Data profile)
         {
-            name.Text = profile.User.name + " " + profile.User.lastname;
+            name.Text = profile.User.fullname;
             event_.Text = profile.Event.title;
             contacts.Text = "Contactos en este evento: " + profile.Event.count_users.ToString();
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                profile_img.Source = ImageSource.FromUri(new Uri(profile.User.url_image));
+            });
         }
     }
 }

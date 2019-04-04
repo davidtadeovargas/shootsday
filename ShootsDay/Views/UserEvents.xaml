@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShootsDay.Views.EventUsers"
+             x:Class="ShootsDay.Views.UserEvents"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
     <flv:FlowListView   FlowColumnCount="1" 
                         SeparatorVisibility="None"
                         HasUnevenRows="true"                        
-                        FlowItemsSource="{Binding users}"
-                        >
+                        FlowItemsSource="{Binding events}"
+                        FlowItemTappedCommand="{Binding ItemTappedCommand}">
         <flv:FlowListView.FlowColumnTemplate>
             <DataTemplate>
                 <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
@@ -17,14 +17,8 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding fullname}" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
+                            <Label Text="{Binding title}" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
                             <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10" HorizontalOptions="End">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Tapped="ViewProfileTapped"
-                                        CommandParameter="{Binding id}"
-                                        NumberOfTapsRequired="1"/>
-                                </Image.GestureRecognizers>
                             </Image>
                         </Grid>
                         <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>

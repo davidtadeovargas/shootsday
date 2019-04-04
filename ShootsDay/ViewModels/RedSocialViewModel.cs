@@ -88,10 +88,6 @@ namespace ShootsDay.ViewModels
                         List<Picture> photoshoots_ = jsonSystem.data.pictures;
                         foreach (var Photo in photoshoots_)
                         {
-                            Photo.url_image = ImagesManager.Instance.getHomesImage(Photo.url_image);
-                            Photo.User.url_image = ImagesManager.Instance.getProfilePicture(Photo.User.id);
-                            Photo.User.name = Photo.User.name + " " + Photo.User.lastname;
-
                             Device.BeginInvokeOnMainThread(() => {
                                 photoShoots.Add(Photo);
                             });

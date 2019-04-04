@@ -82,7 +82,6 @@ namespace ShootsDay.ViewModels
                         List<Photoshoot> photoshoots_ = jsonSystem.data.Photoshoots;
                         foreach (var Photo in photoshoots_)
                         {
-                            Photo.url_image = ImagesManager.Instance.gePhotoshootDetailImage(Photo.url_image);
                             Device.BeginInvokeOnMainThread(() => {
                                 photoShoots.Add(Photo);
                             });
