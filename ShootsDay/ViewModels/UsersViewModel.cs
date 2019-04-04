@@ -48,13 +48,14 @@ namespace ShootsDay.ViewModels
             string username = SettingsManager.Instance.getUserName();
             string password = SettingsManager.Instance.getPassword();
             int id_event = SettingsManager.Instance.getIdEvent();
+            int user_id = SettingsManager.Instance.getUserId();
 
             try
             {
                 LoadingManager.Instance.showLoading();
 
                 var client = new HttpClient();
-                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
+                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username, user_id = user_id } });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
                 var uri = new Uri(Constants.EVENT_USERS);
