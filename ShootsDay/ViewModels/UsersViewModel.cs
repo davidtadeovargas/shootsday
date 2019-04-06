@@ -21,14 +21,25 @@ namespace ShootsDay.ViewModels
         {
             users = new ObservableCollection<User>();
 
-            getUsers();            
-        }        
+            getUsers();
+
+            ItemTappedCommand = new Command((args) => OnUserTappedAsync(args));
+        }
 
         private async Task OnUserTappedAsync(object args)
         {
-            User User = (User)args;            
+            User User = (User)args;
+
+            Profile_ Profile_ = new Profile_(User.id);
+
+            Navigation.PushModalAsync(Profile_);            
         }
 
+        public Command ItemTappedCommand
+        {
+            get;
+            set;
+        }
 
         public ObservableCollection<User> users
         {

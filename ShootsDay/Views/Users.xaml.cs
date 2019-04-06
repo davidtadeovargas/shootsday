@@ -19,15 +19,6 @@ namespace ShootsDay.Views
             InitializeComponent();
 
             BindingContext = new UsersViewModel(this);
-        }
-
-        private void ViewProfileTapped(object sender, TappedEventArgs e)
-        {
-            int userId = (int)e.Parameter;
-
-            Profile_ Profile_ = new Profile_(userId);
-
-            Navigation.PushModalAsync(Profile_);
-        }
+        }        
     }
 }

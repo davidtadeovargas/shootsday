@@ -11,11 +11,11 @@
 	               Source="logo.png"/>
 	        <Frame HasShadow="False">
 	          <StackLayout Orientation="Vertical" Spacing="10">
-	            <Entry x:Name="NameEntry" Placeholder="Nombre" Text="{Binding Name}" HeightRequest="40" TextColor="Black"></Entry>
-	            <Entry x:Name="LastNameEntry" Placeholder="Apellidos" Text="{Binding LastName}" HeightRequest="40" TextColor="Black"></Entry>
-	            <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding Email}" HeightRequest="40" TextColor="Black"></Entry>
-	            <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" HeightRequest="40" TextColor="Black"></Entry>
-	            <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True"></Entry>
+	            <Entry x:Name="NameEntry" Placeholder="Nombre" Text="{Binding Name}" HeightRequest="40" TextColor="Black" TextChanged="EntryNameTextChanged"></Entry>
+	            <Entry x:Name="LastNameEntry" Placeholder="Apellidos" Text="{Binding LastName}" HeightRequest="40" TextColor="Black" TextChanged="LastNameTextChanged"></Entry>
+	            <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding Email}" HeightRequest="40" TextColor="Black" TextChanged="EmailTextChanged"></Entry>
+	            <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" HeightRequest="40" TextColor="Black" TextChanged="UserTextChanged"></Entry>
+	            <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True" TextChanged="PasswordTextChanged"></Entry>
                 <StackLayout Orientation="Horizontal">
                       <Label Text="Upload profile picture"
 	                   TextColor="Gray"

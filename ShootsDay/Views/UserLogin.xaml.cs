@@ -20,6 +20,9 @@ namespace ShootsDay
     {
         Button btn_login = null;
 
+        private const int LOGIN_FIELD_LENGTH = 70;
+        private const int PASSWORD_FIELD_LENGTH = 20;
+        private const int EVENT_FIELD_LENGTH = 10;
 
         public UserLogin()
 		{
@@ -60,6 +63,31 @@ namespace ShootsDay
             btnLogin.Text = Recursos.AppResources.login.ToString();
 
             link.FontSize = 40;
+        }
+
+
+        void EntryLoginTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > LOGIN_FIELD_LENGTH)
+            {
+                UserEntry.Text = UserEntry.Text.Remove(LOGIN_FIELD_LENGTH);
+            }
+        }
+
+        void EntryPasswordTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > PASSWORD_FIELD_LENGTH)
+            {
+                PasswordEntry.Text = PasswordEntry.Text.Remove(PASSWORD_FIELD_LENGTH);
+            }
+        }
+
+        void EntryCodeEventTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > EVENT_FIELD_LENGTH)
+            {
+                CodeEntry.Text = CodeEntry.Text.Remove(EVENT_FIELD_LENGTH);
+            }
         }
 
         private void AplicarIdioma()

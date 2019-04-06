@@ -16,7 +16,14 @@ namespace ShootsDay
 	public partial class UserRegister : ContentPage
 	{
         private MediaFile _mediaFile;
-        
+
+        private const int NAME_FIELD_LENGTH = 44;
+        private const int LASTNAME_FIELD_LENGTH = 44;
+        private const int EMAIL_FIELD_LENGTH = 70;
+        private const int USER_FIELD_LENGTH = 49;
+        private const int PASSWORD_FIELD_LENGTH = 20;
+
+
 
 
         public UserRegister()
@@ -52,6 +59,42 @@ namespace ShootsDay
         private void closeImgTapped(View arg1, object arg2)
         {
             profile_img.Source = null;
+        }
+
+        void EntryNameTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > NAME_FIELD_LENGTH)
+            {
+                NameEntry.Text = NameEntry.Text.Remove(NAME_FIELD_LENGTH);
+            }
+        }
+        void LastNameTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > LASTNAME_FIELD_LENGTH)
+            {
+                LastNameEntry.Text = LastNameEntry.Text.Remove(LASTNAME_FIELD_LENGTH);
+            }
+        }
+        void EmailTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > EMAIL_FIELD_LENGTH)
+            {
+                EmailEntry.Text = EmailEntry.Text.Remove(EMAIL_FIELD_LENGTH);
+            }
+        }
+        void UserTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > USER_FIELD_LENGTH)
+            {
+                UserEntry.Text = UserEntry.Text.Remove(USER_FIELD_LENGTH);
+            }
+        }
+        void PasswordTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > PASSWORD_FIELD_LENGTH)
+            {
+                PasswordEntry.Text = PasswordEntry.Text.Remove(PASSWORD_FIELD_LENGTH);
+            }
         }
 
         private async void btnRegister(object sender, EventArgs e)

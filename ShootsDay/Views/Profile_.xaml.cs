@@ -74,18 +74,19 @@ namespace ShootsDay.Views
             {
                 LoadingManager.Instance.showLoading();
 
+                var currentUserId = SettingsManager.Instance.getUserId();
+
                 var client = new HttpClient();
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new
                 {
-                    id = userId,
+                    id = currentUserId,
                     Event = new { id = eventId },
                     Login = new { password = password, username = username }
                 });
                 
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");                
 
-                var currentUserId = SettingsManager.Instance.getUserId();
-                var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(currentUserId) + ".json");
+                var uri = new Uri(Constants.USERS_PROFILE + Convert.ToInt32(userId) + ".json");
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
                 LoadingManager.Instance.closeLoading();
