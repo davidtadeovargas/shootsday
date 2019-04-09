@@ -15,6 +15,10 @@ namespace ShootsDay.ViewModels
     class UsersViewModel : BaseViewModel
     {
         private ObservableCollection<User> users_;
+        private bool endOfRecords = false;
+        
+
+
 
 
         public UsersViewModel(Page context) : base(context)
@@ -24,6 +28,7 @@ namespace ShootsDay.ViewModels
             getUsers();
 
             ItemTappedCommand = new Command((args) => OnUserTappedAsync(args));
+            ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
         }
 
         private async Task OnUserTappedAsync(object args)
@@ -35,7 +40,37 @@ namespace ShootsDay.ViewModels
             Navigation.PushModalAsync(Profile_);            
         }
 
+        private async Task OnItemAppearing(object args)
+        {
+            User User = (User)args;
+
+            var usersCount = users_.Count;
+
+            if (usersCount == 0)
+            {
+                return;
+            }
+
+            //The server returned empty or lesser thant the limit
+            if (endOfRecords)
+            {
+                return;
+            }
+
+            //If this is the end of the list get more records            
+            var lastUserId = users_[usersCount - 1].id;
+            if (User.id == lastUserId)
+            {
+                getUsers();
+            }
+        }
+
         public Command ItemTappedCommand
+        {
+            get;
+            set;
+        }
+        public Command ItemAppearingCommand
         {
             get;
             set;
@@ -65,8 +100,14 @@ namespace ShootsDay.ViewModels
             {
                 LoadingManager.Instance.showLoading();
 
+                var offset = 0;
+                if (users_.Count()>0)
+                {
+                    offset =  users_.Count();
+                }
+
                 var client = new HttpClient();
-                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username, user_id = user_id } });
+                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username, user_id = user_id}, limit = Constants.LIMIT, offset = offset });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
                 var uri = new Uri(Constants.EVENT_USERS);
@@ -83,6 +124,12 @@ namespace ShootsDay.ViewModels
                     {
                         //Get the users list
                         List<User> users_ = jsonSystem.data.Users;
+
+                        if (users_.Count()==0 || users_.Count()<Constants.LIMIT)
+                        {
+                            endOfRecords = true;
+                        }
+
                         foreach (var User in users_)
                         {
                             Device.BeginInvokeOnMainThread(() => {
@@ -101,6 +148,8 @@ namespace ShootsDay.ViewModels
                 {
                     var respuesta = await result.Content.ReadAsStringAsync();
                     var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
+
+                    Alert.DisplayAlert("Error", respuesta, "Aceptar");
                 }
             }
             catch (Exception ex)

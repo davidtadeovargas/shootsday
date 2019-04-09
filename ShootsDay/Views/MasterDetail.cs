@@ -11,7 +11,10 @@ namespace ShootsDay
 	{
 		public User usuario;
 		MenuPage menuPage;
-		public MasterDetail(Page page)
+
+        Type previousPage;
+
+        public MasterDetail(Page page)
 		{
 			menuPage = new MenuPage();
 			menuPage.evtItemSelected += MenuPage_EvtItemSelected;
@@ -27,32 +30,41 @@ namespace ShootsDay
 			};
 		}
 
-		void MenuPage_EvtItemSelected(object item)
+		private async void MenuPage_EvtItemSelected(object sender, object item)
 		{
-			var itemSelect = (MasterPageItem)item;
-			Type page = itemSelect.TargetType;
+            if (item == null)
+            {
+                return;
+            }
+
+			var itemSelect = (MasterPageItem)item;            
+            Type page = itemSelect.TargetType;
             IsPresented = false;
-            if (page.Name == "UserLogin")
+
+            if (itemSelect.Title == "Cerrar sesión")
             {
-                // Se sale de la aplicacion y se borran las propiedades
-                if (Application.Current.Properties.ContainsKey("username") || Application.Current.Properties.ContainsKey("password"))
+                /*
+                    Question before to continue
+                 */
+                var answer = await DisplayAlert("", "¿Seguro que que quieres cerrar sesion?", "Si", "No");
+                if (!answer)
                 {
-                    Application.Current.Properties.Remove("username");
-                    Application.Current.Properties.Remove("password");
-                    Application.Current.Properties.Remove("id_event");
-                    Application.Current.Properties.Remove("host");
-                }
-                //this.Navigation.PopToRootAsync();
-                App.Current.Logout();
+                    var listView = ((ListView)sender);
+
+                    // clear selected item
+                    listView.SelectedItem = null;
+
+                    return;
+                }                
             }
-            else
+
+            previousPage = page;
+
+            Detail = new NavigationPage((Page)Activator.CreateInstance(page))
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(page))
-                {
-                    BarBackgroundColor = Color.FromHex("#01cb8f"),
-                    BarTextColor = Color.White
-                };
-            }
+                BarBackgroundColor = Color.FromHex("#01cb8f"),
+                BarTextColor = Color.White
+            };
         }
 	}
 }

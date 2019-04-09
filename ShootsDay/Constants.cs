@@ -29,6 +29,9 @@ namespace ShootsDay
         static public string PROFILE_IMAGE_URL = INIT_SERVER + "/imgProfile";
         static public string PHOTOSHOOTS_IMAGE_URL = INIT_SERVER + "/photoShoots";
         static public string REDSOCIAL_IMAGE_URL = INIT_SERVER + "/redsocial";
-        static public string CONTACT_CONTACT_EMAIL = "email@email.com";
+        static public string CONTACT_CONTACT_EMAIL = "info@shootsday.com";
+        static public string CONTACT_CONTACT_EMAIL2 = "jacqueline@shootsday.com";
+
+        static public int LIMIT = 20; //20
     }
 }

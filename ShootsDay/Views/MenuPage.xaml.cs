@@ -9,7 +9,7 @@ namespace ShootsDay
 {
 	public partial class MenuPage : ContentPage
 	{
-		public delegate void ItemSelected(object item);
+		public delegate void ItemSelected(object sender, object item);
 		public event ItemSelected evtItemSelected;
 		public List<MasterPageItem> menuList { get; set; }
 		public MenuPage()
@@ -60,13 +60,14 @@ namespace ShootsDay
 		// on user selection in menu ListView
 		private void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
-			if (evtItemSelected != null)
-			{
-				evtItemSelected(e.SelectedItem);
-			}
+            evtItemSelected(sender,e.SelectedItem);
 
-			var item = (MasterPageItem)e.SelectedItem;
-			Type page = item.TargetType;
+            if (((ListView)sender).SelectedItem == null)
+                return;
+
+            var item = (MasterPageItem)e.SelectedItem;                        
+
+            Type page = item.TargetType;
 		}
 	}
 }

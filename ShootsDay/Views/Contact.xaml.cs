@@ -12,14 +12,19 @@ namespace ShootsDay
 			InitializeComponent();
 		}
 
-        private void OnContactoClicked(object sender, EventArgs e)
+        private void OnLinkClicked(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri(Constants.CONTACT_URL));
+        }
+
+        public async void OnEmailClicked(object sender, EventArgs e)
         {
             Device.OpenUri(new Uri("mailto:" + Constants.CONTACT_CONTACT_EMAIL));
         }
 
-        private void OnLinkClicked(object sender, EventArgs e)
+        public async void OnEmail2Clicked(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri(Constants.CONTACT_URL));
-        }        
+            Device.OpenUri(new Uri("mailto:" + Constants.CONTACT_CONTACT_EMAIL2));
+        }
     }
 }

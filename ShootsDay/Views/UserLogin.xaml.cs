@@ -58,7 +58,7 @@ namespace ShootsDay
             InitializeComponent();
 
             //Close session
-            SettingsManager.Instance.setIsNotLoggedIn().SavePropertiesAsync();            
+            SettingsManager.Instance.setIsNotLoggedIn().SavePropertiesAsync();
 
             btnLogin.Text = Recursos.AppResources.login.ToString();
 

@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using UIKit;
 using Xamarin.Forms;
 
@@ -132,6 +133,28 @@ namespace ShootsDay
             if (string.IsNullOrEmpty(PasswordEntry.Text))
             {
                 await DisplayAlert("Error", "Debe ingresar un código", "Aceptar");
+                PasswordEntry.Focus();
+                return;
+            }
+
+            //Validate the password
+            if (PasswordEntry.Text.Length<8)
+            {
+                await DisplayAlert("Error", "La contaseña debe de ser de por lo menos 8 caracteres", "Aceptar");
+                PasswordEntry.Focus();
+                return;
+            }
+            var containsDigit = Regex.IsMatch(PasswordEntry.Text, @"\d");
+            if (!containsDigit)
+            {
+                await DisplayAlert("Error", "La contaseña debe de contener por lo menos un digito", "Aceptar");
+                PasswordEntry.Focus();
+                return;
+            }
+            var containsChar = Regex.IsMatch(PasswordEntry.Text, @"[a-zA-Z]");
+            if (!containsChar)
+            {
+                await DisplayAlert("Error", "La contaseña debe de contener por lo menos un digito caracter", "Aceptar");
                 PasswordEntry.Focus();
                 return;
             }
