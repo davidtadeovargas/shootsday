@@ -19,7 +19,13 @@
                 <StackLayout Orientation="Horizontal">
                       <Label Text="Upload profile picture"
 	                   TextColor="Gray"
-	                   x:Name="pictureEntry"/>
+	                   x:Name="pictureEntry">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding PermissionPicture}"
+                                    NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                      </Label>
                     <Image x:Name="closeImg" Source="close.png" WidthRequest="20" HeightRequest="20"/>
                 </StackLayout>
               <Image x:Name="profile_img" Aspect="AspectFill" />

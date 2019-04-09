@@ -21,7 +21,7 @@ namespace ShootsDay.Views
     public partial class PhotoDetail : ContentPage
     {
         Photoshoot Photoshoot_;
-        PhotoDetailViewModel _photoDetailViewModel;        
+        PhotoDetailViewModel _photoDetailViewModel;
 
         /*
             Permissions needed

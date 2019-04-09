@@ -1,6 +1,7 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
 using ShootsDay.Models;
+using ShootsDay.Models.Share;
 using ShootsDay.Views;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace ShootsDay
         private const int USER_FIELD_LENGTH = 49;
         private const int PASSWORD_FIELD_LENGTH = 20;
 
+        UserRegisterViewModel UserRegisterViewModel;
+
 
 
 
@@ -32,7 +35,10 @@ namespace ShootsDay
 			InitializeComponent();
 			UserLogin.GestureRecognizers.Add(new TapGestureRecognizer(goToLogin));
 			pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
-            closeImg.GestureRecognizers.Add(new TapGestureRecognizer(closeImgTapped));            
+            closeImg.GestureRecognizers.Add(new TapGestureRecognizer(closeImgTapped));
+
+            UserRegisterViewModel = new UserRegisterViewModel();
+            BindingContext = UserRegisterViewModel;
         }
 		private async void uploadPicture(View arg1, object arg2)
 		{

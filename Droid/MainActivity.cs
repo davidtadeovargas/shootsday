@@ -25,6 +25,7 @@ namespace ShootsDay.Droid
 	{
         const int ShareImageId = 1000;
         const int REQUEST_DOWNLOAD_FILE = 100;
+        const int REQUEST_PICTURE = 101;
 
         Photoshoot photoshootCurrent = null;
 
@@ -51,6 +52,7 @@ namespace ShootsDay.Droid
 
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);
             MessagingCenter.Subscribe<Photoshoot>(this, "Download", DownloadCommand, null);
+            MessagingCenter.Subscribe<Object>(this, "PictureCommand", PictureCommand, null);
         }
 
 
@@ -85,6 +87,32 @@ namespace ShootsDay.Droid
             }
         }
 
+
+        async void PictureCommand(Object Object)
+        {
+            try
+            {
+                bool readPermission = ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted;
+                bool writePermission = ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted;
+                if (readPermission && writePermission)
+                {
+                    // We have permission, go ahead 
+
+                }
+                else
+                {
+                    // Permission is not granted. If necessary display rationale & request.
+                    //var requiredPermissions = new String[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+                    var requiredPermissions = new String[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+
+                    ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_PICTURE);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }            
+        }
 
         async void Share(ImageSource imageSource)
         {
@@ -141,37 +169,68 @@ namespace ShootsDay.Droid
              */
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-            /*
+            try
+            {
+                /*
                 Download a file
              */
-            if (requestCode == REQUEST_DOWNLOAD_FILE)
-            {
-                // Check if the required permission has been granted
-                if (grantResults[0] == Permission.Granted && grantResults[0] == Permission.Granted)
+                if (requestCode == REQUEST_DOWNLOAD_FILE)
                 {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                    alert.SetTitle(Resource.String.Pemissions);
-                    alert.SetMessage(Resource.String.PermissionGranted);
-                    alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
-                        downloadFile();
-                    });
-                    alert.Show();
+                    // Check if the required permission has been granted
+                    if (grantResults[0] == Permission.Granted && grantResults[0] == Permission.Granted)
+                    {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                        alert.SetTitle(Resource.String.Pemissions);
+                        alert.SetMessage(Resource.String.PermissionGranted);
+                        alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+                            downloadFile();
+                        });
+                        alert.Show();
+                    }
+                    else
+                    {
+                        //Not granted                    
+                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                        alert.SetTitle(Resource.String.Pemissions);
+                        alert.SetMessage(Resource.String.PermissionNeeded);
+                        alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+                        });
+                        alert.Show();
+                    }
+
+                    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
                 }
-                else
+                else if (requestCode == REQUEST_PICTURE)
                 {
-                    //Not granted                    
-                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                    alert.SetTitle(Resource.String.Pemissions);
-                    alert.SetMessage(Resource.String.PermissionNeeded);
-                    alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
-                    });
-                    alert.Show();
-                }
+                    // Check if the required permission has been granted
+                    if (grantResults[0] == Permission.Granted && grantResults[0] == Permission.Granted)
+                    {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                        alert.SetTitle(Resource.String.Pemissions);
+                        alert.SetMessage(Resource.String.PermissionGranted);
+                        alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+
+                        });
+                        alert.Show();
+                    }
+                    else
+                    {
+                        //Not granted                    
+                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                        alert.SetTitle(Resource.String.Pemissions);
+                        alert.SetMessage(Resource.String.PermissionNeeded);
+                        alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+                        });
+                        alert.Show();
+                    }
+
+                    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+                }                
             }
-            else
+            catch (Exception e)
             {
-                base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
+                e = e;
+            }            
         }
     }
 }

@@ -7,7 +7,9 @@
                         SeparatorVisibility="None" 
                         HasUnevenRows="true"                        
                         FlowItemsSource="{Binding photoShoots}"
-                        FlowItemTappedCommand="{Binding ItemTappedCommand}">
+                        FlowItemTappedCommand="{Binding ItemTappedCommand}"
+                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
+                        >
 
         <flv:FlowListView.FlowColumnTemplate>
             <DataTemplate>

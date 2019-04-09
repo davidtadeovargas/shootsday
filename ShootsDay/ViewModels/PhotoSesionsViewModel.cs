@@ -16,8 +16,8 @@ namespace ShootsDay.ViewModels
     {
 
         private ObservableCollection<Photoshoot> photoShoots_;
+        private bool endOfRecords = false;
 
-        
 
 
         public PhotoSesionsViewModel(Page context) : base(context)
@@ -27,12 +27,38 @@ namespace ShootsDay.ViewModels
             getPhotos();
 
             ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));
+            ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
         }
 
         private async Task OnPhotoTappedAsync(object args)
         {
             Photoshoot photoshoot = (Photoshoot)args;
             await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(photoshoot)));
+        }
+
+        private async Task OnItemAppearing(object args)
+        {
+            Photoshoot Photoshoot = (Photoshoot)args;
+
+            var photoshootsCount = photoShoots_.Count;
+
+            if (photoshootsCount == 0)
+            {
+                return;
+            }
+
+            //The server returned empty or lesser thant the limit
+            if (endOfRecords)
+            {
+                return;
+            }
+
+            //If this is the end of the list get more records            
+            var lastPhotoshootId = photoShoots_[photoshootsCount - 1].id;
+            if (Photoshoot.id == lastPhotoshootId)
+            {
+                getPhotos();
+            }
         }
 
         public ObservableCollection<Photoshoot> photoShoots
@@ -46,7 +72,13 @@ namespace ShootsDay.ViewModels
             }
         }
 
+
         public Command ItemTappedCommand
+        {
+            get;
+            set;
+        }
+        public Command ItemAppearingCommand
         {
             get;
             set;
@@ -62,8 +94,14 @@ namespace ShootsDay.ViewModels
             {
                 LoadingManager.Instance.showLoading();
 
+                var offset = 0;
+                if (photoShoots_.Count() > 0)
+                {
+                    offset = photoShoots_.Count();
+                }
+
                 var client = new HttpClient();
-                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username } });
+                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username }, limit = Constants.LIMIT, offset = offset });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
                 var uri = new Uri(Constants.PHOTOSHOOTS);
@@ -80,6 +118,12 @@ namespace ShootsDay.ViewModels
                     {
                         //Get the photo list
                         List<Photoshoot> photoshoots_ = jsonSystem.data.Photoshoots;
+
+                        if (photoshoots_.Count() == 0 || photoshoots_.Count() < Constants.LIMIT)
+                        {
+                            endOfRecords = true;
+                        }
+
                         foreach (var Photo in photoshoots_)
                         {
                             Device.BeginInvokeOnMainThread(() => {

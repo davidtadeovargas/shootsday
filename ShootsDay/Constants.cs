@@ -32,6 +32,6 @@ namespace ShootsDay
         static public string CONTACT_CONTACT_EMAIL = "info@shootsday.com";
         static public string CONTACT_CONTACT_EMAIL2 = "jacqueline@shootsday.com";
 
-        static public int LIMIT = 20; //20
+        static public int LIMIT = 5; //20
     }
 }
