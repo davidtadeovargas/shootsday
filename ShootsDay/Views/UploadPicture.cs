@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Plugin.Media.Abstractions;
 using System.Net.Http;
 using ShootsDay.Models;
+using ShootsDay.RequestModels;
 
 namespace ShootsDay.Views
 {

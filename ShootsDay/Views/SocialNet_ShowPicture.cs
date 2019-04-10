@@ -5,6 +5,7 @@ using System.Text;
 using ShootsDay.Models;
 using Xamarin.Forms;
 using ShootsDay.Views;
+using ShootsDay.RequestModels;
 
 namespace ShootsDay
 {

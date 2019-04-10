@@ -67,6 +67,7 @@
     <Compile Include="Interfaces\IShare.cs" />
     <Compile Include="Managers\ImagesManager.cs" />
     <Compile Include="Managers\SettingsManager.cs" />
+    <Compile Include="RequestModels\RequestLike.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
     <Compile Include="ViewModels\PhotoDetailViewModel.cs" />
     <Compile Include="Models\Views\PhotoSesionListViewModel.cs" />
@@ -133,17 +134,17 @@
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MasterDetail.cs" />
-    <Compile Include="Models\Status.cs" />
-    <Compile Include="Models\RequestUser.cs" />
+    <Compile Include="RequestModels\Status.cs" />
+    <Compile Include="RequestModels\RequestUser.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\RequestHome.cs" />
+    <Compile Include="RequestModels\RequestHome.cs" />
     <Compile Include="Models\Picture.cs" />
-    <Compile Include="Models\RequestMyPictures.cs" />
-    <Compile Include="Models\Data.cs" />
+    <Compile Include="RequestModels\RequestMyPictures.cs" />
+    <Compile Include="RequestModels\Data.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Views\SocialNet_ShowPicture.cs" />
-    <Compile Include="Models\RequestAddLike.cs" />
-    <Compile Include="Models\RequestComments.cs" />
+    <Compile Include="RequestModels\RequestAddLike.cs" />
+    <Compile Include="RequestModels\RequestComments.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Views\MyPictures_ShowPicture.cs" />
     <Compile Include="Models\Photoshoot.cs" />

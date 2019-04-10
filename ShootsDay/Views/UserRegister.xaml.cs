@@ -1,6 +1,7 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
 using ShootsDay.Models;
+using ShootsDay.RequestModels;
 using ShootsDay.Models.Share;
 using ShootsDay.Views;
 using System;
@@ -40,18 +41,30 @@ namespace ShootsDay
             UserRegisterViewModel = new UserRegisterViewModel();
             BindingContext = UserRegisterViewModel;
         }
-		private async void uploadPicture(View arg1, object arg2)
+
+		private void uploadPicture(View arg1, object arg2)
 		{
-			Debug.WriteLine("Subír foto");
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                await DisplayAlert("Error", "Subír una foto no soportado", "OK");
-            }
-            _mediaFile = await CrossMedia.Current.PickPhotoAsync();
-            if (_mediaFile == null)
-                return;
-            
-            profile_img.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
+            Device.BeginInvokeOnMainThread( async () => {
+
+                try
+                {
+                    Debug.WriteLine("Subír foto");
+
+                    if (CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        _mediaFile = await CrossMedia.Current.PickPhotoAsync();
+
+                        if (_mediaFile != null)
+                        {
+                            profile_img.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
+                        }                                                    
+                    }                                                           
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine("Error, Excepcion: " + e.Message);
+                }               
+            });            
         }
       
 

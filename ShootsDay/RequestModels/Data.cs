@@ -1,7 +1,8 @@
-﻿using System;
+﻿using ShootsDay.Models;
+using System;
 using System.Collections.Generic;
 
-namespace ShootsDay.Models
+namespace ShootsDay.RequestModels
 {
 	public class Host
 	{ 

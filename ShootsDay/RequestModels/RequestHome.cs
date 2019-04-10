@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShootsDay.Models
+namespace ShootsDay.RequestModels
 {
 	public class RequestHome
 	{

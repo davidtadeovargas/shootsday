@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using System.Net.Http;
 using ShootsDay.Views;
 using ShootsDay.Managers;
+using ShootsDay.RequestModels;
 
 namespace ShootsDay.ViewModels
 {

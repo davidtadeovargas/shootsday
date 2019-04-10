@@ -10,6 +10,7 @@ using Acr.UserDialogs;
 using System.Threading.Tasks;
 using ShootsDay.Views;
 using ShootsDay.Managers;
+using ShootsDay.RequestModels;
 
 /*
     https://github.com/aritchie/userdialogs

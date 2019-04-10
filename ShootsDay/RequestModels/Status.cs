@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ShootsDay.Models
+namespace ShootsDay.RequestModels
 {
 	public class Status
 	{

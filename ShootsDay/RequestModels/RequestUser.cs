@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-
-namespace ShootsDay.Models
+namespace ShootsDay.RequestModels
 {
-	public class RequestComments
+	public class RequestUser
 	{
 		public Status status { get; set; }
 		public Data data { get; set; }

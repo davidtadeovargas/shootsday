@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using ShootsDay.Managers;
 using ShootsDay.Models;
+using ShootsDay.RequestModels;
 using ShootsDay.Views;
 using System;
 using System.Collections.Generic;

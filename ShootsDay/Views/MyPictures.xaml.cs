@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using ShootsDay.Models;
+using ShootsDay.RequestModels;
 using Xamarin.Forms;
 
 namespace ShootsDay

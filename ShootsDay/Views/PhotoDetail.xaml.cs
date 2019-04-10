@@ -6,9 +6,12 @@ using ShootsDay.Interfaces;
 using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.Models.Share;
+using ShootsDay.RequestModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -65,7 +68,62 @@ namespace ShootsDay.Views
 
         private void OnLikeClicked(object sender, EventArgs e)
         {
+            Like();
+        }
 
-        }        
+
+        private async void Like()
+        {
+            try
+            {
+                LoadingManager.Instance.showLoading();
+
+                string username = SettingsManager.Instance.getUserName();
+                string password = SettingsManager.Instance.getPassword();
+                int user_id = SettingsManager.Instance.getUserId();
+
+                var client = new HttpClient();
+                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
+                    new
+                    {
+                        Like = new { photoshoot_id = Photoshoot_.id },
+                        Login = new { password = password, username = username, user_id = user_id }
+                    });
+
+                var content = new StringContent(userData, Encoding.UTF8, "application/json");
+                var uri = new Uri(Constants.LIKE_ADD);                
+
+                var result = await client.PostAsync(uri, content).ConfigureAwait(true);
+
+                LoadingManager.Instance.closeLoading();
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var tokenJson = await result.Content.ReadAsStringAsync();
+                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestLike>(tokenJson);
+
+                    if (jsonSystem.status.type != "error")
+                    {
+                        
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+                    }
+                }
+                else
+                {
+                    var respuesta = await result.Content.ReadAsStringAsync();
+                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
+                    await DisplayAlert("", respuesta, "Aceptar");
+                }
+            }
+            catch (Exception ex)
+            {
+                LoadingManager.Instance.closeLoading();                
+                Debug.WriteLine("Excepcion: " + ex.Message);
+                await DisplayAlert("", ex.Message, "Aceptar");
+            }            
+        }
     }
 }
