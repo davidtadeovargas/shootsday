@@ -141,6 +141,7 @@ namespace ShootsDay.ViewModels
                 {
                     var respuesta = await result.Content.ReadAsStringAsync();
                     var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
+                    Alert.DisplayAlert("Error", respuesta, "Aceptar");
                 }
             }
             catch (Exception ex)

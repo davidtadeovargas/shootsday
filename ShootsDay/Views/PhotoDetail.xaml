@@ -21,7 +21,7 @@
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Image  x:Name="likeImage" Source="like.png">
+                <Image  x:Name="likeImage">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                         Tapped="OnLikeClicked"

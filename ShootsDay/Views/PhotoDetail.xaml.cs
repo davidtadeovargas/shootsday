@@ -53,6 +53,17 @@ namespace ShootsDay.Views
             _photoDetailViewModel.photoshoot = Photoshoot_;
             BindingContext = _photoDetailViewModel; //Attach the binding context
 
+            //Set the like
+            var sourceLike = "like_black.png";
+            if (Photoshoot_.Like!=null)
+            {
+                sourceLike = "like.png";                                
+            }
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                likeImage.Source = sourceLike;
+            });
+
             /*
                 Load the title and image
              */
@@ -82,16 +93,29 @@ namespace ShootsDay.Views
                 string password = SettingsManager.Instance.getPassword();
                 int user_id = SettingsManager.Instance.getUserId();
 
+                int value;
+                int like_id;
+                if (Photoshoot_.Like ==null)
+                {
+                    value = 1;
+                    like_id = -1;
+                }
+                else
+                {
+                    value = -1;
+                    like_id = Photoshoot_.Like.id;
+                }
+
                 var client = new HttpClient();
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
                     new
                     {
-                        Like = new { photoshoot_id = Photoshoot_.id },
+                        Like = new { id= like_id, photoshoot_id = Photoshoot_.id, value=value },
                         Login = new { password = password, username = username, user_id = user_id }
                     });
 
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
-                var uri = new Uri(Constants.LIKE_ADD);                
+                var uri = new Uri(Constants.LIKE);                
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
@@ -104,7 +128,23 @@ namespace ShootsDay.Views
 
                     if (jsonSystem.status.type != "error")
                     {
-                        
+
+                        //Set the like
+                        string sourceLike;
+                        if (Photoshoot_.Like == null)
+                        {
+                            Photoshoot_.Like = jsonSystem.data.Like;
+                            sourceLike = "like.png";
+                        }
+                        else
+                        {
+                            Photoshoot_.Like = null;
+                            sourceLike = "like_black.png";
+                        }
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            likeImage.Source = sourceLike;
+                        });
                     }
                     else
                     {

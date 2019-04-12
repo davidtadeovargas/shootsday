@@ -67,6 +67,7 @@
     <Compile Include="Interfaces\IShare.cs" />
     <Compile Include="Managers\ImagesManager.cs" />
     <Compile Include="Managers\SettingsManager.cs" />
+    <Compile Include="Models\Like.cs" />
     <Compile Include="RequestModels\RequestLike.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
     <Compile Include="ViewModels\PhotoDetailViewModel.cs" />

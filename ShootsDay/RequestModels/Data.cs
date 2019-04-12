@@ -23,6 +23,10 @@ namespace ShootsDay.RequestModels
         public List<User> Users { get; set; }
         public List<Event> Events { get; set; }
 
+        public Like Like { get; set; }
+
+
+
         public Status status { get; set; }
     }
 }
