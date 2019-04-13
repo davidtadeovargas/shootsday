@@ -69,6 +69,7 @@
     <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="RequestModels\RequestLike.cs" />
+    <Compile Include="ViewModels\RedSocialDetailViewModel.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
     <Compile Include="ViewModels\PhotoDetailViewModel.cs" />
     <Compile Include="Models\Views\PhotoSesionListViewModel.cs" />
@@ -116,6 +117,9 @@
     </Compile>
     <Compile Include="Views\RedSocial.xaml.cs">
       <DependentUpon>RedSocial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RedSocialDetail.xaml.cs">
+      <DependentUpon>RedSocialDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SocialNet_ShowComments.xaml.cs">
       <DependentUpon>SocialNet_ShowComments.xaml</DependentUpon>
@@ -245,6 +249,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\UserEvents.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RedSocialDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

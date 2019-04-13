@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShootsDay.Views.RedSocial"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+    </ContentPage.ToolbarItems>
     <flv:FlowListView   FlowColumnCount="1" 
                         SeparatorVisibility="None" 
                         HasUnevenRows="true"                        
@@ -13,26 +16,32 @@
             <DataTemplate>
                 <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
                     <StackLayout Orientation="Vertical" Margin="0,10,0,10">
-                        <Grid >
+                        <Grid HorizontalOptions="CenterAndExpand">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20,0,0,0">
-                                <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="30" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
+                                <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="40" HorizontalOptions="FillAndExpand">
                                 </Image>
-                                <Label Text="{Binding User.fullname}" FontSize="20" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
-                            </StackLayout>
-                            <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10" HorizontalOptions="End">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
+                                <Label Text="{Binding User.fullname}" FontSize="Small" TextColor="Black" HorizontalOptions="CenterAndExpand"></Label>
+                                <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
                                         Tapped="ViewProfileTapped"
                                         CommandParameter="{Binding User}"
                                         NumberOfTapsRequired="1"/>
-                                </Image.GestureRecognizers>
-                            </Image>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </StackLayout>
                         </Grid>
-                        <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                        <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Tapped="ImageTapped"
+                                        CommandParameter="{Binding}"
+                                        NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </StackLayout>
                 </Grid>
             </DataTemplate>

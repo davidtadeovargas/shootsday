@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShootsDay.Managers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,7 +24,11 @@ namespace ShootsDay.Views
             InitializeComponent();
 
             if (Application.Current.Properties.ContainsKey("title_event"))
-                title = Application.Current.Properties["title_event"].ToString();            
+                title = Application.Current.Properties["title_event"].ToString();
+
+            Device.BeginInvokeOnMainThread(() => {
+                NameToolb.Text = SettingsManager.Instance.getUserName();
+            });
         }
         public void OnRedSocialClicked(object sender, EventArgs e)
         {

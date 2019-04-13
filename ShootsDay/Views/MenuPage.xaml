@@ -4,6 +4,7 @@
 		x:Class="ShootsDay.MenuPage"
              BackgroundColor="White">
 	<ContentPage.Content>
+        
 		<StackLayout Orientation="Vertical">
         
         <!-- 

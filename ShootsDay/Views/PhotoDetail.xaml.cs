@@ -53,11 +53,16 @@ namespace ShootsDay.Views
             _photoDetailViewModel.photoshoot = Photoshoot_;
             BindingContext = _photoDetailViewModel; //Attach the binding context
 
+            Device.BeginInvokeOnMainThread(() => {
+                NameToolb.Text = SettingsManager.Instance.getUserName();
+                Title = "Sesion de Fotos";
+            });
+
             //Set the like
             var sourceLike = "like_black.png";
             if (Photoshoot_.Like!=null)
             {
-                sourceLike = "like.png";                                
+                sourceLike = "like.png";
             }
             Device.BeginInvokeOnMainThread(() =>
             {

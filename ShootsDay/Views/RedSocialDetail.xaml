@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShootsDay.Views.RedSocialDetail">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label  x:Name="title"
+                    HorizontalOptions="CenterAndExpand"
+                    FontSize="Large"
+                    TextColor="#33bbff"
+                    Margin="10"/>
+            <Image  x:Name="image"
+                   HorizontalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnItemClicked"                        
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="EndAndExpand"
+                         Margin="0,0,10,0">
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

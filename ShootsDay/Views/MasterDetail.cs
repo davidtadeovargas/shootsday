@@ -25,8 +25,8 @@ namespace ShootsDay
 			//Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(page)));
 			Detail = new NavigationPage(page) 
 			{
-				BarBackgroundColor = Color.FromHex("#01cb8f"),
-				BarTextColor = Color.White
+				BarBackgroundColor = Color.FromHex("#bababa"),
+				BarTextColor = Color.White                
 			};
 		}
 
@@ -62,7 +62,7 @@ namespace ShootsDay
 
             Detail = new NavigationPage((Page)Activator.CreateInstance(page))
             {
-                BarBackgroundColor = Color.FromHex("#01cb8f"),
+                BarBackgroundColor = Color.FromHex("#bababa"),
                 BarTextColor = Color.White
             };
         }

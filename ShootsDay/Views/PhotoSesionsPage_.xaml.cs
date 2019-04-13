@@ -1,4 +1,5 @@
 ﻿using DLToolkit.Forms.Controls;
+using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.ViewModels;
 using System;
@@ -21,6 +22,12 @@ namespace ShootsDay.Views
             InitializeComponent();
 
             BindingContext = new PhotoSesionsViewModel(this);
+
+            Device.BeginInvokeOnMainThread(() => {
+                NameToolb.Text = SettingsManager.Instance.getUserName();
+                tittleLabel.Text = SettingsManager.Instance.getTitleEvent();
+                Title = "Sesion de Fotos";
+            });
         }        
     }
 }

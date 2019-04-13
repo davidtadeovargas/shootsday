@@ -17,6 +17,7 @@ namespace ShootsDay.ViewModels
     {
         private ObservableCollection<Picture> photoShoots_;
         private bool endOfRecords = false;
+        private ToolbarItem ToolbarItemName_;
 
 
 
@@ -29,14 +30,21 @@ namespace ShootsDay.ViewModels
 
             ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));
             ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
+            PictureGestureCommand = new Command((args) => OnImageTapped(args));
         }        
 
         private async Task OnPhotoTappedAsync(object args)
         {
             Picture Picture = (Picture)args;
-            Picture = (Picture)args;
+            await Navigation.PushModalAsync(new MasterDetail(new RedSocialDetail(Picture)));
         }
 
+
+        private async Task OnImageTapped(object args)
+        {
+            Picture Picture = (Picture)args;
+            Picture = (Picture)args;
+        }
 
         private async Task OnViewProfileTappedAsync(object args)
         {
@@ -67,6 +75,12 @@ namespace ShootsDay.ViewModels
             {
                 getPhotos();
             }
+        }
+
+        public Command PictureGestureCommand
+        {
+            get;
+            set;
         }
 
         public ObservableCollection<Picture> photoShoots

@@ -30,7 +30,9 @@ namespace ShootsDay
             Device.BeginInvokeOnMainThread(() =>
             {
                 var urlMap = ImagesManager.Instance.getInvitationMap();
-                mapPicture.Source = ImageSource.FromUri(new Uri(urlMap));                
+                mapPicture.Source = ImageSource.FromUri(new Uri(urlMap));
+                NameToolb.Text = SettingsManager.Instance.getUserName();
+                Title = "";
             });
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShootsDay.Managers;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -10,7 +11,11 @@ namespace ShootsDay
 		public Contact()
 		{
 			InitializeComponent();
-		}
+
+            Device.BeginInvokeOnMainThread(() => {
+                NameToolb.Text = SettingsManager.Instance.getUserName();
+            });
+        }
 
         private void OnLinkClicked(object sender, EventArgs e)
         {
