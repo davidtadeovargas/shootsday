@@ -19,6 +19,21 @@ namespace ShootsDay.Views
     {
         public PhotoSesionsPage_()
         {
+            init();
+        }
+
+        public PhotoSesionsPage_(Image image)
+        {
+            if (image != null)
+            {
+                image.IsEnabled = true; //Enable button again
+            }
+
+            init();
+        }
+
+        private void init()
+        {
             InitializeComponent();
 
             BindingContext = new PhotoSesionsViewModel(this);
@@ -28,6 +43,6 @@ namespace ShootsDay.Views
                 tittleLabel.Text = SettingsManager.Instance.getTitleEvent();
                 Title = "Sesion de Fotos";
             });
-        }        
+        }
     }
 }

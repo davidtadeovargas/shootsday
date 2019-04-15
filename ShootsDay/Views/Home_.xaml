@@ -7,32 +7,41 @@
         <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand">
             <Image Source="logo.png" Margin="35" />
             <Label Text="¿QUE QUIERES HACER?" HorizontalOptions="CenterAndExpand"/>
-            <StackLayout VerticalOptions="CenterAndExpand">
-                <Image Source="sesionfotos.jpg" Margin="5">
+            <Grid 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RowSpacing="5"
+                Margin="10,0,10,0">
+                <Image Source="sesionfotos.jpg" x:Name="btnSesionFotos" Aspect="AspectFit" Grid.Row="0" Grid.Column="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                     Tapped="OnSesionFotosClicked"
                     NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Image Source="redsocial.png" Margin="5">
+                <Image Source="redsocial.png" x:Name="btnRedSocial" Aspect="AspectFit" Grid.Row="1" Grid.Column="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                         Tapped="OnRedSocialClicked"
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Image Source="invitacion.jpg" Margin="5">
+                <Image Source="invitacion.jpg" x:Name="btnInvitacion" Aspect="AspectFit" Grid.Row="2" Grid.Column="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                         Tapped="OnInvitacionClicked"
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-            </StackLayout>
+            </Grid>
+
+            <Grid 
+                HorizontalOptions="FillAndExpand">
+
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

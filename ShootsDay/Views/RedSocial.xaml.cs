@@ -17,9 +17,24 @@ namespace ShootsDay.Views
     {
         public RedSocial()
         {
+            init();
+        }
+
+        public RedSocial(Image image)
+        {
+            if (image != null)
+            {
+                image.IsEnabled = true; //Enable button again
+            }
+
+            init();
+        }
+
+        private void init()
+        {
             InitializeComponent();
 
-            BindingContext = new RedSocialViewModel(this);            
+            BindingContext = new RedSocialViewModel(this);
 
             Device.BeginInvokeOnMainThread(() => {
                 NameToolb.Text = SettingsManager.Instance.getUserName();
@@ -43,6 +58,21 @@ namespace ShootsDay.Views
             RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
 
             Navigation.PushModalAsync(new MasterDetail(RedSocialDetail));
+        }
+
+
+        private void MainTapped(object sender, TappedEventArgs e)
+        {
+            Picture Picture = (Picture)e.Parameter;
+        }
+
+        private void UploadPictureTapped(object sender, TappedEventArgs e)
+        {
+            Picture Picture = (Picture)e.Parameter;
+        }
+        private void MyPicturesPictureTapped(object sender, TappedEventArgs e)
+        {
+            Picture Picture = (Picture)e.Parameter;
         }
     }
 }

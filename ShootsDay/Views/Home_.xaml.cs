@@ -32,19 +32,25 @@ namespace ShootsDay.Views
         }
         public void OnRedSocialClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
-        }
+            btnRedSocial.IsEnabled = false; //Disable button to prevent double opening
 
-        private void OnInvitacionClicked(object sender, EventArgs e)
-        {
-            Debug.WriteLine("Abrir ventana de invitación");
-            Navigation.PushModalAsync(new MasterDetail(new Invites()));
+            Navigation.PushModalAsync(new MasterDetail(new RedSocial(btnRedSocial)));
         }
 
         private void OnSesionFotosClicked(object sender, EventArgs e)
         {
+            btnSesionFotos.IsEnabled = false; //Disable button to prevent double opening
+
             Debug.WriteLine("Abrir ventana de Sesion de fotos");
-            Navigation.PushModalAsync(new MasterDetail(new PhotoSesionsPage_()));
+            Navigation.PushModalAsync(new MasterDetail(new PhotoSesionsPage_(btnSesionFotos)));
+        }
+
+        private void OnInvitacionClicked(object sender, EventArgs e)
+        {
+            btnInvitacion.IsEnabled = false; //Disable button to prevent double opening
+
+            Debug.WriteLine("Abrir ventana de invitación");
+            Navigation.PushModalAsync(new MasterDetail(new Invites(btnInvitacion)));
         }
     }
 }

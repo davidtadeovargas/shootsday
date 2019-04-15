@@ -6,46 +6,86 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
-    <flv:FlowListView   FlowColumnCount="1" 
+    <StackLayout Orientation="Vertical">
+        <flv:FlowListView   
+                        FlowColumnCount="1" 
                         SeparatorVisibility="None" 
                         HasUnevenRows="true"                        
                         FlowItemsSource="{Binding photoShoots}"
                         FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
                         >
-        <flv:FlowListView.FlowColumnTemplate>
-            <DataTemplate>
-                <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
-                    <StackLayout Orientation="Vertical" Margin="0,10,0,10">
-                        <Grid HorizontalOptions="CenterAndExpand">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
-                                <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="40" HorizontalOptions="FillAndExpand">
-                                </Image>
-                                <Label Text="{Binding User.fullname}" FontSize="Small" TextColor="Black" HorizontalOptions="CenterAndExpand"></Label>
-                                <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
+            <flv:FlowListView.FlowColumnTemplate>
+                <DataTemplate>
+                    <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
+                        <StackLayout Orientation="Vertical" Margin="0,10,0,10">
+                            <Grid HorizontalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
+                                    <Image Source="{Binding User.url_image}" Aspect="Fill" HeightRequest="10" WidthRequest="40" HorizontalOptions="FillAndExpand">
+                                    </Image>
+                                    <Label Text="{Binding User.fullname}" FontSize="Small" TextColor="Black" HorizontalOptions="CenterAndExpand"></Label>
+                                    <Image Source="dots.png" Aspect="Fill" HeightRequest="10" WidthRequest="20" Margin="0,0,0,10">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer
                                         Tapped="ViewProfileTapped"
                                         CommandParameter="{Binding User}"
                                         NumberOfTapsRequired="1"/>
-                                    </Image.GestureRecognizers>
-                                </Image>
-                            </StackLayout>
-                        </Grid>
-                        <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                            </Grid>
+                            <Frame Padding="20" Margin="10" BackgroundColor="White" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                                <StackLayout Orientation="Vertical">
+                                    <Image Source="{Binding url_image}" Aspect="Fill">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer
                                         Tapped="ImageTapped"
                                         CommandParameter="{Binding}"
                                         NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </StackLayout>
-                </Grid>
-            </DataTemplate>
-        </flv:FlowListView.FlowColumnTemplate>
-
-    </flv:FlowListView>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <StackLayout Orientation="Horizontal" 
+                                    HorizontalOptions="EndAndExpand"
+                                    Margin="0,0,10,0">
+                                        <Image  x:Name="likeImage" Source="like.png">
+                                        </Image>
+                                        <Image  x:Name="downloadImag" Source="download.png">
+                                        </Image>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </flv:FlowListView.FlowColumnTemplate>
+        </flv:FlowListView>
+        <StackLayout Orientation="Horizontal" BackgroundColor="#4d4d33">
+            <Image Source="red_social_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="StartAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                                        Tapped="MainTapped"
+                                        CommandParameter="{Binding User}"
+                                        NumberOfTapsRequired="1"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="upload_picture_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                                        Tapped="UploadPictureTapped"
+                                        CommandParameter="{Binding User}"
+                                        NumberOfTapsRequired="1"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="my_pictures_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                                        Tapped="MyPicturesPictureTapped"
+                                        CommandParameter="{Binding User}"
+                                        NumberOfTapsRequired="1"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
