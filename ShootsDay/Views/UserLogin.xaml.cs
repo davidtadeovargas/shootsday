@@ -19,7 +19,8 @@ namespace ShootsDay
 {
 	public partial class UserLogin : ContentPage
     {
-        Button btn_login = null;
+        Image btn_login = null;
+        private bool _userTapped;
 
         private const int LOGIN_FIELD_LENGTH = 70;
         private const int PASSWORD_FIELD_LENGTH = 20;
@@ -61,8 +62,6 @@ namespace ShootsDay
             //Close session
             SettingsManager.Instance.setIsNotLoggedIn().SavePropertiesAsync();
 
-            btnLogin.Text = Recursos.AppResources.login.ToString();
-
             link.FontSize = 40;
         }
 
@@ -93,7 +92,6 @@ namespace ShootsDay
 
         private void AplicarIdioma()
         {
-            btnLogin.Text = Recursos.AppResources.login.ToString();
             if(string.IsNullOrEmpty(UserEntry.Text))
                 UserEntry.Placeholder = Recursos.AppResources.user;
             if (string.IsNullOrEmpty(PasswordEntry.Text))
@@ -119,34 +117,48 @@ namespace ShootsDay
             AplicarIdioma();
         }
 
-        private void OnRegistrarClicked(object sender, EventArgs e)
+        private async void OnRegistrarClicked(object sender, EventArgs e)
         {
-			Page UserRegister = new UserRegister();
-            Navigation.PushModalAsync(UserRegister);
+            if (_userTapped)
+                return;
 
-		}
+            _userTapped = true;
 
-		public async void evt_btnLogin(object sender, EventArgs e)
+            Page UserRegister = new UserRegister();
+            await Navigation.PushModalAsync(UserRegister);
+            _userTapped = false;
+        }
+
+        public async void evt_btnLogin(object sender, EventArgs e)
 		{
-            btn_login = (Button)sender;
+            btn_login = (Image)sender;
+
+            if (_userTapped)
+                return;
+
+            _userTapped = true;
+
             btn_login.IsEnabled = false;
 			if (string.IsNullOrEmpty(UserEntry.Text))
 			{
 				await DisplayAlert("Error", "Debe ingresar un usuario", "Aceptar");
 				UserEntry.Focus();
-				return;
+                _userTapped = false;
+                return;
 			}
 			if (string.IsNullOrEmpty(PasswordEntry.Text))
 			{
 				await DisplayAlert("Error", "Debe ingresar un password", "Aceptar");
 				PasswordEntry.Focus();
-				return;
+                _userTapped = false;
+                return;
 			}
 			if (string.IsNullOrEmpty(CodeEntry.Text))
 			{
 				await DisplayAlert("Error", "Debe ingresar un código", "Aceptar");
 				CodeEntry.Focus();
-				return;
+                _userTapped = false;
+                return;
 			}
 			// Se hace la conexion al Web services de Usuarios
 			CheckUser();
@@ -195,15 +207,17 @@ namespace ShootsDay
                         settingsManager.setRoleId(jsonSystem.data.User.role_id);
                         settingsManager.setIsSuperUser(jsonSystem.data.User.super);
                         settingsManager.setTitleEvent(jsonSystem.data.Event.title);
-                        await settingsManager.SavePropertiesAsync();
-                        
+                        await settingsManager.SavePropertiesAsync();                        
+
                         await Navigation.PushModalAsync(new MasterDetail(new Home_()));
-					}
+                        _userTapped = false;
+                    }
 					else
 					{
-                        btn_login.IsEnabled = true;
                         await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
-					}
+
+                        _userTapped = false;
+                    }
 				}
 				else
 				{

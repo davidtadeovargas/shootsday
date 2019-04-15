@@ -15,11 +15,19 @@ namespace ShootsDay.Views
     public partial class Home_ : ContentPage
     {
         string title = "";
+        private bool _userTapped;
+
 
 
 
 
         public Home_()
+        {
+            init();
+        }
+
+
+        private void init()
         {
             InitializeComponent();
 
@@ -30,27 +38,40 @@ namespace ShootsDay.Views
                 NameToolb.Text = SettingsManager.Instance.getUserName();
             });
         }
-        public void OnRedSocialClicked(object sender, EventArgs e)
-        {
-            btnRedSocial.IsEnabled = false; //Disable button to prevent double opening
 
-            Navigation.PushModalAsync(new MasterDetail(new RedSocial(btnRedSocial)));
+        public async Task OnRedSocialClickedAsync(object sender, EventArgs e)
+        {
+            if (_userTapped)
+                return;
+
+            _userTapped = true;
+
+            await Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
+            _userTapped = false;
         }
 
-        private void OnSesionFotosClicked(object sender, EventArgs e)
+        private async void OnSesionFotosClicked(object sender, EventArgs e)
         {
-            btnSesionFotos.IsEnabled = false; //Disable button to prevent double opening
+            if (_userTapped)
+                return;
+
+            _userTapped = true;
 
             Debug.WriteLine("Abrir ventana de Sesion de fotos");
-            Navigation.PushModalAsync(new MasterDetail(new PhotoSesionsPage_(btnSesionFotos)));
+            await Navigation.PushModalAsync(new MasterDetail(new PhotoSesionsPage_()));
+            _userTapped = false;
         }
 
-        private void OnInvitacionClicked(object sender, EventArgs e)
-        {
-            btnInvitacion.IsEnabled = false; //Disable button to prevent double opening
+        private async void OnInvitacionClicked(object sender, EventArgs e)
+        {            
+            if (_userTapped)
+                return;
+
+            _userTapped = true;
 
             Debug.WriteLine("Abrir ventana de invitación");
-            Navigation.PushModalAsync(new MasterDetail(new Invites(btnInvitacion)));
+            await Navigation.PushModalAsync(new MasterDetail(new Invites()));
+            _userTapped = false;
         }
     }
 }

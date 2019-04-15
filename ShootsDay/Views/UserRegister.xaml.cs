@@ -32,10 +32,16 @@ namespace ShootsDay
 
 
         public UserRegister()
-		{
-			InitializeComponent();
-			UserLogin.GestureRecognizers.Add(new TapGestureRecognizer(goToLogin));
-			pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
+        {
+            init();
+        }
+
+
+        private void init()
+        {
+            InitializeComponent();
+            UserLogin.GestureRecognizers.Add(new TapGestureRecognizer(goToLogin));
+            pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
             closeImg.GestureRecognizers.Add(new TapGestureRecognizer(closeImgTapped));
 
             UserRegisterViewModel = new UserRegisterViewModel();
@@ -78,7 +84,9 @@ namespace ShootsDay
 
         private void closeImgTapped(View arg1, object arg2)
         {
-            profile_img.Source = null;
+            Device.BeginInvokeOnMainThread(() => {
+                profile_img.Source = "default_profile.png";
+            });            
         }
 
         void EntryNameTextChanged(object sender, TextChangedEventArgs e)

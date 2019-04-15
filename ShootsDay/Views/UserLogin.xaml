@@ -19,21 +19,33 @@
                         <Entry x:Name="CodeEntry" Keyboard="Numeric" Placeholder="Código evento" Text="{Binding Code}" HeightRequest="40" TextColor="Black" TextChanged="EntryCodeEventTextChanged"></Entry>
                     </StackLayout>
                 </Frame>
-                <Button Command="{Binding SubmitCommand}"
-		                Text="ENTRAR"
-                        x:Name="btnLogin"
-		                TextColor="White"
-		                FontAttributes="Bold"
-		                HorizontalOptions="FillAndExpand"
-		                BackgroundColor="#FF766B"
-		                Clicked="evt_btnLogin"/>
-                <Image Source="registrar.png" Margin="0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                        Tapped="OnRegistrarClicked"
-                        NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
+                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                    <Grid 
+                        HorizontalOptions="FillAndExpand"                        
+                        RowSpacing="5"
+                        Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="login.png" HorizontalOptions="FillAndExpand" Grid.Row="0" Aspect="AspectFill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="evt_btnLogin"
+                                    NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="registrar.png" HorizontalOptions="FillAndExpand" Grid.Row="1"  Aspect="AspectFill" x:Name="btnRegistrar">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnRegistrarClicked"
+                                    NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

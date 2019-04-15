@@ -3,7 +3,33 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		x:Class="ShootsDay.MyPictures"
 		Title="My pictures">
-
-	<Label Text="Seccion de mis fotos" VerticalOptions="Center" HorizontalOptions="Center" />
-	
+    <StackLayout Orientation="Vertical">
+        <Label Text="Seccion de mis fotos" VerticalOptions="Center" HorizontalOptions="Center" />
+        <StackLayout Orientation="Horizontal" BackgroundColor="#4d4d33" VerticalOptions="EndAndExpand">
+            <Image Source="red_social_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="StartAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                                        Tapped="MainTapped"
+                                        CommandParameter="{Binding User}"
+                                        NumberOfTapsRequired="1"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="upload_picture_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                                        Tapped="UploadPictureTapped"
+                                        CommandParameter="{Binding User}"
+                                        NumberOfTapsRequired="1"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="my_pictures_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                                        Tapped="MyPicturesPictureTapped"
+                                        CommandParameter="{Binding User}"
+                                        NumberOfTapsRequired="1"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

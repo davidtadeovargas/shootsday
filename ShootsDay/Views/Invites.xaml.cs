@@ -25,16 +25,6 @@ namespace ShootsDay
             init();   
         }
 
-        public Invites(Image image)
-        {
-            if (image != null)
-            {
-                image.IsEnabled = true; //Enable button again
-            }
-
-            init();
-        }
-
         private void init()
         {
             Title = "Invitación";

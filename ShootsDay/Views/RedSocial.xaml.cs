@@ -20,16 +20,6 @@ namespace ShootsDay.Views
             init();
         }
 
-        public RedSocial(Image image)
-        {
-            if (image != null)
-            {
-                image.IsEnabled = true; //Enable button again
-            }
-
-            init();
-        }
-
         private void init()
         {
             InitializeComponent();
@@ -64,15 +54,21 @@ namespace ShootsDay.Views
         private void MainTapped(object sender, TappedEventArgs e)
         {
             Picture Picture = (Picture)e.Parameter;
+
+            Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
         }
 
         private void UploadPictureTapped(object sender, TappedEventArgs e)
         {
             Picture Picture = (Picture)e.Parameter;
+
+            Navigation.PushModalAsync(new MasterDetail(new TakePicture()));
         }
         private void MyPicturesPictureTapped(object sender, TappedEventArgs e)
         {
             Picture Picture = (Picture)e.Parameter;
+
+            Navigation.PushModalAsync(new MasterDetail(new MyPictures()));
         }
     }
 }

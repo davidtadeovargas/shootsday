@@ -25,7 +25,7 @@
                 <Image Source="redsocial.png" x:Name="btnRedSocial" Aspect="AspectFit" Grid.Row="1" Grid.Column="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                        Tapped="OnRedSocialClicked"
+                        Tapped="OnRedSocialClickedAsync"
                         NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>

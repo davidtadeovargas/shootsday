@@ -28,7 +28,7 @@
                             </Label>
                     <Image x:Name="closeImg" Source="close.png" WidthRequest="20" HeightRequest="20"/>
                 </StackLayout>
-              <Image x:Name="profile_img" Aspect="AspectFill" />
+              <Image x:Name="profile_img" Aspect="AspectFill" Source="default_profile.png"/>
 	          </StackLayout>
 	        </Frame>
 	        <Button Command="{Binding SubmitCommand}"

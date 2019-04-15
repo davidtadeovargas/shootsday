@@ -22,16 +22,6 @@ namespace ShootsDay.Views
             init();
         }
 
-        public PhotoSesionsPage_(Image image)
-        {
-            if (image != null)
-            {
-                image.IsEnabled = true; //Enable button again
-            }
-
-            init();
-        }
-
         private void init()
         {
             InitializeComponent();

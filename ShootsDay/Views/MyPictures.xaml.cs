@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using ShootsDay.Models;
 using ShootsDay.RequestModels;
+using ShootsDay.Views;
 using Xamarin.Forms;
 
 namespace ShootsDay
@@ -16,22 +17,8 @@ namespace ShootsDay
 		Grid gridImg;
 		public MyPictures()
 		{
-			//InitializeComponent();
-			//Title = "Mi fotos";
-			Icon = "my_pictures_white.png";
-			StackLayout stack = new StackLayout()
-			{
-				Spacing = 15,
-				Padding = new Thickness(20, 20)
-			};
-			gridImg = new Grid()
-			{
-				VerticalOptions = LayoutOptions.FillAndExpand,
-			};
-			stack.Children.Add(gridImg);
-			this.Content = new ScrollView { Content = stack };
-			my_pictures = new Dictionary<string, Picture>();
-			getMyPictures();
+			InitializeComponent();
+			//getMyPictures();
 		}
 
 		public async void getMyPictures()
@@ -126,5 +113,26 @@ namespace ShootsDay
 			Debug.WriteLine("Se presiono la imagen" + arg1.ClassId);
 			arg1.Navigation.PushAsync(new MyPictures_ShowPicture(my_pictures[arg1.ClassId]));
 		}
-}
+
+
+        private void MainTapped(object sender, TappedEventArgs e)
+        {
+            //Picture Picture = (Picture)e.Parameter;
+
+            Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
+        }
+
+        private void UploadPictureTapped(object sender, TappedEventArgs e)
+        {
+            //Picture Picture = (Picture)e.Parameter;
+
+            Navigation.PushModalAsync(new MasterDetail(new TakePicture()));
+        }
+        private void MyPicturesPictureTapped(object sender, TappedEventArgs e)
+        {
+            //Picture Picture = (Picture)e.Parameter;
+
+            Navigation.PushModalAsync(new MasterDetail(new MyPictures()));
+        }
+    }
 }

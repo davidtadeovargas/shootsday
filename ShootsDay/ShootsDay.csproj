@@ -124,6 +124,9 @@
     <Compile Include="Views\SocialNet_ShowComments.xaml.cs">
       <DependentUpon>SocialNet_ShowComments.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TakePicture.xaml.cs">
+      <DependentUpon>TakePicture.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UploadPicture.cs" />
     <Compile Include="Views\UserEvents.xaml.cs">
       <DependentUpon>UserEvents.xaml</DependentUpon>
@@ -255,6 +258,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\RedSocialDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TakePicture.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
