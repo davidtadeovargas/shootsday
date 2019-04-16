@@ -19,6 +19,7 @@ namespace ShootsDay
 	public partial class UserRegister : ContentPage
 	{
         private MediaFile _mediaFile;
+        private bool hasImage = false;
 
         private const int NAME_FIELD_LENGTH = 44;
         private const int LASTNAME_FIELD_LENGTH = 44;
@@ -46,6 +47,8 @@ namespace ShootsDay
 
             UserRegisterViewModel = new UserRegisterViewModel();
             BindingContext = UserRegisterViewModel;
+
+            profile_img.Source = "default_profile.png";
         }
 
 		private void uploadPicture(View arg1, object arg2)
@@ -63,6 +66,8 @@ namespace ShootsDay
                         if (_mediaFile != null)
                         {
                             profile_img.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
+
+                            hasImage = true;
                         }                                                    
                     }                                                           
                 }
@@ -86,7 +91,9 @@ namespace ShootsDay
         {
             Device.BeginInvokeOnMainThread(() => {
                 profile_img.Source = "default_profile.png";
-            });            
+            });
+
+            hasImage = false;
         }
 
         void EntryNameTextChanged(object sender, TextChangedEventArgs e)
@@ -207,7 +214,7 @@ namespace ShootsDay
                     content.Add(new StringContent(EmailEntry.Text), "User[email]");
                     content.Add(new StringContent(LastNameEntry.Text), "User[lastname]");
 
-                    if (_mediaFile != null)
+                    if (hasImage)
                     {
                         content.Add(new StreamContent(_mediaFile.GetStream()),
                         "\"image\"",

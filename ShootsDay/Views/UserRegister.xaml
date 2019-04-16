@@ -4,43 +4,40 @@
 		x:Class="ShootsDay.UserRegister">
     <ContentPage.Content>
         <ScrollView BackgroundColor="White">
-            <StackLayout Orientation="Vertical" Spacing="30" Padding="20" x:Name="MainStacklayout">
-	        <BoxView HeightRequest="10" />
-	        <Image HorizontalOptions="Center"
-	               WidthRequest="300"
-	               Source="logo.png"/>
-	        <Frame HasShadow="False">
-	          <StackLayout Orientation="Vertical" Spacing="10">
-	            <Entry x:Name="NameEntry" Placeholder="Nombre" Text="{Binding Name}" HeightRequest="40" TextColor="Black" TextChanged="EntryNameTextChanged"></Entry>
-	            <Entry x:Name="LastNameEntry" Placeholder="Apellidos" Text="{Binding LastName}" HeightRequest="40" TextColor="Black" TextChanged="LastNameTextChanged"></Entry>
-	            <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding Email}" HeightRequest="40" TextColor="Black" TextChanged="EmailTextChanged"></Entry>
-	            <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" HeightRequest="40" TextColor="Black" TextChanged="UserTextChanged"></Entry>
-	            <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True" TextChanged="PasswordTextChanged"></Entry>
-                <StackLayout Orientation="Horizontal">
-                      <Label Text="Upload profile picture"
-	                   TextColor="Gray"
-	                   x:Name="pictureEntry">
-                                <!--<Label.GestureRecognizers>
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalOptions="CenterAndExpand" Source="logo.png" Grid.Row="0" Margin="0,20,0,30"/>
+                <StackLayout Orientation="Vertical" Spacing="10" Grid.Row="1" Margin="0,0,0,20">
+                    <Entry x:Name="NameEntry" Placeholder="Nombre" Text="{Binding Name}" TextColor="Black" TextChanged="EntryNameTextChanged"></Entry>
+                    <Entry x:Name="LastNameEntry" Placeholder="Apellidos" Text="{Binding LastName}" TextColor="Black" TextChanged="LastNameTextChanged"></Entry>
+                    <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding Email}" TextColor="Black" TextChanged="EmailTextChanged"></Entry>
+                    <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" TextColor="Black" TextChanged="UserTextChanged"></Entry>
+                    <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" TextColor="Black" IsPassword="True" TextChanged="PasswordTextChanged"></Entry>
+                    <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
+                        <Label Text="Upload profile picture"
+	                    TextColor="Gray"
+	                    x:Name="pictureEntry">
+                            <!--<Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                     Command="{Binding PermissionPicture}"
                                     NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>-->
-                            </Label>
-                    <Image x:Name="closeImg" Source="close.png" WidthRequest="20" HeightRequest="20"/>
+                        </Label>
+                        <Image x:Name="closeImg" Source="close.png" WidthRequest="20"/>
+                    </StackLayout>
                 </StackLayout>
-              <Image x:Name="profile_img" Aspect="AspectFill" Source="default_profile.png"/>
-	          </StackLayout>
-	        </Frame>
-	        <Button Command="{Binding SubmitCommand}"
-	                Text="Register"
-	                TextColor="White"
-	                FontAttributes="Bold"
-	                FontSize="20"
-	                HorizontalOptions="FillAndExpand"
-	                BackgroundColor="#01cb8f"
-	                Clicked="btnRegister"/>
-	        <Label x:Name="UserLogin" Text="Go to login" TextColor="#01cb8f" HorizontalTextAlignment="Center"/>
-	      </StackLayout>
-	    </ScrollView>
+                <Image x:Name="profile_img" Grid.Row="2" Aspect="AspectFit" HorizontalOptions="FillAndExpand" Margin="0,0,0,30"/>
+                <Button Command="{Binding SubmitCommand}" Text="Register" TextColor="White" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand" BackgroundColor="#01cb8f" Clicked="btnRegister" Grid.Row="3"/>
+                <Label x:Name="UserLogin" Text="Go to login" TextColor="#01cb8f" HorizontalTextAlignment="Center" Grid.Row="4"/>
+            </Grid>
+        </ScrollView>
 	</ContentPage.Content>
 </ContentPage>

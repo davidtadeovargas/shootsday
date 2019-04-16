@@ -12,6 +12,7 @@ namespace ShootsDay
         static public string SERVER = INIT_SERVER + "/ws-jsproject/";
         static public string EVENTS = SERVER + "events.json";
         static public string MY_PICTURES = SERVER + "pictures/my_pictures.json";
+        static public string UPLOAD_PICTURE = SERVER + "pictures/add.json";
         static public string PHOTOSHOOTS = SERVER + "photoshoots.json";
         static public string USERS_PROFILE = SERVER + "users/profile/";
         static public string EVENT_USERS = SERVER + "events/getEventUsers.json";
