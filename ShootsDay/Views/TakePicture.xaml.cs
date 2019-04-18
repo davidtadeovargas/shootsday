@@ -30,8 +30,8 @@ namespace ShootsDay.Views
             pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserName();
-                Title = "Subir Foto";
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                Title = "";
             });
 
             btnContinue.Tapped += async (s, e) => {
@@ -157,26 +157,6 @@ namespace ShootsDay.Views
                     Debug.WriteLine("Error, Excepcion: " + ex.Message);
                 }
             }
-        }        
-
-        private void MainTapped(object sender, TappedEventArgs e)
-        {
-            //Picture Picture = (Picture)e.Parameter;
-
-            Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
-        }
-
-        private void UploadPictureTapped(object sender, TappedEventArgs e)
-        {
-            //Picture Picture = (Picture)e.Parameter;
-
-            Navigation.PushModalAsync(new MasterDetail(new TakePicture()));
-        }
-        private void MyPicturesPictureTapped(object sender, TappedEventArgs e)
-        {
-            //Picture Picture = (Picture)e.Parameter;
-
-            Navigation.PushModalAsync(new MasterDetail(new MyPictures()));
         }
     }
 }

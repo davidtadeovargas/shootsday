@@ -140,8 +140,6 @@ namespace ShootsDay.ViewModels
                     }
                     else
                     {
-                        LoadingManager.Instance.closeLoading();
-
                         Alert.DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
                     }
                 }
@@ -155,6 +153,7 @@ namespace ShootsDay.ViewModels
             }
             catch (Exception ex)
             {
+                LoadingManager.Instance.closeLoading();
                 Alert.DisplayAlert("Error", ex.Message, "Aceptar");
             }
         }

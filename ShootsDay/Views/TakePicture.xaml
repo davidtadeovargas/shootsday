@@ -6,62 +6,34 @@
         <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ScrollView BackgroundColor="White">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                </Grid.ColumnDefinitions>
-                <Image x:Name="closeImg" Grid.Row="0" Source="close.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start" Margin="10,0,0,0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="closeImg" Grid.Row="0" Source="close.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start" Margin="10,0,0,0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
                             Tapped="closeImgTapped"                            
                             NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image x:Name="profile_img" Aspect="AspectFill" Grid.Row="1" HorizontalOptions="CenterAndExpand" Source="image.png" />                
-                <Label Text="Upload profile picture" TextColor="Gray" x:Name="pictureEntry"  Grid.Row="2" Margin="10,0,0,0"></Label>
-                <Editor x:Name="editorComment" HorizontalOptions="FillAndExpand" Grid.Row="3" />
-                <Image x:Name="btnSubir" HorizontalOptions="CenterAndExpand" Grid.Row="4" Source="conti.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
+                </Image.GestureRecognizers>
+            </Image>
+            <Image x:Name="profile_img" Aspect="AspectFit" Grid.Row="1" HorizontalOptions="CenterAndExpand" Source="image.png" />
+            <Label Text="Upload profile picture" TextColor="Gray" x:Name="pictureEntry"  Grid.Row="2" Margin="10,0,0,0"></Label>
+            <Editor x:Name="editorComment" HorizontalOptions="FillAndExpand" Grid.Row="3" />
+            <Image x:Name="btnSubir" HorizontalOptions="CenterAndExpand" Grid.Row="4" Source="conti.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
                             x:Name="btnContinue"                            
                             NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <StackLayout Orientation="Horizontal" BackgroundColor="#4d4d33" Grid.Row="5" HorizontalOptions="FillAndExpand">
-                    <Image Source="red_social_white.png" Aspect="AspectFit" HorizontalOptions="StartAndExpand" HeightRequest="20" WidthRequest="20">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                                        Tapped="MainTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image Source="upload_picture_white.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                                        Tapped="UploadPictureTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image Source="my_pictures_white.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand" HeightRequest="20" WidthRequest="20">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                                        Tapped="MyPicturesPictureTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-            </Grid>
-        </ScrollView>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

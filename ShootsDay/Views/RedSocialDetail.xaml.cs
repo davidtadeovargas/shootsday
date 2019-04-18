@@ -45,9 +45,8 @@ namespace ShootsDay.Views
 
                 RedSocialDetailViewModel.Source = image.Source;//For binding
 
-                NameToolb.Text = SettingsManager.Instance.getUserName();
-                Title = "Red Social";
-
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                Title = "Red Social";                
             });
         }
 

@@ -15,6 +15,7 @@ namespace ShootsDay.Managers
         private const string SUPERUSER = "superUser";
         private const string USER_ID = "user_id";
         private const string USERNAME = "username";
+        private const string USERNAME_LARGE = "usernamelarge";
         private const string PASSWORD = "password";
         private const string ID_EVENT = "id_event";
         private const string HOST = "host";
@@ -136,6 +137,23 @@ namespace ShootsDay.Managers
             if (Application.Current.Properties.ContainsKey(USERNAME))
             {
                 var result = (string)Application.Current.Properties[USERNAME];
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void setUserLargeName(string usernameLarge)
+        {
+            Application.Current.Properties[USERNAME_LARGE] = usernameLarge;
+        }
+        public string getUserLargeName()
+        {
+            if (Application.Current.Properties.ContainsKey(USERNAME_LARGE))
+            {
+                var result = (string)Application.Current.Properties[USERNAME_LARGE];
                 return result;
             }
             else

@@ -29,7 +29,7 @@ namespace ShootsDay.Views
             BindingContext = new PhotoSesionsViewModel(this);
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserName();
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 tittleLabel.Text = SettingsManager.Instance.getTitleEvent();
                 Title = "Sesion de Fotos";
             });

@@ -36,7 +36,7 @@ namespace ShootsDay
             {
                 var urlMap = ImagesManager.Instance.getInvitationMap();
                 mapPicture.Source = ImageSource.FromUri(new Uri(urlMap));
-                NameToolb.Text = SettingsManager.Instance.getUserName();
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";
             });
         }
@@ -83,6 +83,7 @@ namespace ShootsDay
             }
             catch (Exception ex)
             {
+                LoadingManager.Instance.closeLoading();
                 Debug.WriteLine("Error, Excepcion: " + ex.Message);
             }
         }

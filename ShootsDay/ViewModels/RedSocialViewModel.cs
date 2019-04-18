@@ -17,8 +17,26 @@ namespace ShootsDay.ViewModels
     {
         private ObservableCollection<Picture> photoShoots_;
         private bool endOfRecords = false;
-        private ToolbarItem ToolbarItemName_;
 
+        public ObservableCollection<Picture> photoShoots
+        {
+            get
+            {
+                return photoShoots_;
+            }
+            set
+            {
+                photoShoots_ = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Command ItemAppearingCommand
+        {
+            get;
+            set;
+        }
+        
 
 
 
@@ -28,29 +46,9 @@ namespace ShootsDay.ViewModels
 
             getPhotos();
 
-            ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));
             ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
-            PictureGestureCommand = new Command((args) => OnImageTapped(args));
         }        
 
-        private async Task OnPhotoTappedAsync(object args)
-        {
-            Picture Picture = (Picture)args;
-            await Navigation.PushModalAsync(new MasterDetail(new RedSocialDetail(Picture)));
-        }
-
-
-        private async Task OnImageTapped(object args)
-        {
-            Picture Picture = (Picture)args;
-            Picture = (Picture)args;
-        }
-
-        private async Task OnViewProfileTappedAsync(object args)
-        {
-            Picture Picture = (Picture)args;
-            Picture = (Picture)args;
-        }
 
         private async Task OnItemAppearing(object args)
         {
@@ -75,36 +73,6 @@ namespace ShootsDay.ViewModels
             {
                 getPhotos();
             }
-        }
-
-        public Command PictureGestureCommand
-        {
-            get;
-            set;
-        }
-
-        public ObservableCollection<Picture> photoShoots
-        {
-            get
-            {
-                return photoShoots_;
-            }
-            set
-            {
-                photoShoots_ = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public Command ItemTappedCommand
-        {
-            get;
-            set;
-        }
-        public Command ItemAppearingCommand
-        {
-            get;
-            set;
         }
 
         private async void getPhotos()
@@ -163,10 +131,12 @@ namespace ShootsDay.ViewModels
                 {
                     var respuesta = await result.Content.ReadAsStringAsync();
                     var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
+                    Alert.DisplayAlert("Error", respuesta, "Aceptar");
                 }
             }
             catch (Exception ex)
             {
+                LoadingManager.Instance.closeLoading();
                 Alert.DisplayAlert("Error", ex.Message, "Aceptar");
             }
         }

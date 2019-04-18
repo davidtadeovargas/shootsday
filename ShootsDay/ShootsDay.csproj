@@ -39,9 +39,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MyPictures.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Invites.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -69,6 +66,7 @@
     <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="RequestModels\RequestLike.cs" />
+    <Compile Include="ViewModels\MyPicturesViewModel.cs" />
     <Compile Include="ViewModels\RedSocialDetailViewModel.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
     <Compile Include="ViewModels\PhotoDetailViewModel.cs" />
@@ -97,11 +95,11 @@
     <Compile Include="Views\Home_.xaml.cs">
       <DependentUpon>Home_.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PhotoDetail.xaml.cs">
-      <DependentUpon>PhotoDetail.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MyPictures.xaml.cs">
       <DependentUpon>MyPictures.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotoDetail.xaml.cs">
+      <DependentUpon>PhotoDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Invites.xaml.cs">
       <DependentUpon>Invites.xaml</DependentUpon>
@@ -120,6 +118,9 @@
     </Compile>
     <Compile Include="Views\RedSocialDetail.xaml.cs">
       <DependentUpon>RedSocialDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RedSocialTabPage.xaml.cs">
+      <DependentUpon>RedSocialTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SocialNet_ShowComments.xaml.cs">
       <DependentUpon>SocialNet_ShowComments.xaml</DependentUpon>
@@ -264,6 +265,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\TakePicture.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyPictures.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RedSocialTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

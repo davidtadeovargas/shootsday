@@ -36,6 +36,7 @@ namespace ShootsDay.Views
         };
 
         const int RequestShareId = 0;
+        private bool _userTapped;
 
 
 
@@ -54,12 +55,12 @@ namespace ShootsDay.Views
             BindingContext = _photoDetailViewModel; //Attach the binding context
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserName();
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "Sesion de Fotos";
             });
 
             //Set the like
-            var sourceLike = "like_black.png";
+            var sourceLike = "liked.png";
             if (Photoshoot_.Like!=null)
             {
                 sourceLike = "like.png";
@@ -90,10 +91,14 @@ namespace ShootsDay.Views
 
         private async void Like()
         {
+            if (_userTapped)
+                return;
+
+            _userTapped = true;
+
+
             try
             {
-                LoadingManager.Instance.showLoading();
-
                 string username = SettingsManager.Instance.getUserName();
                 string password = SettingsManager.Instance.getPassword();
                 int user_id = SettingsManager.Instance.getUserId();
@@ -124,8 +129,6 @@ namespace ShootsDay.Views
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
-                LoadingManager.Instance.closeLoading();
-
                 if (result.IsSuccessStatusCode)
                 {
                     var tokenJson = await result.Content.ReadAsStringAsync();
@@ -144,16 +147,23 @@ namespace ShootsDay.Views
                         else
                         {
                             Photoshoot_.Like = null;
-                            sourceLike = "like_black.png";
+                            sourceLike = "liked.png";
                         }
+
+                        
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             likeImage.Source = sourceLike;
                         });
+
+                        _userTapped = false;
+
                     }
                     else
                     {
                         await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+                        _userTapped = false;
+
                     }
                 }
                 else
@@ -161,14 +171,17 @@ namespace ShootsDay.Views
                     var respuesta = await result.Content.ReadAsStringAsync();
                     var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
                     await DisplayAlert("", respuesta, "Aceptar");
+                    _userTapped = false;
+
                 }
             }
             catch (Exception ex)
             {
-                LoadingManager.Instance.closeLoading();                
                 Debug.WriteLine("Excepcion: " + ex.Message);
                 await DisplayAlert("", ex.Message, "Aceptar");
-            }            
+                _userTapped = false;
+
+            }
         }
     }
 }

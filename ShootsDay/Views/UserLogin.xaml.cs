@@ -201,6 +201,7 @@ namespace ShootsDay
                         settingsManager.setIsLoggedIn();
                         settingsManager.setUserId(jsonSystem.data.User.id);
                         settingsManager.setUserName(jsonSystem.data.User.username);
+                        settingsManager.setUserLargeName(jsonSystem.data.User.fullname);
                         settingsManager.setPassword(PasswordEntry.Text);
                         settingsManager.setIdEvent(jsonSystem.data.Event.id);
                         settingsManager.setHost(jsonSystem.data.Host.url);
@@ -223,7 +224,8 @@ namespace ShootsDay
 				{
 					var respuesta = await result.Content.ReadAsStringAsync();
 					var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
-				}
+                    await DisplayAlert("Error", respuesta, "Aceptar");
+                }
 			}
 			catch (Exception ex)
 			{

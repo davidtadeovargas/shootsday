@@ -9,7 +9,7 @@
         <StackLayout Orientation="Vertical">
             <Label  x:Name="title"
                     HorizontalOptions="CenterAndExpand"
-                    FontSize="30"
+                    FontSize="Small"
                     TextColor="#33bbff"
                     Margin="10"/>
             <Image  x:Name="image"
@@ -17,27 +17,37 @@
             <StackLayout Orientation="Horizontal" 
                          HorizontalOptions="EndAndExpand"
                          Margin="0,0,10,0">
-                <Image  x:Name="downloadImag" Source="download.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image  x:Name="downloadImag" Source="download.png" Aspect="Fill" Grid.Row="0" Grid.Column="1">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
                         Command="{Binding Download}"
                         NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image  x:Name="likeImage">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image  x:Name="likeImage" Aspect="Fill" Grid.Row="0" Grid.Column="0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
                         Tapped="OnLikeClicked"
                         NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image  x:Name="shareImag" Source="share.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image  x:Name="shareImag" Source="share.png" Aspect="Fill" Grid.Row="0" Grid.Column="2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
                         Command="{Binding Share}"
                         NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

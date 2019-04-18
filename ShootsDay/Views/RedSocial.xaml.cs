@@ -27,8 +27,8 @@ namespace ShootsDay.Views
             BindingContext = new RedSocialViewModel(this);
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserName();
-                Title = "Red Social";
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                Title = "";
             });
         }
 
@@ -48,27 +48,6 @@ namespace ShootsDay.Views
             RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
 
             Navigation.PushModalAsync(new MasterDetail(RedSocialDetail));
-        }
-
-
-        private void MainTapped(object sender, TappedEventArgs e)
-        {
-            Picture Picture = (Picture)e.Parameter;
-
-            Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
-        }
-
-        private void UploadPictureTapped(object sender, TappedEventArgs e)
-        {
-            Picture Picture = (Picture)e.Parameter;
-
-            Navigation.PushModalAsync(new MasterDetail(new TakePicture()));
-        }
-        private void MyPicturesPictureTapped(object sender, TappedEventArgs e)
-        {
-            Picture Picture = (Picture)e.Parameter;
-
-            Navigation.PushModalAsync(new MasterDetail(new MyPictures()));
         }
     }
 }

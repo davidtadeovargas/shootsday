@@ -114,7 +114,9 @@ namespace ShootsDay.Views
             }
             catch (Exception ex)
             {
+                LoadingManager.Instance.closeLoading();
                 Debug.WriteLine("Error, Excepcion: " + ex.Message);
+                await DisplayAlert("Error", ex.Message, "Aceptar");
             }
         }
 

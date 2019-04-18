@@ -36,7 +36,7 @@
                                     </Image>
                                 </StackLayout>
                             </Grid>
-                            <Frame Padding="20" Margin="10" BackgroundColor="White" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Frame Padding="20" Margin="10" BackgroundColor="White" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Vertical">
                                     <Image Source="{Binding url_image}" Aspect="Fill">
                                         <Image.GestureRecognizers>
@@ -49,9 +49,9 @@
                                     <StackLayout Orientation="Horizontal" 
                                     HorizontalOptions="EndAndExpand"
                                     Margin="0,0,10,0">
-                                        <Image  x:Name="likeImage" Source="like.png">
+                                        <Image  x:Name="likeImage" Source="liked.png" Aspect="Fill">
                                         </Image>
-                                        <Image  x:Name="downloadImag" Source="download.png">
+                                        <Image  x:Name="comment" Source="comment.png" Aspect="Fill">
                                         </Image>
                                     </StackLayout>
                                 </StackLayout>
@@ -61,31 +61,5 @@
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
         </flv:FlowListView>
-        <StackLayout Orientation="Horizontal" BackgroundColor="#4d4d33">
-            <Image Source="red_social_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="StartAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                                        Tapped="MainTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Source="upload_picture_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="CenterAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                                        Tapped="UploadPictureTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Source="my_pictures_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                                        Tapped="MyPicturesPictureTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-        </StackLayout>
     </StackLayout>
 </ContentPage>

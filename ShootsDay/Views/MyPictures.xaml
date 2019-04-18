@@ -1,35 +1,60 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		x:Class="ShootsDay.MyPictures"
-		Title="My pictures">
-    <StackLayout Orientation="Vertical">
-        <Label Text="Seccion de mis fotos" VerticalOptions="Center" HorizontalOptions="Center" />
-        <StackLayout Orientation="Horizontal" BackgroundColor="#4d4d33" VerticalOptions="EndAndExpand">
-            <Image Source="red_social_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="StartAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                                        Tapped="MainTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Source="upload_picture_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" HorizontalOptions="CenterAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                                        Tapped="UploadPictureTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Source="my_pictures_white.png" Aspect="Fill" HeightRequest="20" WidthRequest="20" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                                        Tapped="MyPicturesPictureTapped"
-                                        CommandParameter="{Binding User}"
-                                        NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShootsDay.Views.MyPictures"
+             Title="My pictures"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <StackLayout Orientation="Vertical" VerticalOptions="Start" Grid.Row="0" Margin="10">
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="default_profile.png" Grid.Row="0" Grid.Column="0" x:Name="imgProfile" Aspect="Fill" HorizontalOptions="StartAndExpand">
+                </Image>
+                <Label Text="" x:Name="labelProfile" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"></Label>
+                <Button Text="Mis Fotos" x:Name="btnMisFotos" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="#1a1aff"  FontSize="Small" HorizontalOptions="EndAndExpand" TextColor="White">
+                </Button>
+            </Grid>
         </StackLayout>
-    </StackLayout>
+        <flv:FlowListView   
+                        FlowColumnCount="2" 
+                        SeparatorVisibility="None" 
+                        HasUnevenRows="False" 
+                        RowHeight="150"
+                        FlowItemsSource="{Binding pictures}"
+                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
+                        Grid.Row="1">
+            <flv:FlowListView.FlowColumnTemplate>
+                <DataTemplate>
+                    <Frame Padding="10,10,10,30" Margin="10,10,10,10" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Image Source="{Binding url_image}" Aspect="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Tapped="ImageTapped"
+                                        CommandParameter="{Binding}"
+                                        NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                </DataTemplate>
+            </flv:FlowListView.FlowColumnTemplate>
+        </flv:FlowListView>
+    </Grid>
 </ContentPage>

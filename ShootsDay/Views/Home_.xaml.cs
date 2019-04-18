@@ -35,7 +35,7 @@ namespace ShootsDay.Views
                 title = Application.Current.Properties["title_event"].ToString();
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserName();
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
             });
         }
 
@@ -46,7 +46,7 @@ namespace ShootsDay.Views
 
             _userTapped = true;
 
-            await Navigation.PushModalAsync(new MasterDetail(new RedSocial()));
+            await Navigation.PushModalAsync(new MasterDetail(new RedSocialTabPage()));
             _userTapped = false;
         }
 

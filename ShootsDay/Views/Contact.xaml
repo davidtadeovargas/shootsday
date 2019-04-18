@@ -20,24 +20,25 @@
                 <Label Text="55 7892 3960" HorizontalOptions="CenterAndExpand" TextColor="#BC46DA" FontSize="Large"/>
                 <Grid Margin="30">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="35*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <StackLayout Orientation="Vertical">
-                        <Button Text="info@shootsday.com"
+                    <Button Text="info@shootsday.com"
                             x:Name="btnInfoEmail1"
 		                    TextColor="White"
 		                    FontAttributes="Bold"
 		                    HorizontalOptions="FillAndExpand"
 		                    BackgroundColor="#C044E4"
-		                    Clicked="OnEmailClicked"/>
-                        <Button Text="jacqueline@shootsday.com"
+		                    Clicked="OnEmailClicked"
+                            Grid.Row="0"/>
+                    <Button Text="jacqueline@shootsday.com"
                             x:Name="btnEmail2"
 		                    TextColor="White"
 		                    FontAttributes="Bold"
 		                    HorizontalOptions="FillAndExpand"
 		                    BackgroundColor="#C044E4"
-		                    Clicked="OnEmail2Clicked"/>
-                    </StackLayout>
+		                    Clicked="OnEmail2Clicked"
+                            Grid.Row="1"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

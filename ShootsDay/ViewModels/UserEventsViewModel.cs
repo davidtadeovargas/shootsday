@@ -95,19 +95,19 @@ namespace ShootsDay.ViewModels
                     }
                     else
                     {
-                        LoadingManager.Instance.closeLoading();
-
                         Alert.DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
                     }
                 }
                 else
                 {
                     var respuesta = await result.Content.ReadAsStringAsync();
+                    Alert.DisplayAlert("Error", respuesta, "Aceptar");
                     var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
                 }
             }
             catch (Exception ex)
             {
+                LoadingManager.Instance.closeLoading();
                 Alert.DisplayAlert("Error", ex.Message, "Aceptar");
             }
         }

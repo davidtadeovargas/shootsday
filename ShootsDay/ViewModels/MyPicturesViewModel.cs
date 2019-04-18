@@ -1,49 +1,58 @@
-﻿using System;
+﻿using ShootsDay.Managers;
+using ShootsDay.Models;
+using ShootsDay.RequestModels;
+using ShootsDay.Views;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using ShootsDay.Models;
 using Xamarin.Forms;
-using System.Net.Http;
-using ShootsDay.Views;
-using ShootsDay.Managers;
-using ShootsDay.RequestModels;
 
 namespace ShootsDay.ViewModels
 {
-    class PhotoSesionsViewModel : BaseViewModel
+    class MyPicturesViewModel : BaseViewModel
     {
-
-        private ObservableCollection<Photoshoot> photoShoots_;
+        private ObservableCollection<Picture> pictures_;
         private bool endOfRecords = false;
 
-
-
-        public PhotoSesionsViewModel(Page context) : base(context)
+        public ObservableCollection<Picture> pictures
         {
-            photoShoots = new ObservableCollection<Photoshoot>();
+            get
+            {
+                return pictures_;
+            }
+            set
+            {
+                pictures_ = value;
+                RaisePropertyChanged();
+            }
+        }
 
-            getPhotos();
+        public MyPicturesViewModel(Page context) : base(context)
+        {
+            pictures = new ObservableCollection<Picture>();
 
-            ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));
+            getPictures();
+
             ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
         }
 
-        private async Task OnPhotoTappedAsync(object args)
+        public Command ItemAppearingCommand
         {
-            Photoshoot photoshoot = (Photoshoot)args;
-            await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(photoshoot)));
+            get;
+            set;
         }
 
         private async Task OnItemAppearing(object args)
         {
-            Photoshoot Photoshoot = (Photoshoot)args;
+            Picture Picture = (Picture)args;
 
-            var photoshootsCount = photoShoots_.Count;
+            var picturesCount = pictures_.Count;
 
-            if (photoshootsCount == 0)
+            if (picturesCount == 0)
             {
                 return;
             }
@@ -55,57 +64,34 @@ namespace ShootsDay.ViewModels
             }
 
             //If this is the end of the list get more records            
-            var lastPhotoshootId = photoShoots_[photoshootsCount - 1].id;
-            if (Photoshoot.id == lastPhotoshootId)
+            var lastPictureId = pictures_[picturesCount - 1].id;
+            if (Picture.id == lastPictureId)
             {
-                getPhotos();
+                getPictures();
             }
         }
 
-        public ObservableCollection<Photoshoot> photoShoots
+        private async void getPictures()
         {
-            get {
-                return photoShoots_;
-            }
-            set {
-                photoShoots_ = value;
-                RaisePropertyChanged();
-            }
-        }
-
-
-        public Command ItemTappedCommand
-        {
-            get;
-            set;
-        }
-        public Command ItemAppearingCommand
-        {
-            get;
-            set;
-        }
-
-        private async void getPhotos()
-        {
-            string username = Application.Current.Properties["username"].ToString();
-            string password = Application.Current.Properties["password"].ToString();
-            string id_event = Application.Current.Properties["id_event"].ToString();
+            string username = SettingsManager.Instance.getUserName();
+            string password = SettingsManager.Instance.getPassword();
+            int id_event = SettingsManager.Instance.getIdEvent();
 
             try
             {
                 LoadingManager.Instance.showLoading();
 
                 var offset = 0;
-                if (photoShoots_.Count() > 0)
+                if (pictures_.Count() > 0)
                 {
-                    offset = photoShoots_.Count();
+                    offset = pictures_.Count();
                 }
 
                 var client = new HttpClient();
                 var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Event = new { id = id_event }, Login = new { password = password, username = username }, limit = Constants.LIMIT, offset = offset });
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
-                var uri = new Uri(Constants.PHOTOSHOOTS);
+                var uri = new Uri(Constants.MY_PICTURES);
 
                 var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
@@ -118,22 +104,23 @@ namespace ShootsDay.ViewModels
                     if (jsonSystem.status.type != "error")
                     {
                         //Get the photo list
-                        List<Photoshoot> photoshoots_ = jsonSystem.data.Photoshoots;
+                        List<Picture> pictures_ = jsonSystem.data.pictures;
 
-                        if (photoshoots_.Count() == 0 || photoshoots_.Count() < Constants.LIMIT)
+                        if (pictures_.Count() == 0 || pictures_.Count() < Constants.LIMIT)
                         {
                             endOfRecords = true;
                         }
 
-                        foreach (var Photo in photoshoots_)
+                        foreach (var Picture in pictures_)
                         {
                             Device.BeginInvokeOnMainThread(() => {
-                                photoShoots.Add(Photo);
+                                pictures.Add(Picture);
                             });
                         }
                     }
                     else
                     {
+                        LoadingManager.Instance.closeLoading();
                         Alert.DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
                     }
                 }
