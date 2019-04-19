@@ -14,6 +14,7 @@ namespace ShootsDay.Managers
         private const string ISLOGGEDIN = "IsLoggedIn";
         private const string SUPERUSER = "superUser";
         private const string USER_ID = "user_id";
+        private const string USER_URL_IMAGE = "user_url_image";
         private const string USERNAME = "username";
         private const string USERNAME_LARGE = "usernamelarge";
         private const string PASSWORD = "password";
@@ -59,6 +60,23 @@ namespace ShootsDay.Managers
             }            
         }
 
+
+        public void setTUserUrlImage(string userUrlImage)
+        {
+            Application.Current.Properties[USER_URL_IMAGE] = userUrlImage;
+        }
+        public string getuSerUrlImage()
+        {
+            if (Application.Current.Properties.ContainsKey(USER_URL_IMAGE))
+            {
+                var result = (string)Application.Current.Properties[USER_URL_IMAGE];
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public void setRoleId(int roleId)
         {

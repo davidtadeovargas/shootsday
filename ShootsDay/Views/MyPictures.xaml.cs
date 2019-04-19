@@ -29,9 +29,15 @@ namespace ShootsDay.Views
             Device.BeginInvokeOnMainThread(() => {
                 NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";
-            });
+                imgProfile.Source = SettingsManager.Instance.getuSerUrlImage();
+            });//UserEvents
         }
 
+        private void OnMisEventosTapped(object sender, TappedEventArgs e)
+        {
+            Navigation.PushModalAsync(new MasterDetail(new UserEvents()));
+        }
+        
         private void ImageTapped(object sender, TappedEventArgs e)
         {
             Picture Picture = (Picture)e.Parameter;

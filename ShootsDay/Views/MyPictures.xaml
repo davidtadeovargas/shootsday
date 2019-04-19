@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShootsDay.Views.MyPictures"
              Title="My pictures"
-             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="#CFCFCF">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
-    <Grid>
+    <Grid BackgroundColor="#CFCFCF">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -26,10 +28,33 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image Source="default_profile.png" Grid.Row="0" Grid.Column="0" x:Name="imgProfile" Aspect="Fill" HorizontalOptions="StartAndExpand">
+                <Image Source="marco.png" 
+                                               Aspect="AspectFit" 
+                                               HorizontalOptions="FillAndExpand"
+                                               Grid.Row="0" Grid.Column="0">
                 </Image>
+                <Frame Padding="7" BackgroundColor="Transparent" BorderColor="Transparent">
+                    <controls:CircleImage Source="default_profile.png" 
+                                                              Aspect="AspectFit"
+                                                              VerticalOptions="CenterAndExpand" 
+                                                              HorizontalOptions="CenterAndExpand"
+                                                            x:Name="imgProfile">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">55</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">55</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                    </controls:CircleImage>
+                </Frame>
                 <Label Text="" x:Name="labelProfile" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"></Label>
-                <Button Text="Mis Fotos" x:Name="btnMisFotos" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="#1a1aff"  FontSize="Small" HorizontalOptions="EndAndExpand" TextColor="White">
+                <Button Text="Mis eventos" Clicked="OnMisEventosTapped" x:Name="btnMisEventos" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="#1a1aff"  FontSize="Small" HorizontalOptions="EndAndExpand" TextColor="White">
                 </Button>
             </Grid>
         </StackLayout>

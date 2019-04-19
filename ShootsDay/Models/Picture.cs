@@ -7,10 +7,12 @@ namespace ShootsDay.Models
 		public string url_image { get; set; }
 		public bool status { get; set; }
 		public string description { get; set; }
-		public int user_id { get; set; }
+        public DateTime created { get; set; }
+        public int user_id { get; set; }
 		public int event_id { get; set; }
 		public int likes { get; set; }
-		public bool like_user { get; set; }
+        public int comments { get; set; }
+        public bool like_user { get; set; }
         public User User { get; set; }
     }
 }

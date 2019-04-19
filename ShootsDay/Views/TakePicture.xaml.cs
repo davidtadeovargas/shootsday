@@ -32,11 +32,7 @@ namespace ShootsDay.Views
             Device.BeginInvokeOnMainThread(() => {
                 NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";
-            });
-
-            btnContinue.Tapped += async (s, e) => {
-                await btnContinueTapped(s);
-            };            
+            });            
         }
 
 
@@ -77,7 +73,7 @@ namespace ShootsDay.Views
         }
 
 
-        private async Task btnContinueTapped(object sender)
+        private async Task OnSubirTapped(object sender)
         {
             //Can not continue without image
             if (!hasImage)

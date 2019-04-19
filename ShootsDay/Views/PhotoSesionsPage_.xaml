@@ -6,23 +6,32 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
-    <StackLayout>
-        <Label x:Name="tittleLabel" HorizontalOptions="CenterAndExpand" TextColor="#33bbff" FontSize="Medium"></Label>
-        <flv:FlowListView   FlowColumnCount="2" 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="tittleLabel" Grid.Row="0" HorizontalOptions="CenterAndExpand" TextColor="#33bbff" FontSize="Medium" Margin="0,15,0,15"></Label>
+        <flv:FlowListView   
+                        FlowColumnCount="2" 
                         SeparatorVisibility="None" 
-                        HasUnevenRows="true"                        
+                        HasUnevenRows="False" 
+                        RowHeight="150"                        
                         FlowItemsSource="{Binding photoShoots}"
                         FlowItemTappedCommand="{Binding ItemTappedCommand}"
                         FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
-                        >
+                        Grid.Row="1">
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
-                    <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
-                        <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
-                    </Grid>
+                    <Frame Padding="10,10,10,30" Margin="10,10,10,10" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Image Source="{Binding url_image}" Aspect="Fill">
+                        </Image>
+                    </Frame>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
 
         </flv:FlowListView>
-    </StackLayout>
+    </Grid>
 </ContentPage>

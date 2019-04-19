@@ -12,7 +12,6 @@ using Xamarin.Forms.Xaml;
 
 namespace ShootsDay.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RedSocial : ContentPage
     {
         public RedSocial()
@@ -30,6 +29,8 @@ namespace ShootsDay.Views
                 NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";
             });
+
+            
         }
 
         private void ViewProfileTapped(object sender, TappedEventArgs e)

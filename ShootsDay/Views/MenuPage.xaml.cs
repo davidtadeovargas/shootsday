@@ -29,7 +29,6 @@ namespace ShootsDay
             var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contacto.png", TargetType = typeof(Contact) };
 
             var autorizarFotos_page = new MasterPageItem() { Title = "Autorizar fotos", TargetType = typeof(Profile_) };
-            var eventos_page = new MasterPageItem() { Title = "Eventos", TargetType = typeof(UserEvents) };
             var usuarios_page = new MasterPageItem() { Title = "Usuarios", TargetType = typeof(EventUsers) };
 
             var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", TargetType = typeof(Profile_) };
@@ -47,7 +46,6 @@ namespace ShootsDay
                 menuList.Add(autorizarFotos_page);
             }
             
-            menuList.Add(eventos_page);
             menuList.Add(usuarios_page);
             menuList.Add(miPerfil_page);
             menuList.Add(salir_page);

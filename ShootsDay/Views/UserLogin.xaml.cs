@@ -201,6 +201,7 @@ namespace ShootsDay
                         settingsManager.setIsLoggedIn();
                         settingsManager.setUserId(jsonSystem.data.User.id);
                         settingsManager.setUserName(jsonSystem.data.User.username);
+                        settingsManager.setTUserUrlImage(jsonSystem.data.User.url_image);
                         settingsManager.setUserLargeName(jsonSystem.data.User.fullname);
                         settingsManager.setPassword(PasswordEntry.Text);
                         settingsManager.setIdEvent(jsonSystem.data.Event.id);
