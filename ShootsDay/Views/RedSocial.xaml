@@ -59,10 +59,22 @@
                         </Frame>
                         <Label Text="{Binding User.username}" FontSize="Micro" TextColor="Black" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1"></Label>
                         <Image Source="dots.png" Aspect="AspectFit" Grid.Row="0" Grid.Column="2">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                                Tapped="ViewProfileTapped"
+                                                CommandParameter="{Binding User}"
+                                                NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
                         </Image>
                         <Frame Padding="20" BackgroundColor="White" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout Orientation="Vertical">
                                 <Image Source="{Binding url_image}" Aspect="Fill" VerticalOptions="FillAndExpand">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Tapped="ImageTapped"
+                                        CommandParameter="{Binding}"
+                                        NumberOfTapsRequired="1"/>
+                                    </Image.GestureRecognizers>
                                 </Image>
                                 <StackLayout 
                                     Orientation="Vertical" 
@@ -82,7 +94,7 @@
                                         <Label FontSize="Micro" x:Name="lbUserTitle" TextColor="Black" Text="{Binding User.username}" VerticalOptions="CenterAndExpand"></Label>
                                         <Label FontSize="Micro" x:Name="lbTitle" TextColor="#5c8a8a" Text="{Binding description}" VerticalOptions="CenterAndExpand"></Label>
                                     </StackLayout>
-                                    <Label FontSize="Micro" x:Name="lbDatePicture" TextColor="#5c8a8a" Grid.ColumnSpan="1" HorizontalOptions="StartAndExpand" Text="{Binding created}" Margin="0,10,0,0"></Label>
+                                    <Label FontSize="Micro" x:Name="lbDatePicture" TextColor="#5c8a8a" Grid.ColumnSpan="1" HorizontalOptions="StartAndExpand" Text="{Binding created_format}" Margin="0,10,0,0"></Label>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>

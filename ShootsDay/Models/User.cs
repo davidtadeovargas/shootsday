@@ -12,5 +12,10 @@ namespace ShootsDay.Models
 		public int id { get; set; }
         public int role_id { get; set; }
         public bool super { get; set; }
+
+        public static explicit operator User(EventArgs v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

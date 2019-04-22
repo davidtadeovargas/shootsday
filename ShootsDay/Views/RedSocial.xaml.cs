@@ -33,18 +33,20 @@ namespace ShootsDay.Views
             
         }
 
-        private void ViewProfileTapped(object sender, TappedEventArgs e)
+        private void ViewProfileTapped(object sender, EventArgs e)
         {
-            User user = (User)e.Parameter;
+            TappedEventArgs tappedEventArgs = (TappedEventArgs)e;
+            User user = (User)tappedEventArgs.Parameter;
 
             Profile_ Profile_ = new Profile_(user.id);            
 
             Navigation.PushModalAsync(Profile_);
         }
 
-        private void ImageTapped(object sender, TappedEventArgs e)
+        private void ImageTapped(object sender, EventArgs e)
         {
-            Picture Picture = (Picture)e.Parameter;
+            TappedEventArgs tappedEventArgs = (TappedEventArgs)e;
+            Picture Picture = (Picture)tappedEventArgs.Parameter;
 
             RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
 

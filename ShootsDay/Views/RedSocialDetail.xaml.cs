@@ -37,18 +37,40 @@ namespace ShootsDay.Views
             /*
                 Load the title and image
              */
-            title.Text = Picture_.description;
             Device.BeginInvokeOnMainThread(() =>
             {
                 string url = Picture_.url_image;
                 image.Source = ImageSource.FromUri(new Uri(url));
 
+                userType.Source = ImageSource.FromUri(new Uri(url));
+
                 RedSocialDetailViewModel.Source = image.Source;//For binding
 
                 NameToolb.Text = SettingsManager.Instance.getUserLargeName();
-                Title = "Red Social";                
+                Title = "Red Social";
+
+                lbCounterLikes.Text = Picture_.likes.ToString();
+                lbCounterComments.Text = Picture_.comments.ToString();
+                lbUserTitle.Text = Picture_.User.username;
+                lbTitle.Text = Picture_.description;
+                lbDatePicture.Text = Picture_.created_format;
             });
         }
+
+        
+        private void CommentTextChange(object sender, EventArgs e)
+        {
+            string comment = messageEntry.Text==null?"": messageEntry.Text.ToString().Trim();
+            if (comment == "")
+            {
+                btnEnviar.IsEnabled = false;
+            }
+            else
+            {
+                btnEnviar.IsEnabled = true;
+            }
+        }
+
 
         private void OnSendClicked(object sender, EventArgs e)
         {
