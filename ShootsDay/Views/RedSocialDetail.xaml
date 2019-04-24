@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              x:Class="ShootsDay.Views.RedSocialDetail"
              BackgroundColor="#CFCFCF"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
@@ -10,6 +11,7 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" 
                      Padding="15"
+                     Spacing="0"
                      BackgroundColor="#CFCFCF">
             <Frame Padding="20" 
                    BackgroundColor="White" 
@@ -61,6 +63,64 @@
                     </StackLayout>
                 </StackLayout>
             </Frame>
+            <Label Text="Sin comentarios" 
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    FontSize="Large"
+                    x:Name="lblNoItemss"></Label>
+            <flv:FlowListView   
+                        FlowColumnCount="1" 
+                        SeparatorVisibility="None" 
+                        HasUnevenRows="true"                         
+                        FlowItemsSource="{Binding comments}"
+                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
+                        BackgroundColor="#EEEAE9"
+                        x:Name="commentsList">
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <Grid Margin="15" BackgroundColor="#CFCFCF">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="marco.png" 
+                                Aspect="AspectFit" 
+                                HorizontalOptions="CenterAndExpand"
+                                Grid.Row="0" Grid.Column="0">
+                            </Image>
+                            <Frame Padding="3" 
+                               Margin="0" 
+                               BackgroundColor="Transparent" 
+                               BorderColor="Transparent" 
+                               Grid.Row="0" 
+                               Grid.Column="0" 
+                               HorizontalOptions="CenterAndExpand">
+                                <controls:CircleImage Source="{Binding User.url_image}" 
+                                                              Aspect="AspectFit">
+                                    <controls:CircleImage.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android, iOS">55</On>
+                                            <On Platform="WinPhone">75</On>
+                                        </OnPlatform>
+                                    </controls:CircleImage.WidthRequest>
+                                    <controls:CircleImage.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android, iOS">55</On>
+                                            <On Platform="WinPhone">75</On>
+                                        </OnPlatform>
+                                    </controls:CircleImage.HeightRequest>
+                                </controls:CircleImage>
+                            </Frame>
+                            <Label Text="{Binding User.username}" FontSize="Micro" TextColor="Black" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1"></Label>
+                            <Label Text="{Binding comment}" FontSize="Micro" TextColor="Gray" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="2"></Label>
+                        </Grid>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
             <StackLayout Orientation="Vertical">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -100,7 +160,7 @@
                         </controls:CircleImage>
                     </Frame>
                     <Entry x:Name="messageEntry" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"  Placeholder="Escribe..." Text="" TextColor="Black" TextChanged="CommentTextChange" BackgroundColor="#BDBDBD"></Entry>
-                    <Button IsEnabled="false" x:Name="btnEnviar" Text="Enviar" BackgroundColor="#1a1aff"  Grid.Row="0" Grid.Column="2" FontSize="Micro" HorizontalOptions="End"></Button>
+                    <Button IsEnabled="false" x:Name="btnEnviar" Text="Enviar" BackgroundColor="#1a1aff"  Grid.Row="0" Grid.Column="2" FontSize="Micro" HorizontalOptions="End" Clicked="OnSendClickedAsync"></Button>
                 </Grid>
             </StackLayout>
         </StackLayout>

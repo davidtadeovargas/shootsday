@@ -13,7 +13,9 @@ namespace ShootsDay.RequestModels
 	{
 		public List<Picture> pictures { get; set; }
 
-		public User User { get; set; }
+        public Comment Comment { get; set; }
+
+        public User User { get; set; }
 		public Event Event { get; set; }
 		public Host Host { get; set; }
 		public List<Comment> Comments { get; set; }

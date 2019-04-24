@@ -86,7 +86,7 @@ namespace ShootsDay.ViewModels
                 LoadingManager.Instance.showLoading();
 
                 var offset = 0;
-                if (photoShoots_.Count() > 0)
+                if (photoShoots_!=null && photoShoots_.Count() > 0)
                 {
                     offset = photoShoots_.Count();
                 }

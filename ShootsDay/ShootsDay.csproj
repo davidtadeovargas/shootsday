@@ -67,6 +67,7 @@
     <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="RequestModels\RequestLike.cs" />
+    <Compile Include="RequestModels\RequestAddComment.cs" />
     <Compile Include="ViewModels\MyPicturesViewModel.cs" />
     <Compile Include="ViewModels\RedSocialDetailViewModel.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />

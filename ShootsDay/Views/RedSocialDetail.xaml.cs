@@ -1,9 +1,12 @@
 ﻿using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.Models.Share;
+using ShootsDay.RequestModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +21,7 @@ namespace ShootsDay.Views
         Picture Picture_;
         RedSocialDetailViewModel RedSocialDetailViewModel;
 
-
+        
 
 
         public RedSocialDetail(Picture Picture)
@@ -30,8 +33,7 @@ namespace ShootsDay.Views
             /*
                 Init the view model
              */
-            RedSocialDetailViewModel = new RedSocialDetailViewModel();
-            RedSocialDetailViewModel.Picture = Picture_;
+            RedSocialDetailViewModel = new RedSocialDetailViewModel(this, Picture_, lblNoItemss, commentsList);            
             BindingContext = RedSocialDetailViewModel; //Attach the binding context
 
             /*
@@ -72,16 +74,62 @@ namespace ShootsDay.Views
         }
 
 
-        private void OnSendClicked(object sender, EventArgs e)
+        private async Task OnSendClickedAsync(object sender, EventArgs e)
         {
-            
+            btnEnviar.IsEnabled = false;
+
+            //Send the comment to the server
+            string username = SettingsManager.Instance.getUserName();
+            string password = SettingsManager.Instance.getPassword();
+            string comment = messageEntry.Text;
+
+            try
+            {
+                var client = new HttpClient();
+                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(new { Picture = new { comment = comment, picture_id = Picture_ .id}, Login = new { password = password, username = username }});
+                var content = new StringContent(userData, Encoding.UTF8, "application/json");
+
+                var uri = new Uri(Constants.ADD_COMMENT);
+
+                var result = await client.PostAsync(uri, content).ConfigureAwait(true);
+
+                btnEnviar.IsEnabled = true;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var tokenJson = await result.Content.ReadAsStringAsync();
+                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestAddComment>(tokenJson);
+                    if (jsonSystem.status.type != "error")
+                    {
+                        //Reload the comments
+                        RedSocialDetailViewModel.comments.Clear();
+                        RedSocialDetailViewModel.getComments();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");                        
+                    }
+                }
+                else
+                {
+                    var respuesta = await result.Content.ReadAsStringAsync();
+                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
+                    await DisplayAlert("Error", respuesta, "Aceptar");
+                }
+            }
+            catch (Exception ex)
+            {
+                btnEnviar.IsEnabled = true;
+                await DisplayAlert("Error", ex.Message, "Aceptar");
+            }
+
         }
 
         private async Task OnItemClicked(object sender, EventArgs e)
         {
             Picture Picture = (Picture)sender;
 
-            
+                
         }
     }
 }

@@ -18,6 +18,8 @@ namespace ShootsDay
         static public string EVENT_USERS = SERVER + "events/getEventUsers.json";
         static public string USER_EVENTS = SERVER + "events/getUserEvents.json";        
         static public string REDSOCIAL = SERVER + "homes.json";
+        static public string ADD_COMMENT = SERVER + "homes/add_comment.json";
+        static public string GET_COMMENTS = SERVER + "homes/get_comments.json";
         static public string COMMENTS_ADD = SERVER + "comments/add.json";
         static public string LIKES_ADD = SERVER + "likes/add.json";
         static public string COMMENTS_GETLIST = SERVER + "comments/get_list_comments.json";
