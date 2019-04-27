@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShootsDay.Views.RedSocial"
+             x:Name="RedSocial_"
+             xmlns:local="clr-namespace:EventToCommandBehavior"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BackgroundColor="#CFCFCF">
@@ -19,7 +21,7 @@
                         BackgroundColor="#CFCFCF">
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
-                    <Grid Margin="15" BackgroundColor="#CFCFCF">
+                    <Grid Margin="15,0,15,0" BackgroundColor="#CFCFCF">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20" />
                             <RowDefinition Height="*" />
@@ -29,53 +31,10 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="marco.png" 
-                                Aspect="AspectFit" 
-                                HorizontalOptions="CenterAndExpand"
-                                Grid.Row="0" Grid.Column="0">
-                        </Image>
-                        <Frame Padding="3" 
-                               Margin="0" 
-                               BackgroundColor="Transparent" 
-                               BorderColor="Transparent" 
-                               Grid.Row="0" 
-                               Grid.Column="0" 
-                               HorizontalOptions="CenterAndExpand">
-                            <controls:CircleImage Source="{Binding User.url_image}" 
-                                                              Aspect="AspectFit">
-                                <controls:CircleImage.WidthRequest>
-                                    <OnPlatform x:TypeArguments="x:Double">
-                                        <On Platform="Android, iOS">55</On>
-                                        <On Platform="WinPhone">75</On>
-                                    </OnPlatform>
-                                </controls:CircleImage.WidthRequest>
-                                <controls:CircleImage.HeightRequest>
-                                    <OnPlatform x:TypeArguments="x:Double">
-                                        <On Platform="Android, iOS">55</On>
-                                        <On Platform="WinPhone">75</On>
-                                    </OnPlatform>
-                                </controls:CircleImage.HeightRequest>
-                            </controls:CircleImage>
-                        </Frame>
-                        <Label Text="{Binding User.username}" FontSize="Micro" TextColor="Black" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1"></Label>
-                        <Image Source="dots.png" Aspect="AspectFit" Grid.Row="0" Grid.Column="2">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer
-                                                Tapped="ViewProfileTapped"
-                                                CommandParameter="{Binding User}"
-                                                NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
                         <Frame Padding="20" BackgroundColor="White" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout Orientation="Vertical">
-                                <Image Source="{Binding url_image}" Aspect="Fill" VerticalOptions="FillAndExpand">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                        Tapped="ImageTapped"
-                                        CommandParameter="{Binding}"
-                                        NumberOfTapsRequired="1"/>
-                                    </Image.GestureRecognizers>
-                                </Image>
+                                <ImageButton Source="{Binding url_image}" Aspect="Fill" VerticalOptions="FillAndExpand" Command="{Binding Path=BindingContext.ViewRedSocialDetailCommand, Source={x:Reference RedSocial_}}" CommandParameter="{Binding .}">
+                                </ImageButton>
                                 <StackLayout 
                                     Orientation="Vertical" 
                                     HorizontalOptions="StartAndExpand"

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ShootsDay.ViewModels
@@ -17,7 +18,7 @@ namespace ShootsDay.ViewModels
     {
         private ObservableCollection<Picture> photoShoots_;
         private bool endOfRecords = false;
-
+        
         public ObservableCollection<Picture> photoShoots
         {
             get
@@ -31,6 +32,8 @@ namespace ShootsDay.ViewModels
             }
         }
 
+        public ICommand ViewProfileCommand { get; private set; }
+        public ICommand ViewRedSocialDetailCommand { get; private set; }
         public Command ItemAppearingCommand
         {
             get;
@@ -47,7 +50,29 @@ namespace ShootsDay.ViewModels
             getPhotos();
 
             ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
-        }        
+            ViewProfileCommand = new Command<User>(async (User) => await ViewProfile(User));
+            ViewRedSocialDetailCommand = new Command<Picture>(async (Picture) => await ViewRedSocialDetail(Picture));
+        }
+
+
+        private async Task ViewProfile(User User)
+        {
+            Profile_ Profile_ = new Profile_(User.id);
+
+            KeyboarClic(); //Simulate native clic sound 
+
+            Navigation.PushModalAsync(new MasterDetail(Profile_));
+        }
+
+
+        private async Task ViewRedSocialDetail(Picture Picture)
+        {
+            RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
+
+            KeyboarClic(); //Simulate native clic sound 
+
+            Navigation.PushAsync(new MasterDetail(RedSocialDetail));
+        }
 
 
         private async Task OnItemAppearing(object args)

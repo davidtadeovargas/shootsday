@@ -52,6 +52,7 @@ namespace ShootsDay.Droid
 
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);
             MessagingCenter.Subscribe<Photoshoot>(this, "Download", DownloadCommand, null);
+            MessagingCenter.Subscribe<Object>(this, "KeyboardClick", KeyboardClick, null);
             MessagingCenter.Subscribe<Object>(this, "PictureCommand", PictureCommand, null);
         }
 
@@ -85,6 +86,17 @@ namespace ShootsDay.Droid
                 });
                 alert.Show();
             }
+        }
+
+
+        public Android.Views.View root;
+        public void KeyboardClick(Object Object)
+        {
+            if (root == null)
+            {
+                root = FindViewById<Android.Views.View>(Android.Resource.Id.Content);
+            }
+            root.PlaySoundEffect(SoundEffects.Click);
         }
 
 

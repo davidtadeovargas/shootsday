@@ -41,11 +41,9 @@ namespace ShootsDay
         private void init()
         {
             InitializeComponent();
-            UserLogin.GestureRecognizers.Add(new TapGestureRecognizer(goToLogin));
             pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
-            closeImg.GestureRecognizers.Add(new TapGestureRecognizer(closeImgTapped));
 
-            UserRegisterViewModel = new UserRegisterViewModel();
+            UserRegisterViewModel = new UserRegisterViewModel(this);
             BindingContext = UserRegisterViewModel;
 
             profile_img.Source = "default_profile.png";
@@ -75,19 +73,17 @@ namespace ShootsDay
                 {
                     Debug.WriteLine("Error, Excepcion: " + e.Message);
                 }               
-            });            
+            });    
         }
-      
 
-        private void goToLogin(View arg1, object arg2)
+
+        private void goToLogin(object sender, EventArgs e)
 		{
-			//var UserLogin = new UserLogin();
-			arg1.Navigation.PopModalAsync();
-			//arg1.Navigation.PushModalAsync(UserLogin);
-		}
+            Navigation.PopModalAsync();
+        }
 
 
-        private void closeImgTapped(View arg1, object arg2)
+        private void closeImgTapped(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(() => {
                 profile_img.Source = "default_profile.png";
@@ -193,16 +189,11 @@ namespace ShootsDay
                 return;
             }
 
-            /*
-                Question before to continue
-             */
+            //Question before to continue
+            
             var answer = await DisplayAlert("", "¿Seguro que todos los datos estan correctos?", "Si", "No");            
             if (answer)
             {
-                /*
-                    Try to register the new user
-                 */
-
                 LoadingManager.Instance.showLoading();
 
                 try
@@ -257,7 +248,7 @@ namespace ShootsDay
                     LoadingManager.Instance.closeLoading();
                     Debug.WriteLine("Error, Excepcion: " + ex.Message);
                 }
-            }            
+            }
         }
     }
 }

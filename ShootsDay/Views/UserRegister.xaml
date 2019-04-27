@@ -14,13 +14,13 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                 </Grid.ColumnDefinitions>
-                <Image HorizontalOptions="CenterAndExpand" Source="logo.png" Grid.Row="0" Margin="0,20,0,30"/>
+                <Image HorizontalOptions="CenterAndExpand" Source="logo.png" Grid.Row="0" Scale="0.6" Margin="0,0,0,10"/>
                 <StackLayout Orientation="Vertical" Spacing="10" Grid.Row="1" Margin="0,0,0,20">
-                    <Entry x:Name="NameEntry" Placeholder="Nombre" Text="{Binding Name}" TextColor="Black" TextChanged="EntryNameTextChanged"></Entry>
-                    <Entry x:Name="LastNameEntry" Placeholder="Apellidos" Text="{Binding LastName}" TextColor="Black" TextChanged="LastNameTextChanged"></Entry>
-                    <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding Email}" TextColor="Black" TextChanged="EmailTextChanged"></Entry>
-                    <Entry x:Name="UserEntry" Placeholder="User" Text="{Binding User}" TextColor="Black" TextChanged="UserTextChanged"></Entry>
-                    <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding Password}" TextColor="Black" IsPassword="True" TextChanged="PasswordTextChanged"></Entry>
+                    <Entry x:Name="NameEntry" FontSize="Small" Placeholder="Nombre" Text="{Binding Name}" TextColor="Black" TextChanged="EntryNameTextChanged"></Entry>
+                    <Entry x:Name="LastNameEntry" FontSize="Small" Placeholder="Apellidos" Text="{Binding LastName}" TextColor="Black" TextChanged="LastNameTextChanged"></Entry>
+                    <Entry x:Name="EmailEntry" FontSize="Small" Placeholder="Email" Text="{Binding Email}" TextColor="Black" TextChanged="EmailTextChanged"></Entry>
+                    <Entry x:Name="UserEntry" FontSize="Small" Placeholder="User" Text="{Binding User}" TextColor="Black" TextChanged="UserTextChanged"></Entry>
+                    <Entry x:Name="PasswordEntry" FontSize="Small" Placeholder="Password" Text="{Binding Password}" TextColor="Black" IsPassword="True" TextChanged="PasswordTextChanged"></Entry>
                     <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
                         <Label Text="Upload profile picture"
 	                    TextColor="Gray"
@@ -31,12 +31,12 @@
                                     NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>-->
                         </Label>
-                        <Image x:Name="closeImg" Source="close.png" WidthRequest="20"/>
+                        <ImageButton x:Name="closeImg" Command="{Binding KeyboardClickCommand}" Clicked="closeImgTapped" Source="close.png" WidthRequest="20" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </StackLayout>
                 <Image x:Name="profile_img" Grid.Row="2" Aspect="AspectFit" HorizontalOptions="FillAndExpand" Margin="0,0,0,30"/>
-                <Button Command="{Binding SubmitCommand}" Text="Register" TextColor="White" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="FillAndExpand" BackgroundColor="#01cb8f" Clicked="btnRegister" Grid.Row="3"/>
-                <Label x:Name="UserLogin" Text="Go to login" TextColor="#01cb8f" HorizontalTextAlignment="Center" Grid.Row="4"/>
+                <Button HorizontalOptions="CenterAndExpand" BackgroundColor="#01cb8f" Clicked="btnRegister" Grid.Row="3" Text="Registrar" TextColor="White"/>
+                <Button Text="Go to login" BackgroundColor="Transparent" TextColor="#01cb8f" Grid.Row="4" HorizontalOptions="CenterAndExpand" Clicked="goToLogin" FontSize="Small"></Button>
             </Grid>
         </ScrollView>
 	</ContentPage.Content>

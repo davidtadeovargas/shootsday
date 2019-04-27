@@ -2,6 +2,7 @@
 using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.RequestModels;
+using ShootsDay.ViewModels;
 using ShootsDay.Views;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,9 @@ namespace ShootsDay
             Title = "Invitación";
             InitializeComponent();
             get_Invites();
+
+            var InvitesViewModel_ = new InvitesViewModel(this);
+            BindingContext = InvitesViewModel_;
 
             //Load the image map
             Device.BeginInvokeOnMainThread(() =>

@@ -54,7 +54,7 @@ namespace ShootsDay.Views
 
                 lbCounterLikes.Text = Picture_.likes.ToString();
                 lbCounterComments.Text = Picture_.comments.ToString();
-                lbUserTitle.Text = Picture_.User.username;
+                //lbUserTitle.Text = Picture_.User.username;
                 lbTitle.Text = Picture_.description;
                 lbDatePicture.Text = Picture_.created_format;
 
@@ -88,7 +88,7 @@ namespace ShootsDay.Views
             Navigation.PushModalAsync(Profile_);
         }
 
-        private async Task OnSendClickedAsync(object sender, EventArgs e)
+        private async void OnSendClickedAsync(object sender, EventArgs e)
         {
             btnEnviar.IsEnabled = false;
 

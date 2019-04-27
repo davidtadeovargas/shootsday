@@ -31,20 +31,10 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                         </Grid.ColumnDefinitions>
-                        <Image Source="login.png" HorizontalOptions="FillAndExpand" Grid.Row="0" Aspect="AspectFill">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Tapped="evt_btnLogin"
-                                    NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Image Source="registrar.png" HorizontalOptions="FillAndExpand" Grid.Row="1"  Aspect="AspectFill" x:Name="btnRegistrar">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Tapped="OnRegistrarClicked"
-                                    NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
+                        <ImageButton Source="login.png" HorizontalOptions="FillAndExpand" Command="{Binding KeyboardClickCommand}" Grid.Row="0" Aspect="AspectFill" Clicked="evt_btnLogin" x:Name="btn_login">
+                        </ImageButton>
+                        <ImageButton Source="registrar.png" HorizontalOptions="FillAndExpand" Command="{Binding KeyboardClickCommand}" Grid.Row="1"  Aspect="AspectFill" x:Name="btnRegistrar" Clicked="OnRegistrarClicked">
+                        </ImageButton>
                     </Grid>
                 </StackLayout>
             </StackLayout>

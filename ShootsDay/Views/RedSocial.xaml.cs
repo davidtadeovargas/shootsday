@@ -32,25 +32,5 @@ namespace ShootsDay.Views
                 Title = "";
             });            
         }
-
-        private void ViewProfileTapped(object sender, EventArgs e)
-        {
-            TappedEventArgs tappedEventArgs = (TappedEventArgs)e;
-            User user = (User)tappedEventArgs.Parameter;
-
-            Profile_ Profile_ = new Profile_(user.id);            
-
-            Navigation.PushModalAsync(Profile_);
-        }
-
-        private void ImageTapped(object sender, EventArgs e)
-        {
-            TappedEventArgs tappedEventArgs = (TappedEventArgs)e;
-            Picture Picture = (Picture)tappedEventArgs.Parameter;
-
-            RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
-
-            Navigation.PushAsync(new MasterDetail(RedSocialDetail));
-        }
     }
 }

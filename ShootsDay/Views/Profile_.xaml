@@ -5,7 +5,7 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView BackgroundColor="White">
-            <StackLayout Orientation="Vertical" Spacing="5" Padding="10">
+            <StackLayout Orientation="Vertical" Spacing="5" Padding="20">
                 <BoxView HeightRequest="10" />
                 <Image HorizontalOptions="Center"
 		               WidthRequest="300"
@@ -18,9 +18,9 @@
                        x:Name="profile_img"/>
                 <BoxView HeightRequest="10" />
                 <BoxView HeightRequest="10" />
-                <Label x:Name="name" HorizontalOptions="CenterAndExpand"/>
-                <Label x:Name="event_" HorizontalOptions="CenterAndExpand"/>
-                <Label x:Name="contacts" HorizontalOptions="CenterAndExpand"/>
+                <Label x:Name="name" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+                <Label x:Name="event_" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <Label x:Name="contacts" HorizontalOptions="CenterAndExpand" FontSize="Micro"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

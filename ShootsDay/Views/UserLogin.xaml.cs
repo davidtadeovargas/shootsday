@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using ShootsDay.Views;
 using ShootsDay.Managers;
 using ShootsDay.RequestModels;
+using ShootsDay.ViewModels;
 
 /*
     https://github.com/aritchie/userdialogs
@@ -19,7 +20,6 @@ namespace ShootsDay
 {
 	public partial class UserLogin : ContentPage
     {
-        Image btn_login = null;
         private bool _userTapped;
 
         private const int LOGIN_FIELD_LENGTH = 70;
@@ -45,6 +45,7 @@ namespace ShootsDay
         {
             Init();
 
+            
             /*
                 Set the user and password
              */
@@ -58,6 +59,9 @@ namespace ShootsDay
         {
 
             InitializeComponent();
+
+            var LoginViewModel_ = new LoginViewModel(this);
+            BindingContext = LoginViewModel_;
 
             //Close session
             SettingsManager.Instance.setIsNotLoggedIn().SavePropertiesAsync();
@@ -129,13 +133,11 @@ namespace ShootsDay
 
         public async void evt_btnLogin(object sender, EventArgs e)
 		{
-            btn_login = (Image)sender;
-
             if (_userTapped)
                 return;
 
             _userTapped = true;
-
+            
             btn_login.IsEnabled = false;
 			if (string.IsNullOrEmpty(UserEntry.Text))
 			{

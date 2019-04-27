@@ -7,20 +7,15 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout HorizontalOptions="Center" Padding="20,20">
-                <Image Source="logo.png" Margin="25" />
+            <StackLayout Orientation="Vertical" Spacing="15" Padding="20">
+                <Image Source="logo.png" Scale="0.6"/>
                 <Label Text="INVITACION" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
                 <Label x:Name="address" HorizontalOptions="CenterAndExpand"/>
-                <Label x:Name="addressSecond" HorizontalOptions="CenterAndExpand"/>
-                <Image x:Name="mapPicture" HorizontalOptions="FillAndExpand">
+                <Label x:Name="addressSecond" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <Image x:Name="mapPicture" HorizontalOptions="CenterAndExpand" Aspect="AspectFit" Margin="0">
                 </Image>
-                <Image Source="vermapa.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="OnVerMapaClicked"
-                            NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
+                <ImageButton Source="vermapa.png" Command="{Binding KeyboardClickCommand}" HorizontalOptions="CenterAndExpand" Margin="0" Clicked="OnVerMapaClicked">
+                </ImageButton>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

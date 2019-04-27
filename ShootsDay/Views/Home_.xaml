@@ -15,32 +15,16 @@
                 VerticalOptions="FillAndExpand"
                 RowSpacing="10"
                 Padding="35">
-                <Image Source="sesionfotos.jpg" x:Name="btnSesionFotos" Aspect="Fill" Grid.Row="0" Grid.Column="0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                    Tapped="OnSesionFotosClicked"
-                    NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Source="redsocial.png" x:Name="btnRedSocial" Aspect="Fill" Grid.Row="1" Grid.Column="0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                        Tapped="OnRedSocialClickedAsync"
-                        NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Source="invitacion.jpg" x:Name="btnInvitacion" Aspect="Fill" Grid.Row="2" Grid.Column="0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                        Tapped="OnInvitacionClicked"
-                        NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
+                <ImageButton Source="sesionfotos.jpg" x:Name="btnSesionFotos" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="0" Grid.Column="0" Clicked="OnSesionFotosClicked">
+                </ImageButton>
+                <ImageButton Source="redsocial.png" x:Name="btnRedSocial" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="1" Grid.Column="0" Clicked="OnRedSocialClickedAsync">
+                </ImageButton>
+                <ImageButton Source="invitacion.jpg" x:Name="btnInvitacion" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="2" Grid.Column="0" Clicked="OnInvitacionClicked">
+                </ImageButton>
             </Grid>
 
             <Grid 
                 HorizontalOptions="FillAndExpand">
-
             </Grid>
         </StackLayout>
     </ContentPage.Content>

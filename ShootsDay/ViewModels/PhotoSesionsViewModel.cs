@@ -10,6 +10,7 @@ using System.Net.Http;
 using ShootsDay.Views;
 using ShootsDay.Managers;
 using ShootsDay.RequestModels;
+using System.Windows.Input;
 
 namespace ShootsDay.ViewModels
 {
@@ -18,7 +19,7 @@ namespace ShootsDay.ViewModels
 
         private ObservableCollection<Photoshoot> photoShoots_;
         private bool endOfRecords = false;
-
+        public ICommand ViewImageCommand { get; private set; }
 
 
         public PhotoSesionsViewModel(Page context) : base(context)
@@ -27,15 +28,17 @@ namespace ShootsDay.ViewModels
 
             getPhotos();
 
-            ItemTappedCommand = new Command((args) => OnPhotoTappedAsync(args));
             ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
+            ViewImageCommand = new Command<Photoshoot>(async (Photoshoot) => await OnPhotoTappedAsync(Photoshoot));
         }
 
-        private async Task OnPhotoTappedAsync(object args)
+        private async Task OnPhotoTappedAsync(Photoshoot Photoshoot)
         {
-            Photoshoot photoshoot = (Photoshoot)args;
-            await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(photoshoot)));
+            KeyboarClic(); //Simulate native clic sound 
+
+            await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(Photoshoot)));
         }
+
 
         private async Task OnItemAppearing(object args)
         {
@@ -74,11 +77,6 @@ namespace ShootsDay.ViewModels
         }
 
 
-        public Command ItemTappedCommand
-        {
-            get;
-            set;
-        }
         public Command ItemAppearingCommand
         {
             get;

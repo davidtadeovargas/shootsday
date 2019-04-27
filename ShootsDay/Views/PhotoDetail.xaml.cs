@@ -50,7 +50,7 @@ namespace ShootsDay.Views
             /*
                 Init the view model
              */
-            _photoDetailViewModel = new PhotoDetailViewModel();
+            _photoDetailViewModel = new PhotoDetailViewModel(this);
             _photoDetailViewModel.photoshoot = Photoshoot_;
             BindingContext = _photoDetailViewModel; //Attach the binding context
 

@@ -15,6 +15,8 @@ namespace ShootsDay.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public Command KeyboardClickCommand { get; set; }
+
         public INavigation Navigation { get; set; }
         public Page Alert { get; set; }
 
@@ -27,8 +29,14 @@ namespace ShootsDay.ViewModels
         {
             Navigation = context == null ? (App.Current.MainPage as NavigationPage).Navigation : context.Navigation;
             Alert = context == null ? (App.Current.MainPage as NavigationPage) : context;
+            KeyboardClickCommand = new Command(KeyboarClic); //Native button image sound message
         }
 
         public bool IsBusy { get; set; }
+
+        public void KeyboarClic()
+        {
+            MessagingCenter.Send<Object>("", "KeyboardClick");
+        }
     }
 }

@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace ShootsDay.Models.Share
 {
-    class UserRegisterViewModel : BaseViewModel
+    class TakePictureViewModel : BaseViewModel
     {
-        public UserRegisterViewModel(Page context) : base(context)
+        public TakePictureViewModel(Page context) : base(context)
         {
         }
     }

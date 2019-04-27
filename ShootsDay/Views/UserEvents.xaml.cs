@@ -19,6 +19,11 @@ namespace ShootsDay.Views
             InitializeComponent();
 
             BindingContext = new UserEventsViewModel(this);
+
+            Device.BeginInvokeOnMainThread(() => {
+                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                Title = "";
+            });
         }        
     }
 }

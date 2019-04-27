@@ -1,4 +1,5 @@
 ﻿using ShootsDay.Managers;
+using ShootsDay.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,12 +35,18 @@ namespace ShootsDay.Views
             if (Application.Current.Properties.ContainsKey("title_event"))
                 title = Application.Current.Properties["title_event"].ToString();
 
+            /*
+                Init the view model
+             */
+            var HomeViewModel = new HomeViewModel(this);
+            BindingContext = HomeViewModel; //Attach the binding context
+
             Device.BeginInvokeOnMainThread(() => {
                 NameToolb.Text = SettingsManager.Instance.getUserLargeName();
             });
         }
 
-        public async Task OnRedSocialClickedAsync(object sender, EventArgs e)
+        public async void OnRedSocialClickedAsync(object sender, EventArgs e)
         {
             if (_userTapped)
                 return;
@@ -54,6 +61,8 @@ namespace ShootsDay.Views
         {
             if (_userTapped)
                 return;
+
+            
 
             _userTapped = true;
 

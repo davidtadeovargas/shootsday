@@ -29,10 +29,10 @@ namespace ShootsDay
             var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contacto.png", TargetType = typeof(Contact) };
 
             var autorizarFotos_page = new MasterPageItem() { Title = "Autorizar fotos", TargetType = typeof(Profile_) };
-            var usuarios_page = new MasterPageItem() { Title = "Usuarios", TargetType = typeof(EventUsers) };
+            var usuarios_page = new MasterPageItem() { Title = "Usuarios", Icon = "usuarios_.png", TargetType = typeof(EventUsers) };
 
-            var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", TargetType = typeof(Profile_) };
-            var salir_page = new MasterPageItem() { Title = "Cerrar sesión", TargetType = typeof(UserLogin) };
+            var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "", TargetType = typeof(Profile_) };
+            var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "", TargetType = typeof(UserLogin) };
 
             // Adding menu items to menuList
             menuList.Add(init_page);

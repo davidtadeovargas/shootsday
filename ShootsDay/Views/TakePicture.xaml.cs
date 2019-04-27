@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ShootsDay.Models.Share;
 
 namespace ShootsDay.Views
 {
@@ -29,6 +30,8 @@ namespace ShootsDay.Views
 
             InitializeComponent ();
 
+            BindingContext = new TakePictureViewModel(this);
+
             pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
 
             Device.BeginInvokeOnMainThread(() => {
@@ -38,7 +41,7 @@ namespace ShootsDay.Views
         }
 
 
-        private void closeImgTapped(View arg1, object arg2)
+        private void closeImgTapped(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(() => {
                 profile_img.Source = "image.png";
@@ -75,7 +78,7 @@ namespace ShootsDay.Views
         }
 
 
-        private async Task OnSubirTapped(object sender)
+        private async void OnSubirTapped(object sender, EventArgs e)
         {
             //Can not continue without image
             if (!hasImage)

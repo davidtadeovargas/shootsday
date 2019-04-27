@@ -6,7 +6,7 @@
         <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
             <Label  x:Name="title"
                     HorizontalOptions="CenterAndExpand"
                     FontSize="Small"
@@ -26,27 +26,12 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image  x:Name="downloadImag" Source="download.png" Aspect="Fill" Grid.Row="0" Grid.Column="1">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                        Command="{Binding Download}"
-                        NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image  x:Name="likeImage" Aspect="Fill" Grid.Row="0" Grid.Column="0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                        Tapped="OnLikeClicked"
-                        NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image  x:Name="shareImag" Source="share.png" Aspect="Fill" Grid.Row="0" Grid.Column="2">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                        Command="{Binding Share}"
-                        NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
+                    <ImageButton  x:Name="downloadImag" Source="download.png" Aspect="Fill" Grid.Row="0" Grid.Column="1"  Command="{Binding KeyboardClickCommand,Download}" BackgroundColor="Transparent">
+                    </ImageButton>
+                    <ImageButton  x:Name="likeImage" Aspect="Fill" Grid.Row="0" Grid.Column="0" Command="{Binding KeyboardClickCommand}" BackgroundColor="Transparent" Clicked="OnLikeClicked">
+                    </ImageButton>
+                    <ImageButton  x:Name="shareImag" Source="share.png" Aspect="Fill" Grid.Row="0" Grid.Column="2" Command="{Binding Share,KeyboardClickCommand}" BackgroundColor="Transparent">
+                    </ImageButton>
                 </Grid>
             </StackLayout>
         </StackLayout>
