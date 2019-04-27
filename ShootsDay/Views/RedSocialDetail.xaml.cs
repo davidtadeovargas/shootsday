@@ -26,6 +26,8 @@ namespace ShootsDay.Views
 
         public RedSocialDetail(Picture Picture)
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
 
             Picture_ = Picture; //Save current photo
@@ -48,7 +50,6 @@ namespace ShootsDay.Views
 
                 RedSocialDetailViewModel.Source = image.Source;//For binding
 
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "Red Social";
 
                 lbCounterLikes.Text = Picture_.likes.ToString();
@@ -56,6 +57,10 @@ namespace ShootsDay.Views
                 lbUserTitle.Text = Picture_.User.username;
                 lbTitle.Text = Picture_.description;
                 lbDatePicture.Text = Picture_.created_format;
+
+                lblUserName.Text = Picture_.User.username;
+                url = Picture_.User.url_image;
+                imgUserPicture.Source = ImageSource.FromUri(new Uri(url));
             });
         }
 
@@ -73,6 +78,15 @@ namespace ShootsDay.Views
             }
         }
 
+
+        private void ViewProfileTapped(object sender, EventArgs e)
+        {
+            TappedEventArgs tappedEventArgs = (TappedEventArgs)e;
+
+            Profile_ Profile_ = new Profile_(Picture_.User.id);
+
+            Navigation.PushModalAsync(Profile_);
+        }
 
         private async Task OnSendClickedAsync(object sender, EventArgs e)
         {

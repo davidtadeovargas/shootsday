@@ -61,8 +61,6 @@ namespace ShootsDay
 
             //Close session
             SettingsManager.Instance.setIsNotLoggedIn().SavePropertiesAsync();
-
-            link.FontSize = 40;
         }
 
 

@@ -21,6 +21,8 @@ namespace ShootsDay.Views
 
         private void init()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
 
             BindingContext = new RedSocialViewModel(this);
@@ -28,9 +30,7 @@ namespace ShootsDay.Views
             Device.BeginInvokeOnMainThread(() => {
                 NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";
-            });
-
-            
+            });            
         }
 
         private void ViewProfileTapped(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace ShootsDay.Views
 
             RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
 
-            Navigation.PushModalAsync(new MasterDetail(RedSocialDetail));
+            Navigation.PushAsync(new MasterDetail(RedSocialDetail));
         }
     }
 }

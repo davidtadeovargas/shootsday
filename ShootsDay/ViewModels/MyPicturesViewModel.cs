@@ -82,7 +82,7 @@ namespace ShootsDay.ViewModels
                 LoadingManager.Instance.showLoading();
 
                 var offset = 0;
-                if (pictures_.Count() > 0)
+                if (pictures_!=null && pictures_.Count() > 0)
                 {
                     offset = pictures_.Count();
                 }
@@ -104,7 +104,7 @@ namespace ShootsDay.ViewModels
                     if (jsonSystem.status.type != "error")
                     {
                         //Get the photo list
-                        List<Picture> pictures_ = jsonSystem.data.pictures;
+                        List<Picture> pictures_ = jsonSystem.data==null? new List<Picture>(): jsonSystem.data.pictures;
 
                         if (pictures_.Count() == 0 || pictures_.Count() < Constants.LIMIT)
                         {

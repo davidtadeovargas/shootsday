@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShootsDay.Views.RedSocialTabPage"
-             xmlns:mypages="clr-namespace:ShootsDay.Views;assembly=ShootsDay"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="ShootsDay.Views.RedSocialTabPage"
+            xmlns:mypages="clr-namespace:ShootsDay.Views;assembly=ShootsDay"
             BackgroundColor="#868486">
     <TabbedPage.Children>
-        <mypages:RedSocial Title="" Icon="red_social_white.png"/>
-        <mypages:TakePicture Title="" Icon="upload_picture_white.png"/>
-        <mypages:MyPictures Title="" Icon="my_pictures_white.png"/>
+        <NavigationPage Icon="red_social_white.png">
+            <x:Arguments>
+                <mypages:RedSocial Title=""/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Icon="upload_picture_white.png">
+            <x:Arguments>
+                <mypages:TakePicture Title=""/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Icon="my_pictures_white.png">
+            <x:Arguments>
+                <mypages:MyPictures Title=""/>
+            </x:Arguments>
+        </NavigationPage>
     </TabbedPage.Children>
 </TabbedPage>

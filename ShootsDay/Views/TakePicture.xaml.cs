@@ -25,14 +25,16 @@ namespace ShootsDay.Views
 
         public TakePicture ()
 		{
-			InitializeComponent ();
+            NavigationPage.SetHasNavigationBar(this,false);
+
+            InitializeComponent ();
 
             pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
 
             Device.BeginInvokeOnMainThread(() => {
                 NameToolb.Text = SettingsManager.Instance.getUserLargeName();
-                Title = "";
-            });            
+                Title = "";                
+            });
         }
 
 

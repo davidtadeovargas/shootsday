@@ -22,6 +22,8 @@ namespace ShootsDay.Views
 
         private void init()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
 
             BindingContext = new MyPicturesViewModel(this);
@@ -44,7 +46,7 @@ namespace ShootsDay.Views
 
             RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
 
-            Navigation.PushModalAsync(new MasterDetail(RedSocialDetail));
+            Navigation.PushAsync(new MasterDetail(RedSocialDetail));            
         }
     }
 }

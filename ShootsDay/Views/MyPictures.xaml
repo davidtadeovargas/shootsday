@@ -17,69 +17,87 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
-        <StackLayout Orientation="Vertical" VerticalOptions="Start" Grid.Row="0" Margin="10">
+        <StackLayout Orientation="Vertical" VerticalOptions="Start" Grid.Row="0">
             <Grid HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35" />
+                    <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Image Source="marco.png" 
-                                               Aspect="AspectFit" 
-                                               HorizontalOptions="FillAndExpand"
-                                               Grid.Row="0" Grid.Column="0">
-                </Image>
-                <Frame Padding="7" BackgroundColor="Transparent" BorderColor="Transparent">
-                    <controls:CircleImage Source="default_profile.png" 
+                <Image  Source="fondo_red_social.jpg" 
+                        Opacity="0.8"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Aspect="AspectFill"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"></Image>
+                <Grid HorizontalOptions="FillAndExpand" Padding="13" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="marco.png" 
+                                                Aspect="AspectFit" 
+                                                HorizontalOptions="FillAndExpand"
+                                                Grid.Row="0" 
+                                                Grid.Column="0">
+                    </Image>
+                    <Frame Padding="7" BackgroundColor="Transparent" BorderColor="Transparent">
+                        <controls:CircleImage Source="default_profile.png" 
                                                               Aspect="AspectFit"
                                                               VerticalOptions="CenterAndExpand" 
                                                               HorizontalOptions="CenterAndExpand"
                                                             x:Name="imgProfile">
-                        <controls:CircleImage.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="Android, iOS">55</On>
-                                <On Platform="WinPhone">75</On>
-                            </OnPlatform>
-                        </controls:CircleImage.WidthRequest>
-                        <controls:CircleImage.HeightRequest>
-                            <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="Android, iOS">55</On>
-                                <On Platform="WinPhone">75</On>
-                            </OnPlatform>
-                        </controls:CircleImage.HeightRequest>
-                    </controls:CircleImage>
-                </Frame>
-                <Label Text="" x:Name="labelProfile" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"></Label>
-                <Button Text="Mis eventos" Clicked="OnMisEventosTapped" x:Name="btnMisEventos" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="#1a1aff"  FontSize="Small" HorizontalOptions="EndAndExpand" TextColor="White">
-                </Button>
+                            <controls:CircleImage.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">55</On>
+                                    <On Platform="WinPhone">75</On>
+                                </OnPlatform>
+                            </controls:CircleImage.WidthRequest>
+                            <controls:CircleImage.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">55</On>
+                                    <On Platform="WinPhone">75</On>
+                                </OnPlatform>
+                            </controls:CircleImage.HeightRequest>
+                        </controls:CircleImage>
+                    </Frame>
+                    <Label Text="" x:Name="labelProfile" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"></Label>
+                    <Button Text="Mis eventos" Clicked="OnMisEventosTapped" x:Name="btnMisEventos" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="#1a1aff"  FontSize="Small" HorizontalOptions="EndAndExpand" TextColor="White">
+                    </Button>
+                </Grid>
             </Grid>
         </StackLayout>
-        <flv:FlowListView   
+        <Frame Padding="0"
+               Grid.Row="1"
+               BackgroundColor="#CFCFCF"
+               HasShadow="False"
+               OutlineColor="#CFCFCF">
+            <flv:FlowListView   
                         FlowColumnCount="2" 
                         SeparatorVisibility="None" 
                         HasUnevenRows="False" 
                         RowHeight="150"
                         FlowItemsSource="{Binding pictures}"
-                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
-                        Grid.Row="1">
-            <flv:FlowListView.FlowColumnTemplate>
-                <DataTemplate>
-                    <Frame Padding="10,10,10,30" Margin="10,10,10,10" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Image Source="{Binding url_image}" Aspect="Fill">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer
+                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}">
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <Frame Padding="5,5,5,20" Margin="10,10,10,10" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Image Source="{Binding url_image}" Aspect="Fill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
                                         Tapped="ImageTapped"
                                         CommandParameter="{Binding}"
                                         NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </Frame>
-                </DataTemplate>
-            </flv:FlowListView.FlowColumnTemplate>
-        </flv:FlowListView>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+        </Frame>
     </Grid>
 </ContentPage>
