@@ -46,7 +46,7 @@ namespace ShootsDay
             UserRegisterViewModel = new UserRegisterViewModel(this);
             BindingContext = UserRegisterViewModel;
 
-            profile_img.Source = "default_profile.png";
+            profile_img.Source = "http://shootsday.com.mx/imgs/default_profile.png";
         }
 
 		private void uploadPicture(View arg1, object arg2)
@@ -86,7 +86,7 @@ namespace ShootsDay
         private void closeImgTapped(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(() => {
-                profile_img.Source = "default_profile.png";
+                profile_img.Source = "http://shootsday.com.mx/imgs/default_profile.png";
             });
 
             hasImage = false;

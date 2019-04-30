@@ -5,7 +5,8 @@ namespace ShootsDay.Models
 	{
         public int id { get; set; }
         public string comment { get; set; }
-		public string created { get; set; }
-		public User User { get; set; }
+		public DateTime created { get; set; }
+        public string createdString { get; set; }
+        public User User { get; set; }
 	}
 }

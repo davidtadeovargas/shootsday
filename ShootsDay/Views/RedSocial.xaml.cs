@@ -21,8 +21,6 @@ namespace ShootsDay.Views
 
         private void init()
         {
-            NavigationPage.SetHasNavigationBar(this, false);
-
             InitializeComponent();
 
             BindingContext = new RedSocialViewModel(this);

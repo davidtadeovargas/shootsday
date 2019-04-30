@@ -3,12 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShootsDay.Views.RedSocial"
              x:Name="RedSocial_"
-             xmlns:local="clr-namespace:EventToCommandBehavior"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BackgroundColor="#CFCFCF">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"/>
     </ContentPage.ToolbarItems>
     <StackLayout Orientation="Vertical" BackgroundColor="#CFCFCF">
         <flv:FlowListView   
@@ -41,10 +39,10 @@
                                     Margin="0,0,10,0">
                                     <StackLayout HorizontalOptions="StartAndExpand"
                                                  Orientation="Horizontal">
-                                        <Image  x:Name="likeImage" Source="liked.png" Aspect="Fill">
+                                        <Image  x:Name="likeImage" Source="http://shootsday.com.mx/imgs/liked.png" Aspect="Fill">
                                         </Image>
                                         <Label FontSize="Micro" x:Name="lbCounterLikes" TextColor="#5c8a8a" Text="{Binding likes}"></Label>
-                                        <Image  x:Name="comment" Source="comment.png" Aspect="Fill">
+                                        <Image  x:Name="comment" Source="http://shootsday.com.mx/imgs/comment.png" Aspect="Fill">
                                         </Image>
                                         <Label FontSize="Micro" x:Name="lbCounterComments" TextColor="#5c8a8a" Text="{Binding comments}"></Label>
                                     </StackLayout>

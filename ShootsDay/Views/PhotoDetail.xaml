@@ -26,11 +26,11 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <ImageButton  x:Name="downloadImag" Source="download.png" Aspect="Fill" Grid.Row="0" Grid.Column="1"  Command="{Binding KeyboardClickCommand,Download}" BackgroundColor="Transparent">
+                    <ImageButton  x:Name="downloadImag" Source="http://shootsday.com.mx/imgs/download.png" Aspect="Fill" Grid.Row="0" Grid.Column="1"  Command="{Binding KeyboardClickCommand,Download}" BackgroundColor="Transparent">
                     </ImageButton>
                     <ImageButton  x:Name="likeImage" Aspect="Fill" Grid.Row="0" Grid.Column="0" Command="{Binding KeyboardClickCommand}" BackgroundColor="Transparent" Clicked="OnLikeClicked">
                     </ImageButton>
-                    <ImageButton  x:Name="shareImag" Source="share.png" Aspect="Fill" Grid.Row="0" Grid.Column="2" Command="{Binding Share,KeyboardClickCommand}" BackgroundColor="Transparent">
+                    <ImageButton  x:Name="shareImag" Source="http://shootsday.com.mx/imgs/share.png" Aspect="Fill" Grid.Row="0" Grid.Column="2" Command="{Binding Share,KeyboardClickCommand}" BackgroundColor="Transparent">
                     </ImageButton>
                 </Grid>
             </StackLayout>

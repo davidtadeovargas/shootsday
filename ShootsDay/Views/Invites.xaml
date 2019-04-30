@@ -8,13 +8,13 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical" Spacing="15" Padding="20">
-                <Image Source="logo.png" Scale="0.6"/>
+                <Image Source="http://shootsday.com.mx/imgs/logo.png" Scale="0.6"/>
                 <Label Text="INVITACION" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
                 <Label x:Name="address" HorizontalOptions="CenterAndExpand"/>
                 <Label x:Name="addressSecond" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
                 <Image x:Name="mapPicture" HorizontalOptions="CenterAndExpand" Aspect="AspectFit" Margin="0">
                 </Image>
-                <ImageButton Source="vermapa.png" Command="{Binding KeyboardClickCommand}" HorizontalOptions="CenterAndExpand" Margin="0" Clicked="OnVerMapaClicked">
+                <ImageButton Source="http://shootsday.com.mx/imgs/vermapa.png" Command="{Binding KeyboardClickCommand}" HorizontalOptions="CenterAndExpand" Margin="0" Clicked="OnVerMapaClicked">
                 </ImageButton>
             </StackLayout>
         </ScrollView>

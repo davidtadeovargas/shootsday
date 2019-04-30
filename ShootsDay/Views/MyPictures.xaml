@@ -22,7 +22,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
-                <Image  Source="fondo_red_social.jpg" 
+                <Image  Source="http://shootsday.com.mx/imgs/fondo_red_social.jpg" 
                         Opacity="0.8"
                         Grid.Row="0"
                         Grid.Column="0"
@@ -39,14 +39,14 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="marco.png" 
+                    <Image Source="http://shootsday.com.mx/imgs/marco.png" 
                                                 Aspect="AspectFit" 
                                                 HorizontalOptions="FillAndExpand"
                                                 Grid.Row="0" 
                                                 Grid.Column="0">
                     </Image>
                     <Frame Padding="7" BackgroundColor="Transparent" BorderColor="Transparent">
-                        <controls:CircleImage Source="default_profile.png" 
+                        <controls:CircleImage Source="http://shootsday.com.mx/imgs/default_profile.png" 
                                                               Aspect="AspectFit"
                                                               VerticalOptions="CenterAndExpand" 
                                                               HorizontalOptions="CenterAndExpand"

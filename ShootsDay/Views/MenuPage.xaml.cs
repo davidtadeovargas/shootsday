@@ -22,14 +22,14 @@ namespace ShootsDay
 			// Creating our pages for menu navigation
 			// Here you can define title for item, 
 			// icon on the left side, and page that you want to open after selection
-			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "inicio.png", TargetType = typeof(Home_) };
-            var misfotos_page = new MasterPageItem() { Title = "Red Social", Icon = "misfotos.png", TargetType = typeof(RedSocialTabPage) };
-            var invitacion_page = new MasterPageItem() { Title = "Invitacion", Icon = "invitacion_.png", TargetType = typeof(Invites) };
-            var sesionFotos_page = new MasterPageItem() { Title = "Sesion de Fotos", Icon = "sesionfotos_.png", TargetType = typeof(PhotoSesionsPage_) };
-            var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "contacto.png", TargetType = typeof(Contact) };
+			var init_page = new MasterPageItem() { Title = "Inicio", Icon = "http://shootsday.com.mx/imgs/inicio.png", TargetType = typeof(Home_) };
+            var misfotos_page = new MasterPageItem() { Title = "Red Social", Icon = "http://shootsday.com.mx/imgs/misfotos.png", TargetType = typeof(RedSocialTabPage) };
+            var invitacion_page = new MasterPageItem() { Title = "Invitacion", Icon = "http://shootsday.com.mx/imgs/invitacion_.png", TargetType = typeof(Invites) };
+            var sesionFotos_page = new MasterPageItem() { Title = "Sesion de Fotos", Icon = "http://shootsday.com.mx/imgs/sesionfotos_.png", TargetType = typeof(PhotoSesionsPage_) };
+            var contact_page = new MasterPageItem() { Title = "Contacto", Icon = "http://shootsday.com.mx/imgs/contacto.png", TargetType = typeof(Contact) };
 
             var autorizarFotos_page = new MasterPageItem() { Title = "Autorizar fotos", TargetType = typeof(Profile_) };
-            var usuarios_page = new MasterPageItem() { Title = "Usuarios", Icon = "usuarios_.png", TargetType = typeof(EventUsers) };
+            var usuarios_page = new MasterPageItem() { Title = "Usuarios", Icon = "http://shootsday.com.mx/imgs/usuarios_.png", TargetType = typeof(EventUsers) };
 
             var miPerfil_page = new MasterPageItem() { Title = "Mi perfil", Icon = "", TargetType = typeof(Profile_) };
             var salir_page = new MasterPageItem() { Title = "Cerrar sesión", Icon = "", TargetType = typeof(UserLogin) };

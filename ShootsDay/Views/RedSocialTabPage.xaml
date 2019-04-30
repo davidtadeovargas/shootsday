@@ -5,9 +5,9 @@
             xmlns:mypages="clr-namespace:ShootsDay.Views;assembly=ShootsDay"
             BackgroundColor="#868486">
     <TabbedPage.Children>
-        <NavigationPage Icon="red_social_white.png">
+        <NavigationPage Icon="red_social_white.png" Title="">
             <x:Arguments>
-                <mypages:RedSocial Title=""/>
+                <mypages:RedSocial Title="Red social"/>
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Icon="upload_picture_white.png">

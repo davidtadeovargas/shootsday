@@ -17,9 +17,9 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
-            <ImageButton x:Name="closeImg" Clicked="closeImgTapped"  BackgroundColor="Transparent" Command="{Binding KeyboardClickCommand}" Grid.Row="0" Source="close.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start" Margin="10,0,0,0">
+            <ImageButton x:Name="closeImg" Clicked="closeImgTapped"  BackgroundColor="Transparent" Command="{Binding KeyboardClickCommand}" Grid.Row="0" Source="http://shootsday.com.mx/imgs/close.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start" Margin="10,0,0,0">
             </ImageButton>
-            <Image x:Name="profile_img" Aspect="AspectFit" Grid.Row="1" HorizontalOptions="CenterAndExpand" Source="image.png" />
+            <Image x:Name="profile_img" Aspect="AspectFit" Grid.Row="1" HorizontalOptions="CenterAndExpand" Source="http://shootsday.com.mx/imgs/image.png" />
             <Label Text="Upload profile picture" TextColor="Gray" x:Name="pictureEntry"  Grid.Row="2" Margin="10,0,0,0"></Label>
             <Entry x:Name="editorComment" MaxLength="60" Placeholder="Titulo de la foto" FontSize="Small" HorizontalOptions="FillAndExpand" Grid.Row="3"/>
             <Button Text="Subir" 

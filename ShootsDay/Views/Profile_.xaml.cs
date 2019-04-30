@@ -36,6 +36,12 @@ namespace ShootsDay.Views
             init(-1,-1,false);
         }
 
+        private void closeImgTapped(object sender, EventArgs e)
+        {
+            this.Navigation.PopAsync();
+            this.Navigation.PopModalAsync();
+        }
+
         private void init(int userId_, int eventId_, bool anotherProfile_)
         {
             InitializeComponent();

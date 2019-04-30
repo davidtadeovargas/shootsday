@@ -15,6 +15,8 @@ namespace ShootsDay.Views
         public RedSocialTabPage()
         {
             InitializeComponent();
+
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

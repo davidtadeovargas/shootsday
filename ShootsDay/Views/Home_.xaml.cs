@@ -24,7 +24,7 @@ namespace ShootsDay.Views
 
         public Home_()
         {
-            init();
+            init();                      
         }
 
 

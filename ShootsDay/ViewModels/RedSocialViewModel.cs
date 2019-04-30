@@ -59,9 +59,9 @@ namespace ShootsDay.ViewModels
         {
             Profile_ Profile_ = new Profile_(User.id);
 
-            KeyboarClic(); //Simulate native clic sound 
-
-            Navigation.PushModalAsync(new MasterDetail(Profile_));
+            KeyboarClic(); //Simulate native clic sound             
+            
+            Navigation.PushAsync(new NavigationPage(new MasterDetail(Profile_)));
         }
 
 
@@ -70,8 +70,8 @@ namespace ShootsDay.ViewModels
             RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
 
             KeyboarClic(); //Simulate native clic sound 
-
-            Navigation.PushAsync(new MasterDetail(RedSocialDetail));
+            
+            Navigation.PushAsync(new MasterDetail(RedSocialDetail) {  });
         }
 
 

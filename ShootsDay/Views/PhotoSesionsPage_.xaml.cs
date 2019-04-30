@@ -24,7 +24,7 @@ namespace ShootsDay.Views
 
         private void init()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
             BindingContext = new PhotoSesionsViewModel(this);
 

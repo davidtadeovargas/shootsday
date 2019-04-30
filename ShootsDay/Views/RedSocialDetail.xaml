@@ -32,11 +32,11 @@
                             <StackLayout    HorizontalOptions="CenterAndExpand"
                                         Orientation="Horizontal">
                                 <Image  x:Name="likeImage" 
-                                    Source="liked.png" 
+                                    Source="http://shootsday.com.mx/imgs/liked.png" 
                                     Aspect="Fill">
                                 </Image>
                                 <Label FontSize="Micro" x:Name="lbCounterLikes" TextColor="#5c8a8a"></Label>
-                                <Image  x:Name="comment" Source="comment.png" Aspect="Fill">
+                                <Image  x:Name="comment" Source="http://shootsday.com.mx/imgs/comment.png" Aspect="Fill">
                                 </Image>
                                 <Label FontSize="Micro" x:Name="lbCounterComments" TextColor="#5c8a8a"></Label>
                             </StackLayout>
@@ -58,7 +58,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="marco.png" 
+                                <Image Source="http://shootsday.com.mx/imgs/marco.png" 
                                 Aspect="AspectFit" 
                                 HorizontalOptions="CenterAndExpand"
                                 Grid.Row="0" Grid.Column="0">
@@ -88,7 +88,7 @@
                                     </controls:CircleImage>
                                 </Frame>
                                 <Label Text="" x:Name="lblUserName" FontSize="Micro" TextColor="Black" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand"></Label>
-                                <Image Source="dots.png" Aspect="AspectFit" Grid.Row="0" Grid.Column="2">
+                                <Image Source="http://shootsday.com.mx/imgs/dots.png" Aspect="AspectFit" Grid.Row="0" Grid.Column="2">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer
                             Tapped="ViewProfileTapped"                            
@@ -107,107 +107,28 @@
                     </StackLayout>
                 </Frame>
                 <Label Text="Sin comentarios" 
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"
-                    FontSize="Large"
-                    x:Name="lblNoItemss"></Label>
-                <flv:FlowListView   
-                        FlowColumnCount="1" 
-                        SeparatorVisibility="None" 
-                        HasUnevenRows="true"                         
-                        FlowItemsSource="{Binding comments}"
-                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
-                        BackgroundColor="#EEEAE9"
-                        x:Name="commentsList">
-                    <flv:FlowListView.FlowColumnTemplate>
-                        <DataTemplate>
-                            <Grid Margin="15" BackgroundColor="#EEEAE9">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="marco.png" 
-                                    Aspect="AspectFit" 
-                                    HorizontalOptions="CenterAndExpand"
-                                    Grid.Row="0" Grid.Column="0">
-                                </Image>
-                                <Frame Padding="3" 
-                                       Margin="0" 
-                                       BackgroundColor="Transparent" 
-                                       BorderColor="Transparent" 
-                                       Grid.Row="0" 
-                                       Grid.Column="0" 
-                                       HorizontalOptions="CenterAndExpand">
-                                    <controls:CircleImage Source="{Binding User.url_image}" 
-                                                              Aspect="AspectFit">
-                                        <controls:CircleImage.WidthRequest>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android, iOS">55</On>
-                                                <On Platform="WinPhone">75</On>
-                                            </OnPlatform>
-                                        </controls:CircleImage.WidthRequest>
-                                        <controls:CircleImage.HeightRequest>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android, iOS">55</On>
-                                                <On Platform="WinPhone">75</On>
-                                            </OnPlatform>
-                                        </controls:CircleImage.HeightRequest>
-                                    </controls:CircleImage>
-                                </Frame>
-                                <Label Text="{Binding User.username}" FontSize="Micro" TextColor="Black" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand"></Label>
-                                <Label Text="{Binding comment}" FontSize="Micro" TextColor="Gray" HorizontalOptions="StartAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand"></Label>
-                            </Grid>
-                        </DataTemplate>
-                    </flv:FlowListView.FlowColumnTemplate>
-                </flv:FlowListView>
-                <StackLayout Orientation="Vertical"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        FontSize="Small"
+                        x:Name="lblNoItemss"
+                        Margin="0,25,0,25"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+                <StackLayout HorizontalOptions="CenterAndExpand" 
+                             x:Name="listListview" 
+                             Orientation="Vertical"
                              BackgroundColor="#EEEAE9">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="marco.png" 
-                                Aspect="AspectFit" 
-                                HorizontalOptions="CenterAndExpand"
-                                Grid.Row="0" Grid.Column="0">
-                        </Image>
-                        <Frame Padding="3" 
-                               Margin="0" 
-                               BackgroundColor="Transparent" 
-                               BorderColor="Transparent" 
-                               Grid.Row="0" Grid.Column="0" 
-                               HorizontalOptions="CenterAndExpand">
-                            <controls:CircleImage   Source="" 
-                                                x:Name="userType"
-                                                Aspect="AspectFit">
-                                <controls:CircleImage.WidthRequest>
-                                    <OnPlatform x:TypeArguments="x:Double">
-                                        <On Platform="Android, iOS">55</On>
-                                        <On Platform="WinPhone">75</On>
-                                    </OnPlatform>
-                                </controls:CircleImage.WidthRequest>
-                                <controls:CircleImage.HeightRequest>
-                                    <OnPlatform x:TypeArguments="x:Double">
-                                        <On Platform="Android, iOS">55</On>
-                                        <On Platform="WinPhone">75</On>
-                                    </OnPlatform>
-                                </controls:CircleImage.HeightRequest>
-                            </controls:CircleImage>
-                        </Frame>
-                        <Entry x:Name="messageEntry" Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"  Placeholder="Escribe..." Text="" TextColor="Black" TextChanged="CommentTextChange" BackgroundColor="#BDBDBD"></Entry>
-                        <Button IsEnabled="false" x:Name="btnEnviar" Text="Enviar" BackgroundColor="#1a1aff"  Grid.Row="0" Grid.Column="2" FontSize="Micro" HorizontalOptions="End" Clicked="OnSendClickedAsync"></Button>
-                    </Grid>
+                    
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             BackgroundColor="#EEEAE9"
+                             Padding="5,0,5,10"
+                             HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="messageEntry" HorizontalOptions="FillAndExpand"  Placeholder="Escribe..." Text="" TextColor="Black" TextChanged="CommentTextChange" FontSize="Micro"></Entry>
+                    <ImageButton IsEnabled="false" x:Name="btnEnviar" Source="http://shootsday.com.mx/imgs/send.png" BackgroundColor="Transparent" HorizontalOptions="End" Clicked="OnSendClickedAsync" WidthRequest="30" HeightRequest="30"></ImageButton>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

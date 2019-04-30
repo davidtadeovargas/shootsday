@@ -3,27 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShootsDay.Views.EventUsers"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
-    <flv:FlowListView   FlowColumnCount="1" 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+    </ContentPage.ToolbarItems>
+    <StackLayout Orientation="Vertical" Padding="10">
+        <Image Source="http://shootsday.com.mx/imgs/logo.png" Margin="20" Scale="0.7" />
+        <flv:FlowListView   
+                        FlowColumnCount="1" 
                         SeparatorVisibility="None"
                         HasUnevenRows="true"                        
                         FlowItemsSource="{Binding users}"
-                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}">
-        <flv:FlowListView.FlowColumnTemplate>
-            <DataTemplate>
-                <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
-                    <StackLayout Orientation="Vertical" Margin="0,10,0,10">
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding fullname}" TextColor="Black" WidthRequest="300" HorizontalOptions="FillAndExpand"></Label>
-                        </Grid>
-                        <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
-                    </StackLayout>
-                </Grid>
-            </DataTemplate>
-        </flv:FlowListView.FlowColumnTemplate>
+                        FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
+                        BackgroundColor="White"
+                        FlowItemTappedCommand="{Binding ItemTappedCommand}">
+            <flv:FlowListView.FlowColumnTemplate>
+                <DataTemplate>
+                    <Grid Margin="1" VerticalOptions="Start" BackgroundColor="White">
+                        <StackLayout Orientation="Vertical" Margin="0,0,0,20">
+                            <Grid>
+                                <Label Text="{Binding fullname}" TextColor="Gray" HorizontalOptions="CenterAndExpand" FontSize="Small" Margin="0,0,0,10"></Label>
+                            </Grid>
+                            <Image Source="{Binding url_image}" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </flv:FlowListView.FlowColumnTemplate>
 
-    </flv:FlowListView>
+        </flv:FlowListView>
+    </StackLayout>
 </ContentPage>

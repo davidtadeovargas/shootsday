@@ -43,7 +43,9 @@ namespace ShootsDay.Views
 
         public PhotoDetail(Photoshoot Photoshoot)
         {
-            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            InitializeComponent();            
 
             Photoshoot_ = Photoshoot; //Save current photo
 
@@ -60,10 +62,10 @@ namespace ShootsDay.Views
             });
 
             //Set the like
-            var sourceLike = "liked.png";
+            var sourceLike = "http://shootsday.com.mx/imgs/liked.png";
             if (Photoshoot_.Like!=null)
             {
-                sourceLike = "like.png";
+                sourceLike = "http://shootsday.com.mx/imgs/like.png";
             }
             Device.BeginInvokeOnMainThread(() =>
             {

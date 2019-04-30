@@ -9,7 +9,7 @@
                 <BoxView HeightRequest="10" />
                 <Image HorizontalOptions="Center"
 		               WidthRequest="300"
-		               Source="logo.png"
+		               Source="http://shootsday.com.mx/imgs/logo.png"
                        Scale="0.7"/>
                 <Label x:Name="link" Text="LOGIN" HorizontalOptions="CenterAndExpand" FontSize="Large" Margin="0,10,0,0">
                 </Label>
@@ -31,9 +31,9 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                         </Grid.ColumnDefinitions>
-                        <ImageButton Source="login.png" HorizontalOptions="FillAndExpand" Command="{Binding KeyboardClickCommand}" Grid.Row="0" Aspect="AspectFill" Clicked="evt_btnLogin" x:Name="btn_login">
+                        <ImageButton Source="http://shootsday.com.mx/imgs/login.jpg" HorizontalOptions="FillAndExpand" Command="{Binding KeyboardClickCommand}" Grid.Row="0" Aspect="AspectFill" Clicked="evt_btnLogin" x:Name="btn_login">
                         </ImageButton>
-                        <ImageButton Source="registrar.png" HorizontalOptions="FillAndExpand" Command="{Binding KeyboardClickCommand}" Grid.Row="1"  Aspect="AspectFill" x:Name="btnRegistrar" Clicked="OnRegistrarClicked">
+                        <ImageButton Source="http://shootsday.com.mx/imgs/registrar.png" HorizontalOptions="FillAndExpand" Command="{Binding KeyboardClickCommand}" Grid.Row="1"  Aspect="AspectFill" x:Name="btnRegistrar" Clicked="OnRegistrarClicked">
                         </ImageButton>
                     </Grid>
                 </StackLayout>

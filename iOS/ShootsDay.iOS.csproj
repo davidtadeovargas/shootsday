@@ -148,15 +148,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Contents.json">
+    <ImageAsset Include="Assets.xcassets\upload_picture_white.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\left.png" />
+    <ImageAsset Include="Assets.xcassets\red_social_white.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\my_pictures_white.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\logo.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\intro.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Icon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -171,30 +186,7 @@
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\contact.png" />
-    <BundleResource Include="Resources\home.png" />
-    <BundleResource Include="Resources\invite.png" />
-    <BundleResource Include="Resources\photoshoot.png" />
-    <BundleResource Include="Resources\picture.png" />
-    <BundleResource Include="Resources\logo.png" />
-    <BundleResource Include="Resources\menu-collapse.png" />
-    <BundleResource Include="Resources\comment.png" />
-    <BundleResource Include="Resources\like_black.png" />
-    <BundleResource Include="Resources\like.png" />
-    <BundleResource Include="Resources\my_pictures_white.png" />
-    <BundleResource Include="Resources\red_social_white.png" />
-    <BundleResource Include="Resources\upload_picture_white.png" />
-    <BundleResource Include="Resources\logout.png" />
-    <BundleResource Include="Resources\profile.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\dots.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

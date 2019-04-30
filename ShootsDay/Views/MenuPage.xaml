@@ -10,7 +10,7 @@
                             Spacing="15"
                             Scale="0.7"
                             Padding="5">
-                <Image Source="logo.png"
+                <Image Source="http://shootsday.com.mx/imgs/logo.png"
                          WidthRequest="50"
                          HeightRequest="50"/>
             </StackLayout>

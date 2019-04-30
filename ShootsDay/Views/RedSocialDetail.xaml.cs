@@ -35,7 +35,7 @@ namespace ShootsDay.Views
             /*
                 Init the view model
              */
-            RedSocialDetailViewModel = new RedSocialDetailViewModel(this, Picture_, lblNoItemss, commentsList);            
+            RedSocialDetailViewModel = new RedSocialDetailViewModel(this, Picture_, lblNoItemss, listListview);            
             BindingContext = RedSocialDetailViewModel; //Attach the binding context
 
             /*
@@ -46,7 +46,7 @@ namespace ShootsDay.Views
                 string url = Picture_.url_image;
                 image.Source = ImageSource.FromUri(new Uri(url));
 
-                userType.Source = ImageSource.FromUri(new Uri(url));
+                //userType.Source = ImageSource.FromUri(new Uri(url));
 
                 RedSocialDetailViewModel.Source = image.Source;//For binding
 
@@ -85,7 +85,7 @@ namespace ShootsDay.Views
 
             Profile_ Profile_ = new Profile_(Picture_.User.id);
 
-            Navigation.PushModalAsync(Profile_);
+            Navigation.PushModalAsync(new MasterDetail(Profile_));
         }
 
         private async void OnSendClickedAsync(object sender, EventArgs e)

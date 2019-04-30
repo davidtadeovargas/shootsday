@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ShootsDay.ViewModels
@@ -17,7 +18,7 @@ namespace ShootsDay.ViewModels
     {
         private ObservableCollection<User> users_;
         private bool endOfRecords = false;
-        
+        public ICommand ViewPerfilCommand { get; private set; }
 
 
 
@@ -30,6 +31,17 @@ namespace ShootsDay.ViewModels
 
             ItemTappedCommand = new Command((args) => OnUserTappedAsync(args));
             ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
+            ViewPerfilCommand = new Command<User>(async (User) => await OnViewProfileTappedAsync(User));
+        }
+
+
+        private async Task OnViewProfileTappedAsync(User User)
+        {
+            Profile_ Profile_ = new Profile_(User.id);
+
+            KeyboarClic(); //Simulate native clic sound 
+
+            Navigation.PushModalAsync(new MasterDetail(Profile_));
         }
 
         private async Task OnUserTappedAsync(object args)

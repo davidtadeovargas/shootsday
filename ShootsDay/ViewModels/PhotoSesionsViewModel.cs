@@ -36,7 +36,7 @@ namespace ShootsDay.ViewModels
         {
             KeyboarClic(); //Simulate native clic sound 
 
-            await Navigation.PushModalAsync(new MasterDetail(new PhotoDetail(Photoshoot)));
+            await Navigation.PushAsync(new MasterDetail(new PhotoDetail(Photoshoot)));
         }
 
 

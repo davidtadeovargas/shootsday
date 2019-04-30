@@ -60,11 +60,16 @@ namespace ShootsDay
 
             previousPage = page;
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(page))
+            //Application.Current.MainPage.Navigation.PushAsync((Page)Activator.CreateInstance(page));
+            Detail.Navigation.PushAsync((Page)Activator.CreateInstance(page));
+
+            /*Detail = new NavigationPage((Page)Activator.CreateInstance(page))
             {
                 BarBackgroundColor = Color.FromHex("#bababa"),
                 BarTextColor = Color.White
-            };
+            };*/
+
+            IsPresented = false;
         }
 	}
 }

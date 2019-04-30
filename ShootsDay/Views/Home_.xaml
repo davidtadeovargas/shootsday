@@ -8,18 +8,18 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand">
-            <Image Source="logo.png" Margin="35" Scale="0.7" />
+            <Image Source="http://shootsday.com.mx/imgs/logo.png" Margin="35" Scale="0.7" />
             <Label Text="¿QUE QUIERES HACER?" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
             <Grid 
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
                 RowSpacing="10"
                 Padding="35">
-                <ImageButton Source="sesionfotos.jpg" x:Name="btnSesionFotos" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="0" Grid.Column="0" Clicked="OnSesionFotosClicked">
+                <ImageButton Source="http://shootsday.com.mx/imgs/sesionfotos.jpg" x:Name="btnSesionFotos" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="0" Grid.Column="0" Clicked="OnSesionFotosClicked">
                 </ImageButton>
-                <ImageButton Source="redsocial.png" x:Name="btnRedSocial" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="1" Grid.Column="0" Clicked="OnRedSocialClickedAsync">
+                <ImageButton Source="http://shootsday.com.mx/imgs/redsocial.png" x:Name="btnRedSocial" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="1" Grid.Column="0" Clicked="OnRedSocialClickedAsync">
                 </ImageButton>
-                <ImageButton Source="invitacion.jpg" x:Name="btnInvitacion" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="2" Grid.Column="0" Clicked="OnInvitacionClicked">
+                <ImageButton Source="http://shootsday.com.mx/imgs/invitacion.jpg" x:Name="btnInvitacion" Command="{Binding KeyboardClickCommand}" Aspect="Fill" Grid.Row="2" Grid.Column="0" Clicked="OnInvitacionClicked">
                 </ImageButton>
             </Grid>
 

@@ -14,7 +14,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                 </Grid.ColumnDefinitions>
-                <Image HorizontalOptions="CenterAndExpand" Source="logo.png" Grid.Row="0" Scale="0.6" Margin="0,0,0,10"/>
+                <Image HorizontalOptions="CenterAndExpand" Source="http://shootsday.com.mx/imgs/logo.png" Grid.Row="0" Scale="0.6" Margin="0,0,0,10"/>
                 <StackLayout Orientation="Vertical" Spacing="10" Grid.Row="1" Margin="0,0,0,20">
                     <Entry x:Name="NameEntry" FontSize="Small" Placeholder="Nombre" Text="{Binding Name}" TextColor="Black" TextChanged="EntryNameTextChanged"></Entry>
                     <Entry x:Name="LastNameEntry" FontSize="Small" Placeholder="Apellidos" Text="{Binding LastName}" TextColor="Black" TextChanged="LastNameTextChanged"></Entry>
@@ -31,7 +31,7 @@
                                     NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>-->
                         </Label>
-                        <ImageButton x:Name="closeImg" Command="{Binding KeyboardClickCommand}" Clicked="closeImgTapped" Source="close.png" WidthRequest="20" BackgroundColor="Transparent"/>
+                        <ImageButton x:Name="closeImg" Command="{Binding KeyboardClickCommand}" Clicked="closeImgTapped" Source="http://shootsday.com.mx/imgs/close.png" WidthRequest="20" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </StackLayout>
                 <Image x:Name="profile_img" Grid.Row="2" Aspect="AspectFit" HorizontalOptions="FillAndExpand" Margin="0,0,0,30"/>

@@ -1,4 +1,5 @@
 ﻿using DLToolkit.Forms.Controls;
+using ImageCircle.Forms.Plugin.Abstractions;
 using ShootsDay.Managers;
 using ShootsDay.RequestModels;
 using ShootsDay.ViewModels;
@@ -19,8 +20,8 @@ namespace ShootsDay.Models.Share
         public ImageSource Source { get; set; }
         public Picture Picture { get; set; }
         public Label lblNoItems { get; set; }
-        public FlowListView FlowListView { get; set; }        
-
+        public StackLayout StackLayoutListview { get; set; }
+        
         private ObservableCollection<Comment> comments_;
         private bool endOfRecords = false;
 
@@ -46,13 +47,16 @@ namespace ShootsDay.Models.Share
 
 
 
-        public RedSocialDetailViewModel(Page context, Picture Picture_, Label lblNoItems_, FlowListView FlowListView_) : base(context)
+        public RedSocialDetailViewModel(Page context, 
+                                        Picture Picture_, 
+                                        Label lblNoItems_, 
+                                        StackLayout StackLayout_) : base(context)
         {
             comments = new ObservableCollection<Comment>();
 
             Picture = Picture_;
             lblNoItems = lblNoItems_;
-            FlowListView = FlowListView_;
+            this.StackLayoutListview = StackLayout_;
 
             getComments();
 
@@ -124,14 +128,12 @@ namespace ShootsDay.Models.Share
                         if (jsonSystem.data == null)
                         {
                             Device.BeginInvokeOnMainThread(() => {
-                                FlowListView.IsVisible = false;
                                 lblNoItems.IsVisible = true;
                             });
                         }
                         else
                         {
                             Device.BeginInvokeOnMainThread(() => {
-                                FlowListView.IsVisible = true;
                                 lblNoItems.IsVisible = false;
                             });                            
                         }
@@ -141,10 +143,52 @@ namespace ShootsDay.Models.Share
                             endOfRecords = true;
                         }
 
-                        foreach (var Photo in comments_)
+                        var rowCount = 0;
+                        foreach (var Comment in comments_)
                         {
                             Device.BeginInvokeOnMainThread(() => {
-                                comments.Add(Photo);
+                                comments.Add(Comment);
+
+                                var gridImageUser = new Grid();
+                                gridImageUser.BackgroundColor = Color.FromHex("#EEEAE9");
+                                gridImageUser.Padding = 10;
+                                gridImageUser.HorizontalOptions = LayoutOptions.FillAndExpand;
+                                gridImageUser.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                                gridImageUser.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                                gridImageUser.ColumnDefinitions.Add(new ColumnDefinition { Width = 30 });
+                                gridImageUser.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+                                var circuleImage = new CircleImage();
+                                circuleImage.Source = Comment.User.url_image;
+                                circuleImage.Aspect = Aspect.AspectFit;
+                                circuleImage.WidthRequest = 55;
+                                Grid.SetRow(circuleImage, 0);
+                                Grid.SetColumn(circuleImage, 0);
+                                gridImageUser.Children.Add(circuleImage);
+
+                                var comment = new Label();
+                                comment.Text = Comment.comment;
+                                comment.FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label));
+                                comment.TextColor = Color.Gray;
+                                comment.HorizontalOptions = Xamarin.Forms.LayoutOptions.CenterAndExpand;
+                                comment.VerticalOptions = Xamarin.Forms.LayoutOptions.CenterAndExpand;
+                                Grid.SetRow(comment, 0);
+                                Grid.SetColumn(comment, 1);
+                                gridImageUser.Children.Add(comment);
+
+                                var publiDate = new Label();
+                                publiDate.Text = Comment.createdString;
+                                publiDate.FontSize = 7;
+                                publiDate.TextColor = Color.Black;
+                                publiDate.HorizontalOptions = Xamarin.Forms.LayoutOptions.StartAndExpand;
+                                publiDate.VerticalOptions = Xamarin.Forms.LayoutOptions.CenterAndExpand;
+                                Grid.SetRow(publiDate, 1);
+                                Grid.SetColumn(publiDate, 1);
+                                gridImageUser.Children.Add(publiDate);
+
+                                StackLayoutListview.Children.Add(gridImageUser);
+
+                                ++rowCount;
                             });
                         }
                     }
