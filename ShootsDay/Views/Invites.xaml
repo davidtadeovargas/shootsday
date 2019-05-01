@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="ShootsDay.Invites">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem x:Name="NameToolb" Text="Invitacion al Evento" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>

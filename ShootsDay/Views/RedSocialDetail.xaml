@@ -117,11 +117,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                 </Grid>
-                <StackLayout HorizontalOptions="CenterAndExpand" 
+                <StackLayout HorizontalOptions="FillAndExpand" 
                              x:Name="listListview" 
                              Orientation="Vertical"
-                             BackgroundColor="#EEEAE9">
-                    
+                             BackgroundColor="#EEEAE9"
+                             Spacing="0">
                 </StackLayout>
                 <StackLayout Orientation="Horizontal"
                              BackgroundColor="#EEEAE9"

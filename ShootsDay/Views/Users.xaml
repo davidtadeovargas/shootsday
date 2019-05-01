@@ -4,14 +4,25 @@
              x:Class="ShootsDay.Views.EventUsers"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem x:Name="NameToolb" Text="Usuarios del Evento" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <StackLayout Orientation="Vertical" Padding="10">
-        <Image Source="http://shootsday.com.mx/imgs/logo.png" Margin="20" Scale="0.7" />
+        <Image Source="http://shootsday.com.mx/imgs/logo.png" Margin="10" />
+        <StackLayout    x:Name="noRecords" 
+                        Padding="20"
+                        IsVisible="false"
+                        HorizontalOptions="CenterAndExpand">
+            <Label 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               TextColor="Gray"
+               FontSize="Micro">Actualmente no hay usuarios registrados para este evento :(</Label>
+        </StackLayout>
         <flv:FlowListView   
                         FlowColumnCount="1" 
                         SeparatorVisibility="None"
-                        HasUnevenRows="true"                        
+                        HasUnevenRows="true"
+                        x:Name="usersList"
                         FlowItemsSource="{Binding users}"
                         FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
                         BackgroundColor="White"

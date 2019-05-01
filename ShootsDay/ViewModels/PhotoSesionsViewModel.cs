@@ -11,6 +11,7 @@ using ShootsDay.Views;
 using ShootsDay.Managers;
 using ShootsDay.RequestModels;
 using System.Windows.Input;
+using DLToolkit.Forms.Controls;
 
 namespace ShootsDay.ViewModels
 {
@@ -20,11 +21,21 @@ namespace ShootsDay.ViewModels
         private ObservableCollection<Photoshoot> photoShoots_;
         private bool endOfRecords = false;
         public ICommand ViewImageCommand { get; private set; }
+        public FlowListView FlowListViewUsers { get; set; }
+        public Label NoRecords { get; set; }
+        public bool firstLoad { get; set; }
 
 
-        public PhotoSesionsViewModel(Page context) : base(context)
+        public PhotoSesionsViewModel(   Page context,
+                                        FlowListView FlowListViewUsers_,
+                                        Label NoRecords_) : base(context)
         {
             photoShoots = new ObservableCollection<Photoshoot>();
+
+            firstLoad = true;
+
+            FlowListViewUsers = FlowListViewUsers_;
+            NoRecords = NoRecords_;
 
             getPhotos();
 
@@ -117,6 +128,24 @@ namespace ShootsDay.ViewModels
                     {
                         //Get the photo list
                         List<Photoshoot> photoshoots_ = jsonSystem.data.Photoshoots;
+
+                        //When no records
+                        if (photoshoots_.Count == 0 && firstLoad)
+                        {
+                            Device.BeginInvokeOnMainThread(() => {
+                                FlowListViewUsers.IsVisible = false;
+                                NoRecords.IsVisible = true;
+                            });
+                        }
+                        else
+                        {
+                            Device.BeginInvokeOnMainThread(() => {
+                                FlowListViewUsers.IsVisible = true;
+                                NoRecords.IsVisible = false;
+                            });
+                        }
+
+                        firstLoad = false;
 
                         if (photoshoots_.Count() == 0 || photoshoots_.Count() < Constants.LIMIT)
                         {

@@ -22,14 +22,12 @@ namespace ShootsDay.Views
 
         private void init()
         {
-            NavigationPage.SetHasNavigationBar(this, false);
-
             InitializeComponent();
 
             BindingContext = new MyPicturesViewModel(this);
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                //NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";
                 imgProfile.Source = SettingsManager.Instance.getuSerUrlImage();
             });//UserEvents

@@ -5,9 +5,9 @@
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              BackgroundColor="White">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem x:Name="NameToolb" Text="Mis Eventos" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
-    <StackLayout Orientation="Vertical" Padding="10">
+    <StackLayout Orientation="Vertical" Padding="10" BackgroundColor="White">
         <Image Source="http://shootsday.com.mx/imgs/logo.png" Margin="20" Scale="0.7" />
         <flv:FlowListView   
                         FlowColumnCount="1" 

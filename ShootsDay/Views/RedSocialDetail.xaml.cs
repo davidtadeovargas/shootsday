@@ -117,7 +117,10 @@ namespace ShootsDay.Views
                     {
                         //Reload the comments
                         RedSocialDetailViewModel.comments.Clear();
+                        listListview.Children.Clear();
                         RedSocialDetailViewModel.getComments();
+
+                        messageEntry.Text = ""; //Clear the field to type new messages
                     }
                     else
                     {

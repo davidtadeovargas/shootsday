@@ -42,7 +42,8 @@ namespace ShootsDay.Views
             BindingContext = HomeViewModel; //Attach the binding context
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                NameToolb.Text = "Bienvenido, " + SettingsManager.Instance.getUserLargeName() + "!";
+                eventLbl.Text = SettingsManager.Instance.getEventCode();
             });
         }
 

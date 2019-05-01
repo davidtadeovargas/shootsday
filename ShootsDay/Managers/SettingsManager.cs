@@ -19,6 +19,7 @@ namespace ShootsDay.Managers
         private const string USERNAME_LARGE = "usernamelarge";
         private const string PASSWORD = "password";
         private const string ID_EVENT = "id_event";
+        private const string EVENT_CODE = "event_code";
         private const string HOST = "host";
         private const string ROLE_ID = "role_id";
         private const string TITTLE_EVENT = "title_event";
@@ -60,6 +61,23 @@ namespace ShootsDay.Managers
             }            
         }
 
+
+        public void setEventCode(string eventCode)
+        {
+            Application.Current.Properties[EVENT_CODE] = eventCode;
+        }
+        public string getEventCode()
+        {
+            if (Application.Current.Properties.ContainsKey(EVENT_CODE))
+            {
+                var result = (string)Application.Current.Properties[EVENT_CODE];
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public void setTUserUrlImage(string userUrlImage)
         {

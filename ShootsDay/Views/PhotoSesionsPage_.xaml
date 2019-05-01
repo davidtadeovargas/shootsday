@@ -5,7 +5,7 @@
              x:Name="PhotoSesionsPage"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem x:Name="NameToolb" Text="Session de Fotos" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <Grid>
         <Grid.RowDefinitions>
@@ -14,12 +14,26 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
-        <Label x:Name="tittleLabel" Grid.Row="0" HorizontalOptions="CenterAndExpand" TextColor="#33bbff" FontSize="Medium" Margin="0,15,0,15"></Label>
+        <StackLayout    Padding="20"
+                        Grid.Row="0"
+                        HorizontalOptions="CenterAndExpand"
+                        Orientation="Vertical"
+                        Margin="0,15,0,15">
+            <Label x:Name="tittleLabel" HorizontalOptions="CenterAndExpand" TextColor="#33bbff" FontSize="Medium"></Label>
+            <Label 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               TextColor="Gray"
+                x:Name="noRecords"
+               FontSize="Micro"
+               IsVisible="false">Actualmente no hay fotos de sesion :(</Label>
+        </StackLayout>
         <flv:FlowListView   
                         FlowColumnCount="2" 
                         SeparatorVisibility="None" 
                         HasUnevenRows="False" 
-                        RowHeight="150"                        
+                        RowHeight="150"  
+                        x:Name="photosList"
                         FlowItemsSource="{Binding photoShoots}"
                         FlowItemTappedCommand="{Binding ItemTappedCommand}"
                         FlowItemAppearingCommand="{Binding ItemAppearingCommand}"

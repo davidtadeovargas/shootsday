@@ -26,8 +26,6 @@ namespace ShootsDay.Views
 
         public TakePicture ()
 		{
-            NavigationPage.SetHasNavigationBar(this,false);
-
             InitializeComponent ();
 
             BindingContext = new TakePictureViewModel(this);
@@ -35,7 +33,7 @@ namespace ShootsDay.Views
             pictureEntry.GestureRecognizers.Add(new TapGestureRecognizer(uploadPicture));
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                //NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";                
             });
         }

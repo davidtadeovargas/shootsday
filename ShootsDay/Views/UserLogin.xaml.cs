@@ -180,10 +180,8 @@ namespace ShootsDay
 				//var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
 				var content = new StringContent(userData, Encoding.UTF8, "application/json");
 
-				//var uri = new Uri("http://10.0.2.57:8030/ws-jsproject/users/login.json");
-				var uri = new Uri(Constants.USERS_LOGIN);
-				//var uri = new Uri("http://192.168.0.6:8850/ws-jsproject/users/login.json");
-
+			    var uri = new Uri(Constants.USERS_LOGIN);
+				
 				var result = await client.PostAsync(uri, content).ConfigureAwait(true);
 
                 LoadingManager.Instance.closeLoading();
@@ -205,6 +203,7 @@ namespace ShootsDay
                         settingsManager.setUserLargeName(jsonSystem.data.User.fullname);
                         settingsManager.setPassword(PasswordEntry.Text);
                         settingsManager.setIdEvent(jsonSystem.data.Event.id);
+                        settingsManager.setEventCode(jsonSystem.data.Event.code);
                         settingsManager.setHost(jsonSystem.data.Host.url);
                         settingsManager.setRoleId(jsonSystem.data.User.role_id);
                         settingsManager.setIsSuperUser(jsonSystem.data.User.super);

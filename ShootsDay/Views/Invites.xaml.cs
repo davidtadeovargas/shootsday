@@ -40,7 +40,7 @@ namespace ShootsDay
             {
                 var urlMap = ImagesManager.Instance.getInvitationMap();
                 mapPicture.Source = ImageSource.FromUri(new Uri(urlMap));
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                //NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 Title = "";
             });
         }

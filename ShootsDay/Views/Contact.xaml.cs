@@ -13,7 +13,7 @@ namespace ShootsDay
 			InitializeComponent();
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                //NameToolb.Text = SettingsManager.Instance.getUserLargeName();
             });
         }
 

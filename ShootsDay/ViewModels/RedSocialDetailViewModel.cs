@@ -150,18 +150,21 @@ namespace ShootsDay.Models.Share
                                 comments.Add(Comment);
 
                                 var gridImageUser = new Grid();
+                                gridImageUser.RowSpacing = 1;
                                 gridImageUser.BackgroundColor = Color.FromHex("#EEEAE9");
                                 gridImageUser.Padding = 10;
                                 gridImageUser.HorizontalOptions = LayoutOptions.FillAndExpand;
                                 gridImageUser.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
                                 gridImageUser.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                                gridImageUser.ColumnDefinitions.Add(new ColumnDefinition { Width = 30 });
+                                gridImageUser.ColumnDefinitions.Add(new ColumnDefinition { Width = 25 });
                                 gridImageUser.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
                                 var circuleImage = new CircleImage();
                                 circuleImage.Source = Comment.User.url_image;
                                 circuleImage.Aspect = Aspect.AspectFit;
-                                circuleImage.WidthRequest = 55;
+                                circuleImage.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                                circuleImage.VerticalOptions = LayoutOptions.CenterAndExpand;
+                                circuleImage.WidthRequest = 35;
                                 Grid.SetRow(circuleImage, 0);
                                 Grid.SetColumn(circuleImage, 0);
                                 gridImageUser.Children.Add(circuleImage);
@@ -170,7 +173,7 @@ namespace ShootsDay.Models.Share
                                 comment.Text = Comment.comment;
                                 comment.FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label));
                                 comment.TextColor = Color.Gray;
-                                comment.HorizontalOptions = Xamarin.Forms.LayoutOptions.CenterAndExpand;
+                                comment.HorizontalOptions = Xamarin.Forms.LayoutOptions.StartAndExpand;
                                 comment.VerticalOptions = Xamarin.Forms.LayoutOptions.CenterAndExpand;
                                 Grid.SetRow(comment, 0);
                                 Grid.SetColumn(comment, 1);

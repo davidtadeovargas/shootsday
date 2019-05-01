@@ -57,8 +57,8 @@ namespace ShootsDay.Views
             BindingContext = _photoDetailViewModel; //Attach the binding context
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
-                Title = "Sesion de Fotos";
+                //NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                //Title = "Sesion de Fotos";
             });
 
             //Set the like
@@ -144,12 +144,12 @@ namespace ShootsDay.Views
                         if (Photoshoot_.Like == null)
                         {
                             Photoshoot_.Like = jsonSystem.data.Like;
-                            sourceLike = "like.png";
+                            sourceLike = "http://shootsday.com.mx/imgs/like.png";
                         }
                         else
                         {
                             Photoshoot_.Like = null;
-                            sourceLike = "liked.png";
+                            sourceLike = "http://shootsday.com.mx/imgs/liked.png";
                         }
 
                         

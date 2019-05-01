@@ -18,7 +18,7 @@ namespace ShootsDay.Views
         {
             InitializeComponent();
 
-            BindingContext = new UsersViewModel(this);
+            BindingContext = new UsersViewModel(this, usersList, noRecords);
         }        
     }
 }

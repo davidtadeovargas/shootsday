@@ -6,7 +6,7 @@
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              BackgroundColor="#CFCFCF">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"/>
+        <ToolbarItem x:Name="NameToolb" Text="Red Social" Order="Primary" Priority="1"/>
     </ContentPage.ToolbarItems>
     <StackLayout Orientation="Vertical" BackgroundColor="#CFCFCF">
         <flv:FlowListView   

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using ShootsDay.Models;
+using ShootsDay.Views;
 using Xamarin.Forms;
 
 namespace ShootsDay
@@ -25,7 +26,7 @@ namespace ShootsDay
 			//Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(page)));
 			Detail = new NavigationPage(page) 
 			{
-				BarBackgroundColor = Color.FromHex("#bababa"),
+				BarBackgroundColor = Color.FromHex("#1976D3"),
 				BarTextColor = Color.White                
 			};
 		}
@@ -60,8 +61,23 @@ namespace ShootsDay
 
             previousPage = page;
 
-            //Application.Current.MainPage.Navigation.PushAsync((Page)Activator.CreateInstance(page));
-            Detail.Navigation.PushAsync((Page)Activator.CreateInstance(page));
+            if (itemSelect.Title == "Inicio" || 
+                itemSelect.Title == "Invitacion" || 
+                itemSelect.Title == "Sesion de Fotos" || 
+                itemSelect.Title == "Contacto" ||
+                itemSelect.Title == "Usuarios" ||
+                itemSelect.Title == "Mi perfil")
+            {
+                Application.Current.MainPage = new MasterDetail((Page)Activator.CreateInstance(page));
+            }
+            else if (itemSelect.Title == "Cerrar sesión")
+            {
+                Application.Current.MainPage = (Page)Activator.CreateInstance(page);
+            }
+            else
+            {
+                Detail.Navigation.PushAsync((Page)Activator.CreateInstance(page));
+            }
 
             /*Detail = new NavigationPage((Page)Activator.CreateInstance(page))
             {

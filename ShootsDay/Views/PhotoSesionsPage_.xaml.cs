@@ -26,12 +26,12 @@ namespace ShootsDay.Views
         {
             InitializeComponent();            
 
-            BindingContext = new PhotoSesionsViewModel(this);
+            BindingContext = new PhotoSesionsViewModel(this, photosList, noRecords);
 
             Device.BeginInvokeOnMainThread(() => {
-                NameToolb.Text = SettingsManager.Instance.getUserLargeName();
+                //NameToolb.Text = SettingsManager.Instance.getUserLargeName();
                 tittleLabel.Text = SettingsManager.Instance.getTitleEvent();
-                Title = "Sesion de Fotos";
+                Title = "";
             });
         }
     }

@@ -4,7 +4,7 @@
              x:Class="ShootsDay.Contact"
              BackgroundColor="White">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem x:Name="NameToolb" Text="Contacto" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>

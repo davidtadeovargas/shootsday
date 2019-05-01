@@ -4,7 +4,7 @@
              x:Class="ShootsDay.Views.TakePicture"
              BackgroundColor="#CFCFCF">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem x:Name="NameToolb" Text="Subir Foto" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content BackgroundColor="#CFCFCF">
         <Grid BackgroundColor="#CFCFCF" Padding="15">

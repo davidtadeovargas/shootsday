@@ -4,11 +4,18 @@
              x:Class="ShootsDay.Views.Home_"
              BackgroundColor="White">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="NameToolb" Text="" Order="Primary" Priority="1"  />
+        <ToolbarItem Text="Hola de nuevo :)" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand">
-            <Image Source="http://shootsday.com.mx/imgs/logo.png" Margin="35" Scale="0.7" />
+            <Label x:Name="NameToolb" HorizontalOptions="EndAndExpand" FontSize="Micro" TextColor="Gray" Margin="0,5,5,0"/>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="EndAndExpand"
+                         Margin="0,0,5,0">
+                <Label FontSize="Micro"  Text="Estas en el evento: " TextColor="Gray"/>
+                <Label x:Name="eventLbl" FontSize="Micro" TextColor="Black"/>
+            </StackLayout>
+            <Image Source="http://shootsday.com.mx/imgs/logo.png" Margin="25" />
             <Label Text="¿QUE QUIERES HACER?" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
             <Grid 
                 HorizontalOptions="FillAndExpand"
