@@ -32,9 +32,6 @@ namespace ShootsDay.Views
         {
             InitializeComponent();
 
-            if (Application.Current.Properties.ContainsKey("title_event"))
-                title = Application.Current.Properties["title_event"].ToString();
-
             /*
                 Init the view model
              */

@@ -33,6 +33,9 @@ namespace ShootsDay.ViewModels
 
             //Save the event in ram
             SettingsManager.Instance.setIdEvent(Event.id);
+            SettingsManager.Instance.setTitleEvent(Event.title);
+            SettingsManager.Instance.setEventCode(Event.code);
+            SettingsManager.Instance.SavePropertiesAsync();
 
             //Open the main window
             Navigation.PushModalAsync(new MasterDetail(new Home_()));

@@ -23,7 +23,7 @@ namespace ShootsDay.Views
         {
             InitializeComponent();
 
-            BindingContext = new RedSocialViewModel(this);
+            BindingContext = new RedSocialViewModel(this, listItems,noRecords);
 
             Device.BeginInvokeOnMainThread(() => {
                 //NameToolb.Text = SettingsManager.Instance.getUserLargeName();

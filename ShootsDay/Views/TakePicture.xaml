@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShootsDay.Views.TakePicture"
-             BackgroundColor="#CFCFCF">
+             BackgroundColor="White">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="NameToolb" Text="Subir Foto" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
-    <ContentPage.Content BackgroundColor="#CFCFCF">
-        <Grid BackgroundColor="#CFCFCF" Padding="15">
+    <ContentPage.Content BackgroundColor="White">
+        <Grid BackgroundColor="White" Padding="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />

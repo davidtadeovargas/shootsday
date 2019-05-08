@@ -5,11 +5,11 @@
              Title="My pictures"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             BackgroundColor="#CFCFCF">
+             BackgroundColor="White">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="NameToolb" Text="Mis Imagenes" Order="Primary" Priority="1"  />
     </ContentPage.ToolbarItems>
-    <Grid BackgroundColor="#CFCFCF">
+    <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -71,16 +71,25 @@
                 </Grid>
             </Grid>
         </StackLayout>
-        <Frame Padding="0"
-               Grid.Row="1"
-               BackgroundColor="#CFCFCF"
-               HasShadow="False"
-               OutlineColor="#CFCFCF">
+        <StackLayout Orientation="Vertical"
+                     Grid.Row="1">
+            <StackLayout    
+                        x:Name="noRecords" 
+                        Padding="20"
+                        IsVisible="false"
+                        HorizontalOptions="CenterAndExpand">
+                <Label 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               TextColor="Gray"
+               FontSize="Micro">Actualmente no hay imagenes tuyas :(</Label>
+            </StackLayout>
             <flv:FlowListView   
                         FlowColumnCount="2" 
                         SeparatorVisibility="None" 
                         HasUnevenRows="False" 
                         RowHeight="150"
+                        x:Name="list"
                         FlowItemsSource="{Binding pictures}"
                         FlowItemAppearingCommand="{Binding ItemAppearingCommand}">
                 <flv:FlowListView.FlowColumnTemplate>
@@ -98,6 +107,6 @@
                     </DataTemplate>
                 </flv:FlowListView.FlowColumnTemplate>
             </flv:FlowListView>
-        </Frame>
+        </StackLayout>
     </Grid>
 </ContentPage>

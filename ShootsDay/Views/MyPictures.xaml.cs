@@ -24,7 +24,7 @@ namespace ShootsDay.Views
         {
             InitializeComponent();
 
-            BindingContext = new MyPicturesViewModel(this);
+            BindingContext = new MyPicturesViewModel(this,list,noRecords);
 
             Device.BeginInvokeOnMainThread(() => {
                 //NameToolb.Text = SettingsManager.Instance.getUserLargeName();

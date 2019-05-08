@@ -1,4 +1,5 @@
-﻿using ShootsDay.Managers;
+﻿using DLToolkit.Forms.Controls;
+using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.RequestModels;
 using ShootsDay.Views;
@@ -39,13 +40,21 @@ namespace ShootsDay.ViewModels
             get;
             set;
         }
-        
+        public FlowListView FlowListViewUsers { get; set; }
+        public StackLayout NoRecords { get; set; }
+        public bool firstLoad { get; set; }
 
 
-
-        public RedSocialViewModel(Page context) : base(context)
+        public RedSocialViewModel(  Page context,
+                                    FlowListView FlowListViewUsers_,
+                                    StackLayout NoRecords_) : base(context)
         {
             photoShoots = new ObservableCollection<Picture>();
+
+            FlowListViewUsers = FlowListViewUsers_;
+            NoRecords = NoRecords_;
+
+            firstLoad = true;
 
             getPhotos();
 
@@ -133,7 +142,25 @@ namespace ShootsDay.ViewModels
                     if (jsonSystem.status.type != "error")
                     {
                         //Get the photo list
-                        List<Picture> photoshoots_ = jsonSystem.data.pictures;
+                        List<Picture> photoshoots_ = jsonSystem.data==null? new List<Picture>(): jsonSystem.data.pictures;
+
+                        //When no records
+                        if (photoshoots_.Count == 0 && firstLoad)
+                        {
+                            Device.BeginInvokeOnMainThread(() => {
+                                FlowListViewUsers.IsVisible = false;
+                                NoRecords.IsVisible = true;
+                            });
+                        }
+                        else
+                        {
+                            Device.BeginInvokeOnMainThread(() => {
+                                FlowListViewUsers.IsVisible = true;
+                                NoRecords.IsVisible = false;
+                            });
+                        }
+
+                        firstLoad = false;
 
                         if (photoshoots_.Count() == 0 || photoshoots_.Count() < Constants.LIMIT)
                         {

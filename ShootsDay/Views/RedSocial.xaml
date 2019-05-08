@@ -4,22 +4,33 @@
              x:Class="ShootsDay.Views.RedSocial"
              x:Name="RedSocial_"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
-             BackgroundColor="#CFCFCF">
+             BackgroundColor="White">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="NameToolb" Text="Red Social" Order="Primary" Priority="1"/>
     </ContentPage.ToolbarItems>
-    <StackLayout Orientation="Vertical" BackgroundColor="#CFCFCF">
+    <StackLayout Orientation="Vertical" BackgroundColor="White">
+        <StackLayout    x:Name="noRecords" 
+                        Padding="20"
+                        IsVisible="false"
+                        HorizontalOptions="CenterAndExpand">
+            <Label 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               TextColor="Gray"
+               FontSize="Micro">Actualmente no hay imagenes de red social :(</Label>
+        </StackLayout>
         <flv:FlowListView   
                         FlowColumnCount="1" 
                         SeparatorVisibility="None" 
                         HasUnevenRows="False" 
                         RowHeight="300"
+                        x:Name="listItems"
                         FlowItemsSource="{Binding photoShoots}"
                         FlowItemAppearingCommand="{Binding ItemAppearingCommand}"
-                        BackgroundColor="#CFCFCF">
+                        BackgroundColor="White">
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
-                    <Grid Margin="15,0,15,0" BackgroundColor="#CFCFCF">
+                    <Grid Margin="15,0,15,0" BackgroundColor="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20" />
                             <RowDefinition Height="*" />

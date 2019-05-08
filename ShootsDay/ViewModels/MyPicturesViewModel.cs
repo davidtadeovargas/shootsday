@@ -1,4 +1,5 @@
-﻿using ShootsDay.Managers;
+﻿using DLToolkit.Forms.Controls;
+using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.RequestModels;
 using ShootsDay.Views;
@@ -30,10 +31,23 @@ namespace ShootsDay.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public FlowListView FlowListViewUsers { get; set; }
+        public StackLayout NoRecords { get; set; }
+        public bool firstLoad { get; set; }
 
-        public MyPicturesViewModel(Page context) : base(context)
+
+
+
+        public MyPicturesViewModel( Page context,
+                                    FlowListView FlowListViewUsers_,
+                                    StackLayout NoRecords_) : base(context)
         {
             pictures = new ObservableCollection<Picture>();
+
+            FlowListViewUsers = FlowListViewUsers_;
+            NoRecords = NoRecords_;
+
+            firstLoad = true;
 
             getPictures();
 
@@ -105,6 +119,24 @@ namespace ShootsDay.ViewModels
                     {
                         //Get the photo list
                         List<Picture> pictures_ = jsonSystem.data==null? new List<Picture>(): jsonSystem.data.pictures;
+
+                        //When no records
+                        if (pictures_.Count == 0 && firstLoad)
+                        {
+                            Device.BeginInvokeOnMainThread(() => {
+                                FlowListViewUsers.IsVisible = false;
+                                NoRecords.IsVisible = true;
+                            });
+                        }
+                        else
+                        {
+                            Device.BeginInvokeOnMainThread(() => {
+                                FlowListViewUsers.IsVisible = true;
+                                NoRecords.IsVisible = false;
+                            });
+                        }
+
+                        firstLoad = false;
 
                         if (pictures_.Count() == 0 || pictures_.Count() < Constants.LIMIT)
                         {
