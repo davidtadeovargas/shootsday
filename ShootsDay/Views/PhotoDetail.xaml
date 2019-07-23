@@ -30,7 +30,7 @@
                     </ImageButton>
                     <ImageButton  x:Name="likeImage" Aspect="Fill" Grid.Row="0" Grid.Column="0" Command="{Binding KeyboardClickCommand}" BackgroundColor="Transparent" Clicked="OnLikeClicked">
                     </ImageButton>
-                    <ImageButton  x:Name="shareImag" Source="http://shootsday.com.mx/imgs/share.png" Aspect="Fill" Grid.Row="0" Grid.Column="2" Command="{Binding Share,KeyboardClickCommand}" BackgroundColor="Transparent">
+                    <ImageButton  x:Name="shareImag" Source="http://shootsday.com.mx/imgs/share.png" Aspect="Fill" Grid.Row="0" Grid.Column="2" Command="{Binding Share}" BackgroundColor="Transparent">
                     </ImageButton>
                 </Grid>
             </StackLayout>

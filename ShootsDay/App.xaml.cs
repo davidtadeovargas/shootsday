@@ -8,13 +8,9 @@ namespace ShootsDay
 {
 	public partial class App : Application
 	{
-        public static App Current;
         public string Language = "";
         public App()
 		{
-            Current = this;
-            //InitializeComponent();
-            
             var isLoggedIn = SettingsManager.Instance.IsLoggedIn();
 
             FlowListView.Init(); //Init library

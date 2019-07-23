@@ -14,9 +14,9 @@
                 </Label>
                 <Frame  HasShadow="False">
                     <StackLayout Orientation="Vertical" Spacing="10">
-                        <Entry x:Name="UserEntry" Placeholder="Usuario" Text="{Binding User}" HeightRequest="40" TextColor="Black" TextChanged="EntryLoginTextChanged" FontSize="Small"></Entry>
-                        <Entry x:Name="PasswordEntry" FontSize="Small" Placeholder="Contraseña" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True" TextChanged="EntryPasswordTextChanged"></Entry>
-                        <Entry x:Name="CodeEntry" FontSize="Small" Keyboard="Numeric" Placeholder="Código evento" Text="{Binding Code}" HeightRequest="40" TextColor="Black" TextChanged="EntryCodeEventTextChanged"></Entry>
+                        <Entry x:Name="UserEntry" Placeholder="Usuario" Text="{Binding User}" HeightRequest="40" TextColor="Black" TextChanged="EntryLoginTextChanged" FontSize="Small" HorizontalTextAlignment="Center"></Entry>
+                        <Entry x:Name="PasswordEntry" FontSize="Small" Placeholder="Contraseña" Text="{Binding Password}" HeightRequest="40" TextColor="Black" IsPassword="True" TextChanged="EntryPasswordTextChanged" HorizontalTextAlignment="Center"></Entry>
+                        <Entry x:Name="CodeEntry" FontSize="Small" Keyboard="Numeric" Placeholder="Código evento" Text="{Binding Code}" HeightRequest="40" TextColor="Black" TextChanged="EntryCodeEventTextChanged" HorizontalTextAlignment="Center"></Entry>
                     </StackLayout>
                 </Frame>
                 <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">

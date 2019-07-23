@@ -1,4 +1,5 @@
-﻿using ShootsDay.Managers;
+﻿using Plugin.Connectivity;
+using ShootsDay.Managers;
 using ShootsDay.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -27,10 +28,9 @@ namespace ShootsDay.Views
             init();                      
         }
 
-
         private void init()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
             /*
                 Init the view model
@@ -50,22 +50,28 @@ namespace ShootsDay.Views
                 return;
 
             _userTapped = true;
-
-            await Navigation.PushModalAsync(new MasterDetail(new RedSocialTabPage()));
+            
+            if (UtilsManager.Instance.isConectedToInternet(this)) //If connectivity error display message to user
+            {
+                await Navigation.PushModalAsync(new MasterDetail(new RedSocialTabPage()));
+            }
+            
             _userTapped = false;
-        }
+        }       
 
         private async void OnSesionFotosClicked(object sender, EventArgs e)
         {
             if (_userTapped)
-                return;
-
-            
+                return;            
 
             _userTapped = true;
 
-            Debug.WriteLine("Abrir ventana de Sesion de fotos");
-            await Navigation.PushModalAsync(new MasterDetail(new PhotoSesionsPage_()));
+            if (UtilsManager.Instance.isConectedToInternet(this)) //If connectivity error display message to user
+            {
+                Debug.WriteLine("Abrir ventana de Sesion de fotos");
+                await Navigation.PushModalAsync(new MasterDetail(new PhotoSesionsPage_()));
+            }
+            
             _userTapped = false;
         }
 
@@ -76,8 +82,12 @@ namespace ShootsDay.Views
 
             _userTapped = true;
 
-            Debug.WriteLine("Abrir ventana de invitación");
-            await Navigation.PushModalAsync(new MasterDetail(new Invites()));
+            if (UtilsManager.Instance.isConectedToInternet(this)) //If connectivity error display message to user
+            {
+                Debug.WriteLine("Abrir ventana de invitación");
+                await Navigation.PushModalAsync(new MasterDetail(new Invites()));
+            }
+            
             _userTapped = false;
         }
     }

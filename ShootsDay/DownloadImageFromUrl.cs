@@ -1,10 +1,6 @@
 ﻿
-using Android;
 using Android.App;
 using Android.Content;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Widget;
 using Java.IO;
 using Java.Net;
 using System;
@@ -15,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ShootsDay
 {
-    public class DownloadImageFromUrl : AsyncTask<string, string, string>
+    public class DownloadImageFromUrl : Android.OS.AsyncTask<string, string, string>
     {
         private ProgressDialog pDialog;
         //private ImageView imgView;

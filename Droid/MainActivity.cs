@@ -149,6 +149,8 @@ namespace ShootsDay.Droid
             var intentChooser = Intent.CreateChooser(intent, "Share via");
 
             StartActivityForResult(intentChooser, ShareImageId);
+
+            KeyboardClick(imageSource);
         }
 
 

@@ -107,7 +107,7 @@ namespace ShootsDay
             Debug.WriteLine("La aplicación debe estar en ingles");
             //Java.Lang.Thread.CurrentThread.CurrentUICulture = new CultureInfo("ES-US")
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
-            App.Current.Language = "eng";
+            //App.Current.Language = "eng";
             AplicarIdioma();
         }
 
@@ -115,7 +115,7 @@ namespace ShootsDay
         {
             Debug.WriteLine("La aplicación debe estar en español");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("");
-            App.Current.Language = "esp";
+            //App.Current.Language = "esp";
             AplicarIdioma();
         }
 
@@ -175,7 +175,7 @@ namespace ShootsDay
 				var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
                     new {
                         Event = new { code = CodeEntry.Text },
-                        Login = new { password = PasswordEntry.Text, username = UserEntry.Text, language = App.Current.Language } 
+                        Login = new { password = PasswordEntry.Text, username = UserEntry.Text, language = "esp" } 
                     });
 				//var userData = Newtonsoft.Json.JsonConvert.SerializeObject( new { User = auxUser, Login = auxLogin } );
 				var content = new StringContent(userData, Encoding.UTF8, "application/json");
