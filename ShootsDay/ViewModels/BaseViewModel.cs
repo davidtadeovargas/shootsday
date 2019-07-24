@@ -11,6 +11,7 @@ namespace ShootsDay.ViewModels
 {
     class BaseViewModel : INotifyPropertyChanged
     {
+        protected Page context { get; set; }
         public static TimeSpan CacheDuration { get; set; } = new TimeSpan(30, 0, 0, 0);
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -27,6 +28,8 @@ namespace ShootsDay.ViewModels
 
         public BaseViewModel(Page context = null)
         {
+            this.context = context;
+
             Navigation = context == null ? (App.Current.MainPage as NavigationPage).Navigation : context.Navigation;
             Alert = context == null ? (App.Current.MainPage as NavigationPage) : context;
             KeyboardClickCommand = new Command(KeyboarClic); //Native button image sound message

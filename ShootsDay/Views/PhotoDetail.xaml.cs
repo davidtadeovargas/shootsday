@@ -90,6 +90,13 @@ namespace ShootsDay.Views
             Like();
         }
 
+        private void OnDownloadClicked(object sender, EventArgs e)
+        {
+            if (UtilsManager.Instance.isConectedToInternet(this)) //If connectivity error display message to user
+            {
+                _photoDetailViewModel.DownloadCommand();
+            }
+        }
 
         private async void Like()
         {
@@ -98,92 +105,88 @@ namespace ShootsDay.Views
 
             _userTapped = true;
 
-
-            try
+            if (UtilsManager.Instance.isConectedToInternet(this)) //If connectivity error display message to user
             {
-                string username = SettingsManager.Instance.getUserName();
-                string password = SettingsManager.Instance.getPassword();
-                int user_id = SettingsManager.Instance.getUserId();
-
-                int value;
-                int like_id;
-                if (Photoshoot_.Like ==null)
+                try
                 {
-                    value = 1;
-                    like_id = -1;
-                }
-                else
-                {
-                    value = -1;
-                    like_id = Photoshoot_.Like.id;
-                }
+                    string username = SettingsManager.Instance.getUserName();
+                    string password = SettingsManager.Instance.getPassword();
+                    int user_id = SettingsManager.Instance.getUserId();
 
-                var client = new HttpClient();
-                var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
-                    new
+                    int value;
+                    int like_id;
+                    if (Photoshoot_.Like == null)
                     {
-                        Like = new { id= like_id, photoshoot_id = Photoshoot_.id, value=value },
-                        Login = new { password = password, username = username, user_id = user_id }
-                    });
-
-                var content = new StringContent(userData, Encoding.UTF8, "application/json");
-                var uri = new Uri(Constants.LIKE);                
-
-                var result = await client.PostAsync(uri, content).ConfigureAwait(true);
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var tokenJson = await result.Content.ReadAsStringAsync();
-                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestLike>(tokenJson);
-
-                    if (jsonSystem.status.type != "error")
-                    {
-
-                        //Set the like
-                        string sourceLike;
-                        if (Photoshoot_.Like == null)
-                        {
-                            Photoshoot_.Like = jsonSystem.data.Like;
-                            sourceLike = "http://shootsday.com.mx/imgs/like.png";
-                        }
-                        else
-                        {
-                            Photoshoot_.Like = null;
-                            sourceLike = "http://shootsday.com.mx/imgs/liked.png";
-                        }
-
-                        
-                        Device.BeginInvokeOnMainThread(() =>
-                        {
-                            likeImage.Source = sourceLike;
-                        });
-
-                        _userTapped = false;
-
+                        value = 1;
+                        like_id = -1;
                     }
                     else
                     {
-                        await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
-                        _userTapped = false;
+                        value = -1;
+                        like_id = Photoshoot_.Like.id;
+                    }
+
+                    var client = new HttpClient();
+                    var userData = Newtonsoft.Json.JsonConvert.SerializeObject(
+                        new
+                        {
+                            Like = new { id = like_id, photoshoot_id = Photoshoot_.id, value = value },
+                            Login = new { password = password, username = username, user_id = user_id }
+                        });
+
+                    var content = new StringContent(userData, Encoding.UTF8, "application/json");
+                    var uri = new Uri(Constants.LIKE);
+
+                    var result = await client.PostAsync(uri, content).ConfigureAwait(true);
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var tokenJson = await result.Content.ReadAsStringAsync();
+                        var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestLike>(tokenJson);
+
+                        if (jsonSystem.status.type != "error")
+                        {
+
+                            //Set the like
+                            string sourceLike;
+                            if (Photoshoot_.Like == null)
+                            {
+                                Photoshoot_.Like = jsonSystem.data.Like;
+                                sourceLike = "http://shootsday.com.mx/imgs/like.png";
+                            }
+                            else
+                            {
+                                Photoshoot_.Like = null;
+                                sourceLike = "http://shootsday.com.mx/imgs/liked.png";
+                            }
+
+
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                likeImage.Source = sourceLike;
+                            });
+                        }
+                        else
+                        {
+                            await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+                        }
+                    }
+                    else
+                    {
+                        var respuesta = await result.Content.ReadAsStringAsync();
+                        var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
+                        await DisplayAlert("", respuesta, "Aceptar");
 
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    var respuesta = await result.Content.ReadAsStringAsync();
-                    var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<RequestUser>(respuesta);
-                    await DisplayAlert("", respuesta, "Aceptar");
-                    _userTapped = false;
-
+                    Debug.WriteLine("Excepcion: " + ex.Message);
+                    await DisplayAlert("", ex.Message, "Aceptar");
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Excepcion: " + ex.Message);
-                await DisplayAlert("", ex.Message, "Aceptar");
-                _userTapped = false;
+            }            
 
-            }
+            _userTapped = false;
         }
     }
 }

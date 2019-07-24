@@ -81,7 +81,7 @@ namespace ShootsDay.Views
             //Can not continue without image
             if (!hasImage)
             {
-                await DisplayAlert("Error", "Selecciona primero una imagen", "Aceptar");                
+                await DisplayAlert("Ups!", "Selecciona primero una imagen", "Aceptar");                
                 return;
             }
 
@@ -89,7 +89,7 @@ namespace ShootsDay.Views
             var comment = editorComment.Text==null?"": editorComment.Text.Trim();
             if (comment == "")
             {
-                await DisplayAlert("Error", "Ingresa un comentario", "Aceptar");
+                await DisplayAlert("Ups!", "Ingresa un comentario", "Aceptar");
                 return;
             }
 

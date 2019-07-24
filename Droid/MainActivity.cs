@@ -17,6 +17,7 @@ using Android;
 using Android.Support.V4.App;
 using Android.Support.Design.Widget;
 using ShootsDay.Models;
+using System.Net;
 
 namespace ShootsDay.Droid
 {
@@ -159,10 +160,18 @@ namespace ShootsDay.Droid
              */
         private void downloadFile()
         {
-            DownloadImageFromUrl download = new DownloadImageFromUrl(this);
-            download.Message = Resources.GetString(Resource.String.DownloadingFile);
-            download.OnImageDownloaded += OnImageDownloaded;
-            download.Execute(photoshootCurrent.url_image);
+            try
+            {
+                WebClient webClient = new WebClient(); webClient.DownloadFile(photoshootCurrent.url_image, "/sdcard/download/Test.xls");
+                DownloadImageFromUrl download = new DownloadImageFromUrl(this);
+                download.Message = Resources.GetString(Resource.String.DownloadingFile);
+                download.OnImageDownloaded += OnImageDownloaded;
+                download.Execute(photoshootCurrent.url_image);
+            }
+            catch (Exception e)
+            {
+                e = e;
+            }            
         }
 
         /*

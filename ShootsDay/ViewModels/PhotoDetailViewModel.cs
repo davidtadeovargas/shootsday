@@ -1,4 +1,5 @@
-﻿using ShootsDay.ViewModels;
+﻿using ShootsDay.Managers;
+using ShootsDay.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,16 @@ namespace ShootsDay.Models.Share
             MessagingCenter.Send<ImageSource>(this.Source, "Share");
         }
 
-        void DownloadCommand()
+        public void DownloadCommand()
         {
-            MessagingCenter.Send<Photoshoot>(this.photoshoot, "Download");
+            try
+            {
+                MessagingCenter.Send<Photoshoot>(this.photoshoot, "Download");
+            }
+            catch (Exception e)
+            {
+                e = e;
+            }            
         }
     }
 }
