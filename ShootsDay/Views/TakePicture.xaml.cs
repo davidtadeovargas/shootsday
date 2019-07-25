@@ -99,62 +99,65 @@ namespace ShootsDay.Views
             var answer = await DisplayAlert("", "¿Continuar?", "Si", "No");
             if (answer)
             {
-                LoadingManager.Instance.showLoading();
-
-                string user = SettingsManager.Instance.getUserName();
-                string password = SettingsManager.Instance.getPassword();
-                string idEvent = SettingsManager.Instance.getIdEvent().ToString();
-
-                try
+                if (UtilsManager.Instance.isConectedToInternet(this)) //If connectivity error display message to user
                 {
-                    MultipartFormDataContent content = new MultipartFormDataContent();
-                    content.Add(new StringContent(password), "Login[password]");
-                    content.Add(new StringContent(user), "Login[username]");
-                    content.Add(new StringContent(idEvent), "Picture[event_id]");
-                    content.Add(new StringContent(comment), "Picture[comment]");                    
+                    LoadingManager.Instance.showLoading();
 
-                    if (hasImage)
+                    string user = SettingsManager.Instance.getUserName();
+                    string password = SettingsManager.Instance.getPassword();
+                    string idEvent = SettingsManager.Instance.getIdEvent().ToString();
+
+                    try
                     {
-                        content.Add(new StreamContent(_mediaFile.GetStream()),
-                        "\"image\"",
-                        $"\"{_mediaFile.Path}\"");
-                    }
-                    var client = new HttpClient();
-                    var uri = new Uri(Constants.UPLOAD_PICTURE);
+                        MultipartFormDataContent content = new MultipartFormDataContent();
+                        content.Add(new StringContent(password), "Login[password]");
+                        content.Add(new StringContent(user), "Login[username]");
+                        content.Add(new StringContent(idEvent), "Picture[event_id]");
+                        content.Add(new StringContent(comment), "Picture[comment]");
 
-                    var result = await client.PostAsync(uri, content).ConfigureAwait(true);
-
-                    LoadingManager.Instance.closeLoading();
-
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var tokenJson = await result.Content.ReadAsStringAsync();
-                        var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>(tokenJson);
-
-                        if (jsonSystem.status.type != "error")
+                        if (hasImage)
                         {
-                            // Photo uploaded succesfully
-                            await DisplayAlert("", jsonSystem.status.message, "Aceptar");
-                            await this.Navigation.PopModalAsync();                            
+                            content.Add(new StreamContent(_mediaFile.GetStream()),
+                            "\"image\"",
+                            $"\"{_mediaFile.Path}\"");
+                        }
+                        var client = new HttpClient();
+                        var uri = new Uri(Constants.UPLOAD_PICTURE);
+
+                        var result = await client.PostAsync(uri, content).ConfigureAwait(true);
+
+                        LoadingManager.Instance.closeLoading();
+
+                        if (result.IsSuccessStatusCode)
+                        {
+                            var tokenJson = await result.Content.ReadAsStringAsync();
+                            var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>(tokenJson);
+
+                            if (jsonSystem.status.type != "error")
+                            {
+                                // Photo uploaded succesfully
+                                await DisplayAlert("", jsonSystem.status.message, "Aceptar");
+                                await this.Navigation.PopModalAsync();
+                            }
+                            else
+                            {
+                                // Error uploading photo
+                                await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+                            }
                         }
                         else
                         {
-                            // Error uploading photo
+                            var respuesta = await result.Content.ReadAsStringAsync();
+                            var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>(respuesta);
                             await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        var respuesta = await result.Content.ReadAsStringAsync();
-                        var jsonSystem = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>(respuesta);
-                        await DisplayAlert("Error", jsonSystem.status.message, "Aceptar");
+                        LoadingManager.Instance.closeLoading();
+                        Debug.WriteLine("Error, Excepcion: " + ex.Message);
                     }
-                }
-                catch (Exception ex)
-                {
-                    LoadingManager.Instance.closeLoading();
-                    Debug.WriteLine("Error, Excepcion: " + ex.Message);
-                }
+                }                
             }
         }
     }

@@ -33,14 +33,14 @@ namespace ShootsDay.Views
             });//UserEvents
         }
 
-        private void OnMisEventosTapped(object sender, TappedEventArgs e)
+        private void OnMisEventosTapped(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new MasterDetail(new UserEvents()));
         }
         
-        private void ImageTapped(object sender, TappedEventArgs e)
+        private void ImageTapped(object sender, EventArgs e)
         {
-            Picture Picture = (Picture)e.Parameter;
+            Picture Picture = (Picture)e;
 
             RedSocialDetail RedSocialDetail = new RedSocialDetail(Picture);
 
