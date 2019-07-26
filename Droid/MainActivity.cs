@@ -49,6 +49,8 @@ namespace ShootsDay.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             ImageCircleRenderer.Init();
 
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
+
             LoadApplication(new App());
 
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);

@@ -66,6 +66,9 @@ namespace ShootsDay
             var item = (MasterPageItem)e.SelectedItem;                        
 
             Type page = item.TargetType;
-		}
+
+            ((ListView)sender).SelectedItem = null; //Remove the background color in selection
+
+        }
 	}
 }

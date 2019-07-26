@@ -17,7 +17,9 @@ namespace ShootsDay.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
             ImageCircleRenderer.Init();
-            
+
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
             LoadApplication(new App());
 
             MessagingCenter.Subscribe<ImageSource>(this, "Share", Share, null);
