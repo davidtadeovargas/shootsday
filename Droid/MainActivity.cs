@@ -18,6 +18,7 @@ using Android.Support.V4.App;
 using Android.Support.Design.Widget;
 using ShootsDay.Models;
 using System.Net;
+using System.ComponentModel;
 
 namespace ShootsDay.Droid
 {
@@ -30,8 +31,7 @@ namespace ShootsDay.Droid
 
         Photoshoot photoshootCurrent = null;
 
-
-
+        
 
         protected override void OnCreate(Bundle bundle)
 		{
@@ -91,6 +91,27 @@ namespace ShootsDay.Droid
             }
         }
 
+        private void OnFileDownloaded(object sender, DownloadEventArgs e)
+        {
+            if (e.FileSaved)
+            {                
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);                
+                alert.SetMessage(Resource.String.DownloadedFile);
+                alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) =>
+                {                    
+                });
+                alert.Show();
+            }
+            else
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetMessage(Resource.String.ErrorDownFile);
+                alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) =>
+                {
+                });
+                alert.Show();
+            }
+        }
 
         public Android.Views.View root;
         public void KeyboardClick(Object Object)
@@ -164,29 +185,38 @@ namespace ShootsDay.Droid
         {
             try
             {
-                WebClient webClient = new WebClient(); webClient.DownloadFile(photoshootCurrent.url_image, "/sdcard/download/Test.xls");
-                DownloadImageFromUrl download = new DownloadImageFromUrl(this);
-                download.Message = Resources.GetString(Resource.String.DownloadingFile);
-                download.OnImageDownloaded += OnImageDownloaded;
-                download.Execute(photoshootCurrent.url_image);
+                WebClient webClient = new WebClient();
+                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
+                string fileName = System.IO.Path.GetFileName(photoshootCurrent.url_image);
+                var pathFile = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
+                var absolutePath = pathFile.AbsolutePath;
+                webClient.DownloadFileAsync(new Uri(photoshootCurrent.url_image), System.IO.Path.Combine(absolutePath, fileName));                               
             }
             catch (Exception e)
             {
                 e = e;
             }            
         }
-
-        /*
-         Callback when image it is already downloaded
-             */
-        void OnImageDownloaded(string path)
+        private void Completed(object sender, AsyncCompletedEventArgs e)
         {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetTitle("");
-            alert.SetMessage(Resources.GetString(Resource.String.DownloadedFile));
-            alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {                
-            });
-            alert.Show();
+            if (e.Error != null)
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle("");
+                alert.SetMessage(Resources.GetString(Resource.String.ErrorDownFile));
+                alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+                });
+                alert.Show();
+            }
+            else
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle("");
+                alert.SetMessage(Resources.GetString(Resource.String.DownloadedFile));
+                alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
+                });
+                alert.Show();
+            }
         }
 
         /*

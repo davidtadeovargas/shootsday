@@ -6951,23 +6951,26 @@ namespace ShootsDay.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f090056
+			public const int DownloadedFile = 2131296342;
+			
 			// aapt resource value: 0x7f090055
-			public const int DownloadedFile = 2131296341;
+			public const int DownloadingFile = 2131296341;
 			
-			// aapt resource value: 0x7f090054
-			public const int DownloadingFile = 2131296340;
-			
-			// aapt resource value: 0x7f090050
-			public const int OK = 2131296336;
+			// aapt resource value: 0x7f09004f
+			public const int ErrorDownFile = 2131296335;
 			
 			// aapt resource value: 0x7f090051
-			public const int Pemissions = 2131296337;
+			public const int OK = 2131296337;
 			
 			// aapt resource value: 0x7f090052
-			public const int PermissionGranted = 2131296338;
+			public const int Pemissions = 2131296338;
 			
 			// aapt resource value: 0x7f090053
-			public const int PermissionNeeded = 2131296339;
+			public const int PermissionGranted = 2131296339;
+			
+			// aapt resource value: 0x7f090054
+			public const int PermissionNeeded = 2131296340;
 			
 			// aapt resource value: 0x7f090018
 			public const int abc_action_bar_home_description = 2131296280;
@@ -7200,8 +7203,8 @@ namespace ShootsDay.Droid
 			// aapt resource value: 0x7f09004c
 			public const int path_password_strike_through = 2131296332;
 			
-			// aapt resource value: 0x7f09004f
-			public const int permission_storage_rationale = 2131296335;
+			// aapt resource value: 0x7f090050
+			public const int permission_storage_rationale = 2131296336;
 			
 			// aapt resource value: 0x7f090033
 			public const int search_menu_title = 2131296307;

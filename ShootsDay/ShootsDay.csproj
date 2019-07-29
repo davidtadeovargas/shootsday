@@ -103,6 +103,7 @@
     <Compile Include="Views\Home_.xaml.cs">
       <DependentUpon>Home_.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IDownloader.cs" />
     <Compile Include="Views\MyPictures.xaml.cs">
       <DependentUpon>MyPictures.xaml</DependentUpon>
     </Compile>

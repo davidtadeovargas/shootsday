@@ -13,7 +13,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,7 +21,7 @@ namespace ShootsDay.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PhotoDetail : ContentPage
-    {
+    {                
         Photoshoot Photoshoot_;
         PhotoDetailViewModel _photoDetailViewModel;
 
@@ -38,6 +37,7 @@ namespace ShootsDay.Views
         const int RequestShareId = 0;
         private bool _userTapped;
 
+        
 
 
 
@@ -45,8 +45,8 @@ namespace ShootsDay.Views
         {
             NavigationPage.SetHasNavigationBar(this, false);
 
-            InitializeComponent();            
-
+            InitializeComponent();
+            
             Photoshoot_ = Photoshoot; //Save current photo
 
             /*
@@ -85,6 +85,7 @@ namespace ShootsDay.Views
             });            
         }
 
+
         private void OnLikeClicked(object sender, EventArgs e)
         {
             Like();
@@ -95,6 +96,7 @@ namespace ShootsDay.Views
             if (UtilsManager.Instance.isConectedToInternet(this)) //If connectivity error display message to user
             {
                 _photoDetailViewModel.DownloadCommand();
+                //downloader.DownloadFile(Photoshoot_.url_image, "XF_Downloads");
             }
         }
 

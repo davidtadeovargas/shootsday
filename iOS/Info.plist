@@ -42,5 +42,7 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>New Entry</string>
+  <key>NSPhotoLibraryAddUsageDescription </key>
+  <string>Need permission to save files.</string>
 </dict>
 </plist>

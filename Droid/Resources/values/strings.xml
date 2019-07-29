@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="ErrorDownFile">Error en la descarga, intenta de nuevo!</string>
   <string name="permission_storage_rationale">Necesitas permisos antes de poder compartir la imagen</string>
   <string name="OK">OK</string>
   <string name="Pemissions">Permisos</string>
   <string name="PermissionGranted">Ahora puedes utilizar esta funcionalidad con normalidad!</string>
   <string name="PermissionNeeded">Se necesitan permisos para poder usar esta funcionalidad!</string>
   <string name="DownloadingFile">Descargando tu archivo espera ... </string>
-  <string name="DownloadedFile">Tu imagen ya se descargo!</string>
+  <string name="DownloadedFile">Felicidades, tu imagen ya se descargo!</string>  
 </resources>
