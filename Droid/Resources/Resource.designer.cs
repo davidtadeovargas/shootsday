@@ -6951,6 +6951,9 @@ namespace ShootsDay.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f090057
+			public const int DownloadedComplete = 2131296343;
+			
 			// aapt resource value: 0x7f090056
 			public const int DownloadedFile = 2131296342;
 			

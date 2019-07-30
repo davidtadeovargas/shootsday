@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace ShootsDay.ViewModels
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         protected Page context { get; set; }
         public static TimeSpan CacheDuration { get; set; } = new TimeSpan(30, 0, 0, 0);

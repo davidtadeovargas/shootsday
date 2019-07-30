@@ -197,6 +197,8 @@ namespace ShootsDay.Droid
                 e = e;
             }            
         }
+
+        [Obsolete]
         private void Completed(object sender, AsyncCompletedEventArgs e)
         {
             if (e.Error != null)
@@ -216,6 +218,67 @@ namespace ShootsDay.Droid
                 alert.SetPositiveButton(Resource.String.OK, (senderAlert, args) => {
                 });
                 alert.Show();
+
+                /*//Create notification
+                var notificationManager = GetSystemService(Context.NotificationService) as
+                     NotificationManager;
+
+                //Create an intent to show ui
+                var uiIntent = new Intent(this, typeof(MainActivity));
+
+                //Create the notification                
+                var notification = new Notification(Resource.Drawable.icon, Android.App.Application.Context.Resources.GetString(Resource.String.DownloadedFile));
+                //var notification = new Notification(Android.Resource.Drawable.SymActionEmail,title);
+
+                //Auto cancel will remove the notification once the user touches it
+                notification.Flags = NotificationFlags.AutoCancel;
+
+                //Set the notification info
+                //we use the pending intent, passing our ui intent over which will get called
+                //when the notification is tapped.
+                notification.SetLatestEventInfo(this, "tittle", Android.App.Application.Context.Resources.GetString(Resource.String.DownloadedFile), PendingIntent.GetActivity(this, 0, uiIntent, 0));
+
+                //Show the notification
+                notificationManager.Notify(1, notification);*/
+
+                // Get the notification manager:
+                NotificationManager notificationManager =
+                    GetSystemService(Context.NotificationService) as NotificationManager;
+
+                var channelName = "TestChannel";
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+                {
+                    NotificationChannel channel = null;
+                    if (channel == null)
+                    {
+                        channel = new NotificationChannel(channelName, channelName, NotificationImportance.Low)
+                        {
+                            LockscreenVisibility = NotificationVisibility.Public
+                        };
+                        channel.SetShowBadge(true);
+                        notificationManager.CreateNotificationChannel(channel);
+                    }
+                    channel.Dispose();
+                }
+
+                // Instantiate the builder and set notification elements:
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                    .SetContentTitle(Android.App.Application.Context.Resources.GetString(Resource.String.DownloadedComplete))
+                    .SetContentText(Android.App.Application.Context.Resources.GetString(Resource.String.DownloadedFile))
+                    .SetVisibility((int)NotificationVisibility.Public)
+                    .SetSmallIcon(Resource.Drawable.logo)
+                    .SetShowWhen(false)
+                    .SetChannelId(channelName);                    
+
+                //If using same Id, the notifcation will be override
+                //Use random new for each or increment if you want to show more than one notifcation for this app
+                var notificationId = 0;
+
+                // Build the notification:
+                Notification notification = builder.Build();                
+
+                // Publish the notification:                
+                notificationManager.Notify(notificationId, notification);
             }
         }
 

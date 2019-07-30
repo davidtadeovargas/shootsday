@@ -15,7 +15,7 @@ using DLToolkit.Forms.Controls;
 
 namespace ShootsDay.ViewModels
 {
-    class PhotoSesionsViewModel : BaseViewModel
+    public class PhotoSesionsViewModel : BaseViewModel
     {
 
         private ObservableCollection<Photoshoot> photoShoots_;
@@ -24,6 +24,9 @@ namespace ShootsDay.ViewModels
         public FlowListView FlowListViewUsers { get; set; }
         public Label NoRecords { get; set; }
         public bool firstLoad { get; set; }
+
+        private PhotoDetail PhotoDetail;
+        private bool _userTapped;
 
 
         public PhotoSesionsViewModel(   Page context,
@@ -40,16 +43,26 @@ namespace ShootsDay.ViewModels
             getPhotos();
 
             ItemAppearingCommand = new Command((args) => OnItemAppearing(args));
-            ViewImageCommand = new Command<Photoshoot>(async (Photoshoot) => await OnPhotoTappedAsync(Photoshoot));
+            ViewImageCommand = new Command<Photoshoot>(async (Photoshoot) => await OnPhotoTappedAsync(Photoshoot));            
         }
 
         private async Task OnPhotoTappedAsync(Photoshoot Photoshoot)
         {
+            if (_userTapped)
+                return;
+
+            _userTapped = true;
+            
             KeyboarClic(); //Simulate native clic sound 
 
-            await Navigation.PushAsync(new MasterDetail(new PhotoDetail(Photoshoot)));
+            PhotoDetail = new PhotoDetail(Photoshoot,this);
+            await Navigation.PushAsync(new MasterDetail(PhotoDetail));            
         }
 
+        public void resetUserTapped()
+        {
+            _userTapped = false;
+        }
 
         private async Task OnItemAppearing(object args)
         {

@@ -7,6 +7,7 @@ using ShootsDay.Managers;
 using ShootsDay.Models;
 using ShootsDay.Models.Share;
 using ShootsDay.RequestModels;
+using ShootsDay.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,16 +38,20 @@ namespace ShootsDay.Views
         const int RequestShareId = 0;
         private bool _userTapped;
 
-        
+        private PhotoSesionsViewModel PhotoSesionsViewModel;
 
 
 
-        public PhotoDetail(Photoshoot Photoshoot)
+
+
+        public PhotoDetail(Photoshoot Photoshoot, PhotoSesionsViewModel PhotoSesionsViewModel_)
         {
             NavigationPage.SetHasNavigationBar(this, false);
-
-            InitializeComponent();
             
+            InitializeComponent();
+
+            this.PhotoSesionsViewModel = PhotoSesionsViewModel_;
+
             Photoshoot_ = Photoshoot; //Save current photo
 
             /*
@@ -82,9 +87,13 @@ namespace ShootsDay.Views
                 image.Source = ImageSource.FromUri(new Uri(url));
 
                 _photoDetailViewModel.Source = image.Source;//For binding
-            });            
+            });                       
         }
-
+        
+        protected override void OnDisappearing()
+        {
+            this.PhotoSesionsViewModel.resetUserTapped(); //Prevent multi touch
+        }
 
         private void OnLikeClicked(object sender, EventArgs e)
         {
